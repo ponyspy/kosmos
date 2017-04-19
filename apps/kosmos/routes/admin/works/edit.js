@@ -8,6 +8,7 @@ module.exports = function(Model, Params) {
 	var previewImages = Params.upload.preview;
 	var uploadImages = Params.upload.images;
 	var uploadPoster = Params.upload.image;
+	var checkNested = Params.locale.checkNested;
 
 
 	module.index = function(req, res, next) {
@@ -42,10 +43,10 @@ module.exports = function(Model, Params) {
 
 			locales.forEach(function(locale) {
 				checkNested(post, [locale, 'title'])
-					&& event.setPropertyLocalised('title', post[locale].title, locale);
+					&& work.setPropertyLocalised('title', post[locale].title, locale);
 
 				checkNested(post, [locale, 'description'])
-					&& event.setPropertyLocalised('description', post[locale].description, locale);
+					&& work.setPropertyLocalised('description', post[locale].description, locale);
 
 			});
 
