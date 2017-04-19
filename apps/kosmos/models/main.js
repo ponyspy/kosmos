@@ -24,10 +24,17 @@ var userSchema = new Schema({
 
 var workSchema = new Schema({
 	title: { type: String, trim: true, locale: true },
+	s_title: { type: String, trim: true, locale: true },
 	description: { type: String, trim: true, locale: true },
-	status: String,
+	meta: {
+		year: Number,
+		client: { type: String, trim: true, locale: true },
+		area: { type: String, trim: true, locale: true }
+	},
 	poster: String,
 	poster_hover: Boolean,
+	status: String,
+	type: 'String', // project, research
 	images: [{
 		size: Number,
 		gallery: Boolean,
@@ -46,7 +53,7 @@ var workSchema = new Schema({
 // ------------------------
 
 
-workSchema.index({'title.value': 'text', 'description.value': 'text'}, {language_override: 'lg', default_language: 'ru'});
+workSchema.index({'title.value': 'text', 's_title.value': 'text', 'description.value': 'text'}, {language_override: 'lg', default_language: 'ru'});
 workSchema.index({'date': -1});
 
 
