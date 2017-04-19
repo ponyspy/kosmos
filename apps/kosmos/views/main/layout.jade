@@ -1,0 +1,20 @@
+doctype html
+html
+	head
+		block paths
+		include header
+	body
+		.title_block
+			.title_sub
+				block title
+				if (session && session.user_id)
+					span= ' | '
+					a(href='/auth') stargazer
+					span= ' | '
+					a(href='/auth/logout') выход
+			a.logo(href='/'): span alina saulova
+			.contacts
+				a(href='https://www.facebook.com/alina.saulova', target='_blank') F
+				a(href='mailto:up.up@asaulova.com') @
+		.content_block
+			block content

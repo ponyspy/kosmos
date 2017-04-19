@@ -1,0 +1,57 @@
+.work_description
+	position absolute
+	width 180px
+	font 12pt/14pt 'Times'
+
+.image
+	width 100%
+	margin 0 auto
+	display block
+	margin-bottom 60px
+	&.size_400
+		max-width 400px
+	&.size_600
+		max-width 600px
+	&.size_800
+		max-width 800px
+
+.gallery-block
+	margin-bottom 60px
+	.swiper-container
+		max-width 800px
+		margin-left auto
+		margin-right auto
+		.swiper-slide
+			background-size cover
+			background-position center
+			background-repeat no-repeat
+		&.gallery-top
+			height 600px
+		&.gallery-thumbs
+			height 200px
+			box-sizing border-box
+			padding 10px 0
+			.swiper-slide
+				width 25%
+				height 100%
+				opacity 0.7
+				&:hover
+					opacity 1
+			.swiper-slide-active
+				opacity 1
+
+	&.g_600
+		.swiper-container
+			max-width 600px
+			&.gallery-top
+				height 400px
+			&.gallery-thumbs
+				height 140px
+
+	&.g_400
+		.swiper-container
+			max-width 400px
+			&.gallery-top
+				height 280px
+			&.gallery-thumbs
+				height 100px
