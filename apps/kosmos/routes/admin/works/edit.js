@@ -3,7 +3,7 @@ var moment = require('moment');
 module.exports = function(Model, Params) {
 	var module = {};
 
-	var work = Model.Work;
+	var Work = Model.Work;
 
 	var previewImages = Params.upload.preview;
 	var uploadImages = Params.upload.images;
@@ -14,7 +14,7 @@ module.exports = function(Model, Params) {
 	module.index = function(req, res, next) {
 		var id = req.params.work_id;
 
-		work.findById(id).exec(function(err, work) {
+		Work.findById(id).exec(function(err, work) {
 			if (err) return next(err);
 
 			previewImages(work.images, function(err, images_preview) {
@@ -32,7 +32,7 @@ module.exports = function(Model, Params) {
 		var file = req.file;
 		var id = req.params.work_id;
 
-		work.findById(id).exec(function(err, work) {
+		Work.findById(id).exec(function(err, work) {
 			if (err) return next(err);
 
 			work.status = post.status;
