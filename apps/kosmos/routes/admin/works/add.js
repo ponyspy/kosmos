@@ -25,12 +25,22 @@ module.exports = function(Model, Params) {
 		work._short_id = shortid.generate();
 		work.status = post.status;
 		work.date = moment(post.date.date + 'T' + post.date.time.hours + ':' + post.date.time.minutes);
+		work.year = post.year;
 
 		var locales = post.en ? ['ru', 'en'] : ['ru'];
 
 		locales.forEach(function(locale) {
 			checkNested(post, [locale, 'title'])
 				&& work.setPropertyLocalised('title', post[locale].title, locale);
+
+			checkNested(post, [locale, 's_title'])
+				&& work.setPropertyLocalised('s_title', post[locale].s_title, locale);
+
+			checkNested(post, [locale, 'area'])
+				&& work.setPropertyLocalised('area', post[locale].area, locale);
+
+			checkNested(post, [locale, 'client'])
+				&& work.setPropertyLocalised('client', post[locale].client, locale);
 
 			checkNested(post, [locale, 'description'])
 				&& work.setPropertyLocalised('description', post[locale].description, locale);

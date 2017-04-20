@@ -26,11 +26,9 @@ var workSchema = new Schema({
 	title: { type: String, trim: true, locale: true },
 	s_title: { type: String, trim: true, locale: true },
 	description: { type: String, trim: true, locale: true },
-	meta: {
-		year: Number,
-		client: { type: String, trim: true, locale: true },
-		area: { type: String, trim: true, locale: true }
-	},
+	year: Number,
+	client: { type: String, trim: true, locale: true },
+	area: { type: String, trim: true, locale: true },
 	poster: String,
 	poster_hover: Boolean,
 	status: String,
