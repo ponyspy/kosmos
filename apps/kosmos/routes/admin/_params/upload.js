@@ -13,7 +13,7 @@ module.exports.image = function(obj, base_path, field_name, file, del_file, call
 	if (del_file && obj[field_name]) {
 		rimraf.sync(public_path + obj[field_name]);
 		obj[field_name] = undefined;
-		obj.poster_hover = undefined;
+		obj.poster_main = undefined;
 	}
 	if (!file) return callback.call(null, null, obj);
 

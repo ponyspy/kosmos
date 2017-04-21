@@ -48,8 +48,8 @@ block content
 				span= ' | удалить обложку'
 				br
 				br
-				input(type='checkbox', name='poster_hover', checked= work.poster_hover)
-				span= ' | отключить наведение в списке работ'
+				input(type='checkbox', name='poster_main', checked= work.poster_main)
+				span= ' | показать на главной'
 			.form_title Изображения:
 			+form_images_upload(work.images)
 			.form_title Видимость:

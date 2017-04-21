@@ -30,7 +30,7 @@ var workSchema = new Schema({
 	client: { type: String, trim: true, locale: true },
 	area: { type: String, trim: true, locale: true },
 	poster: String,
-	poster_hover: Boolean,
+	poster_main: Boolean,
 	status: String,
 	type: 'String', // project, research
 	images: [{
