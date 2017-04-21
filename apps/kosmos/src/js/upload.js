@@ -1,4 +1,5 @@
 $(function() {
+
 	$('.images_upload_preview').sortable({
 		placeholder: 'placeholder',
 		cancel: '.image_description, .image_delete, .image_size, .image_gallery',

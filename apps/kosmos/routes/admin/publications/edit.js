@@ -15,11 +15,7 @@ module.exports = function(Model, Params) {
 		Publication.findById(id).exec(function(err, publication) {
 			if (err) return next(err);
 
-			previewImages(publication.images, function(err, images_preview) {
-				if (err) return next(err);
-
-				res.render('admin/publications/edit.jade', { publication: publication, images_preview: images_preview });
-			});
+			res.render('admin/publications/edit.jade', { publication: publication });
 		});
 
 	};
