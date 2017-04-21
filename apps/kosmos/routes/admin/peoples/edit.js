@@ -15,11 +15,7 @@ module.exports = function(Model, Params) {
 		People.findById(id).exec(function(err, people) {
 			if (err) return next(err);
 
-			previewImages(people.images, function(err, images_preview) {
-				if (err) return next(err);
-
-				res.render('admin/peoples/edit.jade', { people: people, images_preview: images_preview });
-			});
+			res.render('admin/peoples/edit.jade', { people: people });
 		});
 
 	};
@@ -35,7 +31,6 @@ module.exports = function(Model, Params) {
 
 			people.status = post.status;
 			people.date = moment(post.date.date + 'T' + post.date.time.hours + ':' + post.date.time.minutes);
-			people.poster_hover = post.poster_hover;
 
 			var locales = post.en ? ['ru', 'en'] : ['ru'];
 

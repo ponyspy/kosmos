@@ -30,6 +30,8 @@ block content
 			+form_text_single('name', people)
 			.form_title Описание:
 			+form_text_multi('description', people)
+			.form_title Фото:
+			input(type='file', name='photo')
 			.form_title Видимость:
 			input(type='checkbox', name='status', value='hidden', checked=people.status == 'hidden')
 			!= ' скрыть'

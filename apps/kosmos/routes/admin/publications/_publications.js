@@ -25,7 +25,7 @@ module.exports = (function() {
 		.get(publications.add.index)
 		.post(publications.add.form);
 
-	router.route('/edit/:work_id')
+	router.route('/edit/:publication_id')
 		.get(publications.edit.index)
 		.post(publications.edit.form);
 

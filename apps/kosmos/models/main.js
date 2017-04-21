@@ -50,6 +50,7 @@ var publicationSchema = new Schema({
 	s_title: { type: String, trim: true, locale: true },
 	year: Number,
 	poster: String,
+	status: String,
 	_short_id: { type: String, unique: true, index: true, sparse: true },
 	date: { type: Date, default: Date.now },
 });
@@ -59,6 +60,7 @@ var awardSchema = new Schema({
 	s_title: { type: String, trim: true, locale: true },
 	country: { type: String, trim: true, locale: true },
 	year: Number,
+	status: String,
 	_short_id: { type: String, unique: true, index: true, sparse: true },
 	date: { type: Date, default: Date.now },
 });
@@ -68,6 +70,7 @@ var eventSchema = new Schema({
 	s_title: { type: String, trim: true, locale: true },
 	country: { type: String, trim: true, locale: true },
 	year: Number,
+	status: String,
 	_short_id: { type: String, unique: true, index: true, sparse: true },
 	date: { type: Date, default: Date.now },
 });
@@ -76,6 +79,7 @@ var peopleSchema = new Schema({
 	name: { type: String, trim: true, locale: true },
 	description: { type: String, trim: true, locale: true },
 	photo: String,
+	status: String,
 	_short_id: { type: String, unique: true, index: true, sparse: true },
 	date: { type: Date, default: Date.now },
 });
@@ -104,6 +108,7 @@ workSchema.plugin(mongooseLocale);
 publicationSchema.plugin(mongooseLocale);
 awardSchema.plugin(mongooseLocale);
 eventSchema.plugin(mongooseLocale);
+peopleSchema.plugin(mongooseLocale);
 
 
 // ------------------------

@@ -34,7 +34,7 @@ module.exports = (function() {
 	router.use('/publications', checkAuth, upload.single('poster'), admin.publications);
 	router.use('/awards', checkAuth, admin.awards);
 	router.use('/events', checkAuth, admin.events);
-	router.use('/peoples', checkAuth, admin.peoples);
+	router.use('/peoples', checkAuth, upload.single('photo'), admin.peoples);
 	router.use('/users', checkAuth, admin.users);
 
 	router.post('/preview', checkAuth, upload.single('image'), admin.options.preview);

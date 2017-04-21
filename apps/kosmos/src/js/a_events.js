@@ -1,6 +1,6 @@
 $(function() {
 
-	$('.sortable').sortable({cursor: 'move'});
+	// $('.sortable').sortable({cursor: 'move'});
 
 	$('.date').pickmeup({
 		format: 'Y-m-d',

@@ -24,7 +24,7 @@ module.exports = (function() {
 		.get(awards.add.index)
 		.post(awards.add.form);
 
-	router.route('/edit/:work_id')
+	router.route('/edit/:award_id')
 		.get(awards.edit.index)
 		.post(awards.edit.form);
 
