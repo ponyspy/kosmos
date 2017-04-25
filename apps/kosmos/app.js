@@ -9,6 +9,14 @@ var express = require('express'),
 			app = express();
 
 var MongoStore = require('connect-mongo')(session);
+var i18n = require('i18n');
+
+i18n.configure({
+	locales: ['ru', 'en'],
+	defaultLocale: 'ru',
+	cookie: 'locale',
+	directory: __glob_root + '/locales'
+});
 
 app.set('x-powered-by', false);
 app.set('views', __app_root + '/views');
@@ -44,6 +52,8 @@ app.use(session({
 app.use(function(req, res, next) {
 	res.locals.__app_name = __app_name;
 	res.locals.session = req.session;
+	res.locals.locale = req.cookies.locale || 'ru';
+	req.locale = req.cookies.locale || 'ru';
 	res.locals.host = req.hostname;
 	res.locals.url = req.originalUrl;
 	next();

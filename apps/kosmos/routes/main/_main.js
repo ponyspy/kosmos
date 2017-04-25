@@ -12,7 +12,12 @@ module.exports = (function() {
 	var router = express.Router();
 
 	router.route('/')
-		.get(main.index.index)
+		.get(main.index.index);
+
+	router.route('/lang/:locale').get(function(req, res) {
+		res.cookie('locale', req.params.locale);
+		res.redirect('back');
+	});
 
 	router.route('/works/:short_id')
 		.get(main.works.index);
