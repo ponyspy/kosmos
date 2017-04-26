@@ -1,7 +1,7 @@
 extends layout
 
 block paths
-	- var content_title= 'alina saulova / works / ' + work.title.toLowerCase()
+	- var content_title= 'kosmos / works / ' + work.i18n.title.get(locale).toLowerCase()
 
 block content_style
 	link(rel='stylesheet', type='text/css', href='/libs/css/swiper.min.css' + version)
@@ -12,10 +12,10 @@ block content_scripts
 	script(type='text/javascript', src='/build/js/' + __app_name + '/work.js' + version)
 
 block title
-	span= work.title
+	span= work.i18n.title.get(locale)
 
 block content
-	.work_description!= work.description
+	.work_description!= work.i18n.description.get(locale)
 	each item in images
 		if item.length
 			- var g_size = 'g_800'

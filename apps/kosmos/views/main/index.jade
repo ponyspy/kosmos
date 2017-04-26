@@ -1,7 +1,7 @@
 extends layout
 
 block paths
-	- var content_title= 'alina saulova'
+	- var content_title= 'kosmos'
 
 block content_style
 	link(rel='stylesheet', type='text/css', href='/build/css/' + __app_name + '/main.css' + version)
@@ -23,4 +23,4 @@ block content
 						each image,i in work.images
 							if (!image.gallery)
 								.work_image(style='background-image: url(' + image.preview + ')')
-				.work_title= work.title
+				.work_title= work.i18n.title.get(locale)
