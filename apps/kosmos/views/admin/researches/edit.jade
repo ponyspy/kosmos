@@ -2,11 +2,11 @@ extends ../layout
 include ../_forms.jade
 
 block paths
-	- var content_title= 'ДОБАВИТЬ СОБЫТИЕ'
+	- var content_title= 'РЕДАКТИРОВАТЬ ПУБЛИКАЦИЮ'
 
 block content_style
 	link(rel='stylesheet', type='text/css', href='/libs/css/pickmeup.min.css' + version)
-	link(rel='stylesheet', type='text/css', href='/libs/css/font-awesome.css' + version)
+	link(rel='stylesheet', type='text/css', href='/libs/css/font-awesome.css')
 	link(rel='stylesheet', type='text/css', href='/libs/css/wysiwyg-editor.min.css' + version)
 	link(rel='stylesheet', type='text/css', href='/build/css/' + __app_name + '/add.css' + version)
 
@@ -19,26 +19,24 @@ block content_scripts
 	script(type='text/javascript', src='/build/js/' + __app_name + '/a_events.js' + version)
 
 block sub_menu
-	a.sub_item.back_link(href='/admin/events') Назад
+	a.sub_item.back_link(href='/admin/researches') Назад
 	span.sub_item.toggle_eng Перевод
 
 block content
 	.form_block
 		.title= content_title
-		form(action="", method="post")
+		form(action="", method="post", enctype="multipart/form-data")
 			.form_title Название:
-			+form_text_single('title')
-			.form_title Подзаголовок:
-			+form_text_single('s_title')
-			.form_title Страна:
-			+form_text_single('country')
-			.form_title Год:
-			input(type='number', name='year')
+			+form_text_single('title', research)
+			.form_title Обложка:
+			input(type='file', name='poster')
+			.form_title Файл PDF:
+			input(type='file', name='pdf')
 			.form_title Видимость:
-			input(type='checkbox', name='status', value='hidden')
+			input(type='checkbox', name='status', value='hidden', checked=research.status == 'hidden')
 			!= ' скрыть'
 			.form_title Дата публикации:
-			+form_date('date')
+			+form_date('date', research.date)
 			br
 			br
 			input(type='submit', value='отправить')
