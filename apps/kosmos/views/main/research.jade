@@ -1,0 +1,23 @@
+extends layout
+
+block paths
+	- var content_title= 'K O S M O S :: R E S E A R C H'
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/build/css/' + __app_name + '/works.css' + version)
+
+block content_scripts
+	script(type='text/javascript', src='/build/js/' + __app_name + '/works.js' + version)
+
+block content
+	//- .works_block
+		each work in works
+			a.work_item(href='/works/' + work._short_id, class=(work.poster_main ? 'hover' : ''))
+				if work.poster
+					.work_poster(style='background-image: url(' + work.poster + ')')
+				.work_images
+					if !work.poster_main
+						each image,i in work.images
+							if (!image.gallery)
+								.work_image(style='background-image: url(' + image.preview + ')')
+				.work_title= work.i18n.title.get(locale)
