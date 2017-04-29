@@ -9,9 +9,6 @@ block content_style
 block content_scripts
 	script(type='text/javascript', src='/build/js/' + __app_name + '/works.js' + version)
 
-block title
-	a(href='/cv') cv
-
 block content
 	.works_block
 		each work in works

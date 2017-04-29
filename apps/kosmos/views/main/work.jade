@@ -11,9 +11,6 @@ block content_scripts
 	script(type='text/javascript', src='/libs/js/swiper.jquery.min.js' + version)
 	script(type='text/javascript', src='/build/js/' + __app_name + '/work.js' + version)
 
-block title
-	span= work.i18n.title.get(locale)
-
 block content
 	.work_description!= work.i18n.description.get(locale)
 	each item in images
