@@ -16,16 +16,28 @@ block content
 		.cv_body!= locale == 'ru' ? cv_ru : cv_en
 		.peoples_block
 			each people in peoples
-				.people_item= people.i18n.name.get(locale)
+				.people_item
+					.people_photo
+					.people_name= people.i18n.name.get(locale)
 
 	.press_block= __('Press')
 		each item in press
-			.press_item= item.i18n.title.get(locale)
+			.press_item
+				.press_poster
+				.press_title= item.i18n.title.get(locale)
+				.press_description= item.i18n.s_title.get(locale)
+				.press_year
 
 	.awards_block= __('Awards')
 		each award in awards
-			.award_item= award.i18n.title.get(locale)
+			.award_item
+				.award_title= award.i18n.title.get(locale)
+				.award_description= award.i18n.s_title.get(locale)
+				.award_year
 
 	.events_block= __('Events')
 		each event in events
-			.event_item= event.i18n.title.get(locale)
+			.event_item
+				.event_title= event.i18n.title.get(locale)
+				.event_description= event.i18n.s_title.get(locale)
+				.event_year
