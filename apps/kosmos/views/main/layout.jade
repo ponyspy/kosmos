@@ -4,26 +4,27 @@ html
 		block paths
 		include header
 	body
-		.title_block
-			.menu_block
-				a(href='/') KOSMOS
-				a(href='/about')= __('ABOUT')
-				a(href='/works')= __('WORKS')
-				a(href='/research')= __('RESEARCH')
-			//- .stargazer_block
-				if (session && session.user_id)
-					span= ' | '
-					a(href='/auth') stargazer
-					span= ' | '
-					a(href='/auth/logout') выход
-		.content_block
-			block content
-		.footer_block
-			a.logo(href='/') &copy;K-S-M-S 2017
-			.language
-				a(href='/lang/ru') RUS
-				a(href='/lang/en') ENG
-			.contacts
-				a(href='https://www.facebook.com/profile.php?id=100009737497399', target='_blank') facebook
-				a(href='https://www.instagram.com/kosmos_architects', target='_blank') instagram
-				a(href='mailto:kosmos@kosmos.com') email
+		.main_block
+			.title_block
+				.menu_block
+					a(href='/') KOSMOS
+					a(href='/about')= __('ABOUT')
+					a(href='/works')= __('WORKS')
+					a(href='/research')= __('RESEARCH')
+				//- .stargazer_block
+					if (session && session.user_id)
+						a(href='/auth') stargazer
+						span= ' | '
+						a(href='/auth/logout') выход
+			.content_block
+				block content
+			.footer_block
+				.logo &copy;K-S-M-S 2017
+				.language
+					span.lang_title= __('language') + ':'
+					a(href='/lang/ru') RUS
+					a(href='/lang/en') ENG
+				.contacts
+					a(href='mailto:kosmos@kosmos.com') email
+					a(href='https://www.facebook.com/profile.php?id=100009737497399', target='_blank') facebook
+					a(href='https://www.instagram.com/kosmos_architects', target='_blank') instagram
