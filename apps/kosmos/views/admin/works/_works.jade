@@ -5,7 +5,7 @@ mixin items(works)
 			a.item_title(href='/admin/works/edit/' + work._id, class=work.status =='hidden' ? 'hidden': '')= (work.i18n.title.get('ru') || '!!! ПУСТОЕ ПОЛЕ !!!')
 			span= ' | '
 			span.item_images= work.images.length
-			if work.poster
+			if work.poster_main
 				span= ' + '
 				span.item_poster= 'p'
 

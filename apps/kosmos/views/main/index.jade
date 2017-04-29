@@ -13,14 +13,6 @@ block title
 	a(href='/cv') cv
 
 block content
-	.works_block
-		each work in works
-			a.work_item(href='/works/' + work._short_id, class=(work.poster_main ? 'hover' : ''))
-				if work.poster
-					.work_poster(style='background-image: url(' + work.poster + ')')
-				.work_images
-					if !work.poster_main
-						each image,i in work.images
-							if (!image.gallery)
-								.work_image(style='background-image: url(' + image.preview + ')')
-				.work_title= work.i18n.title.get(locale)
+	.poster_block
+		each poster in posters
+			b= poster

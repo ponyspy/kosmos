@@ -4,6 +4,12 @@ module.exports = function(Model) {
 	var Work = Model.Work;
 
 	module.index = function(req, res) {
+		Work.where('status').ne('hidden').sort('-date').exec(function(err, works) {
+			res.render('main/works.jade', { works: works });
+		});
+	};
+
+	module.work = function(req, res) {
 		var short_id = req.params.short_id;
 
 		Work.findOne({ _short_id: short_id }).exec(function(err, work) {
