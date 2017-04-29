@@ -22,8 +22,8 @@ html
 				.logo &copy;K-S-M-S 2017
 				.language
 					span.lang_title= __('language') + ':'
-					a(href='/lang/ru') RUS
-					a(href='/lang/en') ENG
+					a(href='/lang/ru', class=locale == 'ru' ? 'select': '') RUS
+					a(href='/lang/en', class=locale == 'en' ? 'select': '') ENG
 				.contacts
 					a(href='mailto:kosmos@kosmos.com') email
 					a(href='https://www.facebook.com/profile.php?id=100009737497399', target='_blank') facebook

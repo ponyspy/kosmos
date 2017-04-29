@@ -16,13 +16,15 @@ block content_scripts
 
 block sub_menu
 	a.sub_item.back_link(href='/admin') Назад
+	span.sub_item.toggle_eng Перевод
 
 block content
 	.form_block
 		.title= content_title
 		form(action='', method='post')
 			.form_title Текст:
-			textarea.input.editor(name='content')= content
+			textarea.input.editor(name='content[ru]')= content.ru
+			textarea.input.en.editor(name='content[en]')= content.en
 			br
 			br
 			input(type='submit', style='display: block; clear: both;' value='сохранить')

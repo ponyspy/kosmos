@@ -4,8 +4,10 @@ module.exports = function(Model) {
 	var module = {};
 
 	module.index = function(req, res) {
-		var html = fs.readFile(__app_root + '/static/cv.html', function(err, html) {
-			res.render('main/about.jade', { html: html });
+		fs.readFile(__app_root + '/static/cv_ru.html', function(err, ru) {
+			fs.readFile(__app_root + '/static/cv_en.html', function(err, en) {
+				res.render('main/about.jade', { cv: req.locale == 'ru' ? ru : en });
+			});
 		});
 	};
 
