@@ -5,7 +5,7 @@ module.exports = function(Model) {
 
 	module.index = function(req, res) {
 		var html = fs.readFile(__app_root + '/static/cv.html', function(err, html) {
-			res.render('main/cv.jade', { html: html });
+			res.render('main/about.jade', { html: html });
 		});
 	};
 
