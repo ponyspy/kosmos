@@ -1,13 +1,38 @@
 var fs = require('fs');
+var async = require('async');
 
 module.exports = function(Model) {
 	var module = {};
 
-	module.index = function(req, res) {
-		fs.readFile(__app_root + '/static/cv_ru.html', function(err, ru) {
-			fs.readFile(__app_root + '/static/cv_en.html', function(err, en) {
-				res.render('main/about.jade', { cv: req.locale == 'ru' ? ru : en });
-			});
+	var Award = Model.Award;
+	var Publication = Model.Publication;
+	var Event = Model.Event;
+	var People = Model.People;
+
+	module.index = function(req, res, next) {
+		async.parallel({
+			cv_ru: function(callback) {
+				fs.readFile(__app_root + '/static/cv_ru.html', callback);
+			},
+			cv_en: function(callback) {
+				fs.readFile(__app_root + '/static/cv_en.html', callback);
+			},
+			awards: function(callback) {
+				Award.where('status').ne('hidden').sort('-date').exec(callback);
+			},
+			press: function(callback) {
+				Publication.where('status').ne('hidden').sort('-date').exec(callback);
+			},
+			peoples: function(callback) {
+				People.where('status').ne('hidden').sort('-date').exec(callback);
+			},
+			events: function(callback) {
+				Event.where('status').ne('hidden').sort('-date').exec(callback);
+			}
+		}, function(err, results) {
+			if (err) return next(err);
+
+			res.render('main/about.jade', results);
 		});
 	};
 

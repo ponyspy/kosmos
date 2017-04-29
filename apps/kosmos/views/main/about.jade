@@ -5,10 +5,27 @@ block paths
 
 block content_style
 	link(rel='stylesheet', type='text/css', href='/build/css/' + __app_name + '/global.css' + version)
-	link(rel='stylesheet', type='text/css', href='/build/css/' + __app_name + '/main.css' + version)
+	link(rel='stylesheet', type='text/css', href='/build/css/' + __app_name + '/about.css' + version)
 
 block content_scripts
-	script(type='text/javascript', src='/build/js/' + __app_name + '/main.js' + version)
+	script(type='text/javascript', src='/build/js/' + __app_name + '/about.js' + version)
 
 block content
-	!= cv
+	.cv_block CV
+		a.cv_email(href='mailto:info@k-s-m-s.com') info@k-s-m-s.com
+		.cv_body!= locale == 'ru' ? cv_ru : cv_en
+		.peoples_block
+			each people in peoples
+				.people_item= people.i18n.name.get(locale)
+
+	.press_block= __('Press')
+		each item in press
+			.press_item= item.i18n.title.get(locale)
+
+	.awards_block= __('Awards')
+		each award in awards
+			.award_item= award.i18n.title.get(locale)
+
+	.events_block= __('Events')
+		each event in events
+			.event_item= event.i18n.title.get(locale)

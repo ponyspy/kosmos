@@ -11,11 +11,11 @@ html
 					a(href='/about')= __('ABOUT')
 					a(href='/works')= __('WORKS')
 					a(href='/research')= __('RESEARCH')
-				//- .stargazer_block
-					if (session && session.user_id)
-						a(href='/auth') stargazer
-						span= ' | '
-						a(href='/auth/logout') выход
+				//- if (session && session.user_id)
+					.stargazer_block
+							a(href='/auth') stargazer
+							span= ' | '
+							a(href='/auth/logout') выход
 			.content_block
 				block content
 			.footer_block
