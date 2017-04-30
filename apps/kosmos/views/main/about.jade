@@ -14,7 +14,7 @@ block content_scripts
 block content
 	.cv_block CV
 		a.cv_email(href='mailto:info@k-s-m-s.com') info@k-s-m-s.com
-		//- .cv_adress!= locale == 'ru' ? cv_ru : cv_en
+		.cv_adress!= locale == 'ru' ? adress_ru : adress_en
 		.cv_body!= locale == 'ru' ? cv_ru : cv_en
 		.peoples_block
 			each people in peoples

@@ -17,6 +17,12 @@ module.exports = function(Model) {
 			cv_en: function(callback) {
 				fs.readFile(__app_root + '/static/cv_en.html', callback);
 			},
+			adress_ru: function(callback) {
+				fs.readFile(__app_root + '/static/adress_ru.html', callback);
+			},
+			adress_en: function(callback) {
+				fs.readFile(__app_root + '/static/adress_en.html', callback);
+			},
 			awards: function(callback) {
 				Award.where('status').ne('hidden').sort('-date').exec(callback);
 			},
