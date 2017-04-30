@@ -11,7 +11,7 @@ html
 					a(href='/about', class=menu_active == 'about' ? 'active' : '')= __('A B O U T')
 					a(href='/works', class=menu_active == 'works' ? 'active' : '')= __('W O R K S')
 					a(href='/research', class=menu_active == 'research' ? 'active' : '')= __('R E S E A R C H')
-				//- if (session && session.user_id)
+				if (session && session.user_id)
 					.stargazer_block
 							a(href='/auth') stargazer
 							span= ' | '

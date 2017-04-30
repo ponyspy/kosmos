@@ -7,7 +7,11 @@ html
 		.main_block
 			.header_block
 				.menu_block
-					a.logo(href='/admin') KOSMOS | STARGAZER
+					.logo
+						a(href='/') KOSMOS
+						span= ' | '
+						a(href='/admin') STARGAZER
+					//- a.logo(href='/admin') KOSMOS | STARGAZER
 					a(href='/admin/users') ПОЛЬЗОВАТЕЛИ
 					a(href='/admin/works') РАБОТЫ
 					a(href='/admin/researches') ИССЛЕДОВАНИЯ
