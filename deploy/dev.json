@@ -4,7 +4,7 @@
 			"name": "kosmos",
 			"script": "./apps/kosmos/app.js",
 			"exec_mode": "fork",
-			"watch": ["apps/kosmos/app.js", "apps/kosmos/models", "apps/kosmos/routes"],
+			"watch": ["apps/kosmos/app.js", "apps/kosmos/models", "apps/kosmos/routes", "locales/ru.json", "locales/en.json"],
 			"autorestart": false,
 			"kill_timeout": 1600,
 			"env": {
