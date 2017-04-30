@@ -1,19 +1,42 @@
 var fs = require('fs');
+var async = require('async');
 
 exports.edit = function(req, res) {
-	fs.readFile(__app_root + '/static/cv_ru.html', function(err, ru) {
-		fs.readFile(__app_root + '/static/cv_en.html', function(err, en) {
-			res.render('admin/cv.jade', { content: { ru: ru, en: en } });
-		});
+	async.series({
+		cv_ru: function(callback) {
+			fs.readFile(__app_root + '/static/cv_ru.html', callback);
+		},
+		cv_en: function(callback) {
+			fs.readFile(__app_root + '/static/cv_en.html', callback);
+		},
+		adress_ru: function(callback) {
+			fs.readFile(__app_root + '/static/adress_ru.html', callback);
+		},
+		adress_en: function(callback) {
+			fs.readFile(__app_root + '/static/adress_en.html', callback);
+		}
+	}, function(err, results) {
+		res.render('admin/cv.jade', { content: results });
 	});
 };
 
 exports.edit_form = function(req, res) {
 	var post = req.body;
 
-	fs.writeFile(__app_root + '/static/cv_ru.html', post.content.ru, function(err) {
-		fs.writeFile(__app_root + '/static/cv_en.html', post.content.en, function(err) {
-			res.redirect('back');
-		});
+	async.series({
+		cv_ru: function(callback) {
+			fs.writeFile(__app_root + '/static/cv_ru.html', post.cv.ru, callback);
+		},
+		cv_en: function(callback) {
+			fs.writeFile(__app_root + '/static/cv_en.html', post.cv.en, callback);
+		},
+		adress_ru: function(callback) {
+			fs.writeFile(__app_root + '/static/adress_ru.html', post.adress.ru, callback);
+		},
+		adress_en: function(callback) {
+			fs.writeFile(__app_root + '/static/adress_en.html', post.adress.en, callback);
+		}
+	}, function(err, results) {
+		res.redirect('back');
 	});
 };

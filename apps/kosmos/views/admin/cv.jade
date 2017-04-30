@@ -22,9 +22,12 @@ block content
 	.form_block
 		.title= content_title
 		form(action='', method='post')
-			.form_title Текст:
-			textarea.input.editor(name='content[ru]')= content.ru
-			textarea.input.en.editor(name='content[en]')= content.en
+			.form_title Адрес:
+			input.ru(type='text', name='adress[ru]', value= content.adress_ru)
+			input.en(type='text', name='adress[en]', value= content.adress_en)
+			.form_title Текст CV:
+			textarea.ru.editor(name='cv[ru]')= content.cv_ru
+			textarea.en.editor(name='cv[en]')= content.cv_en
 			br
 			br
 			input(type='submit', style='display: block; clear: both;' value='сохранить')
