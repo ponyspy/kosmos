@@ -1,7 +1,8 @@
 extends layout
 
 block paths
-	- var content_title= 'K O S M O S :: R E S E A R C H'
+	- var content_title= __('K O S M O S') + ' :: ' + __('R E S E A R C H')
+	- var menu_active = 'research'
 
 block content_style
 	link(rel='stylesheet', type='text/css', href='/build/css/' + __app_name + '/works.css' + version)
