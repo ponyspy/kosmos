@@ -7,10 +7,10 @@ html
 		.main_block
 			.title_block
 				.menu_block
-					a(href='/') KOSMOS
-					a(href='/about')= __('ABOUT')
-					a(href='/works')= __('WORKS')
-					a(href='/research')= __('RESEARCH')
+					a(href='/') K O S M O S
+					a(href='/about')= __('A B O U T')
+					a(href='/works')= __('W O R K S')
+					a(href='/research')= __('R E S E A R C H')
 				//- if (session && session.user_id)
 					.stargazer_block
 							a(href='/auth') stargazer
@@ -19,11 +19,11 @@ html
 			.content_block
 				block content
 			.footer_block
-				.logo &copy;K-S-M-S 2017
+				.logo!= '&copy;K-S-M-S ' + new Date().getFullYear()
 				.language
 					a(href='/lang/ru', class=locale == 'ru' ? 'select': '') RUS
 					a(href='/lang/en', class=locale == 'en' ? 'select': '') ENG
 				.contacts
-					a(href='mailto:kosmos@kosmos.com') e-mail
+					a(href='mailto:info@k-s-m-s.com') e-mail
 					a(href='https://www.facebook.com/profile.php?id=100009737497399', target='_blank') facebook
 					a(href='https://www.instagram.com/kosmos_architects', target='_blank') instagram
