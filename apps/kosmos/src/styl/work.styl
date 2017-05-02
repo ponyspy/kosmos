@@ -1,3 +1,6 @@
+.footer_block
+	padding-top 50px
+
 .work_columns
 	overflow hidden
 	margin-bottom 80px
@@ -32,7 +35,7 @@
 
 .image
 	margin 0 auto
-	margin-bottom 60px
+	margin-bottom 100px
 	.image_description
 		font 16pt/22pt 'MinionPro Medium'
 		text-align center
@@ -42,28 +45,39 @@
 		width 100%
 		display block
 	&.size_400
-		max-width 400px
+		max-width 440px
 	&.size_600
-		max-width 600px
+		max-width 580px
 	&.size_800
-		max-width 800px
+		max-width 740px
 
 .gallery-block
-	margin-bottom 60px
+	margin-bottom 100px
+	position relative
+	.swiper-button-next
+	.swiper-button-prev
+		top -35px
+		bottom 0
+		margin auto
 	.swiper-container
-		max-width 800px
-		margin-left auto
-		margin-right auto
+		margin 0 auto
 		.swiper-slide
-			background-size contain
-			background-position center
-			background-repeat no-repeat
-			height 540px
+			width 100%
+			.slide_image
+				display block
+				width 100%
+			.slide_description
+				width 100%
+				font 16pt/22pt 'MinionPro Medium'
+				text-align center
+				margin-top 20px
+				hyphens auto
+
+	&.g_800 .swiper-container
+		max-width 740px
 
 	&.g_600 .swiper-container
-		max-width 600px
-		height 440px
+		max-width 580px
 
 	&.g_400 .swiper-container
-		max-width 400px
-		height 380px
+		max-width 440px

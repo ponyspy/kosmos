@@ -37,12 +37,14 @@ block content
 				else if item.every(function(item) { return item.size == 400 })
 					- g_size = 'g_400'
 				.gallery-block(class=g_size)
+					.swiper-button-next.swiper-button-black
+					.swiper-button-prev.swiper-button-black
 					.swiper-container.gallery-top
-						.swiper-button-next.swiper-button-black
-						.swiper-button-prev.swiper-button-black
 						.swiper-wrapper
 							each image in item
-								.swiper-slide(style='background-image:url(' + image.thumb  + ')')
+								.swiper-slide
+									img.slide_image(src=image.thumb)
+									.slide_description cool
 			else
 				- var sizes = ['size_400', 'size_600', 'size_800' ]
 				.image(class=sizes[sizes.indexOf('size_' + item.size)])
