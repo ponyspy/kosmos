@@ -37,6 +37,8 @@
 		float right
 		overflow hidden
 		.people_item
+			display block
+			text-decoration none
 			float left
 			margin-left 40px
 			.people_photo
@@ -44,5 +46,13 @@
 				height 220px
 				background-color lightgrey
 			.people_name
+			.people_open
 				text-align center
 				font 16pt/22pt 'MinionPro Medium'
+			.people_open
+				display none
+			&:hover
+				.people_name
+					display none
+				.people_open
+					display block

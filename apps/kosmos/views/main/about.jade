@@ -21,9 +21,10 @@ block content
 		.block_title CV
 		.block_items
 			each people in peoples
-				.people_item
+				a.people_item(href='#')
 					.people_photo
 					.people_name= people.i18n.name.get(locale)
+					.people_open Open CV
 
 	img.block_poster(src='/stuff/kosmos/backgrounds/about.png')
 
