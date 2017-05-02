@@ -26,12 +26,17 @@
 			display block
 			margin-top 60px
 		.work_meta
-			line-height 30px
-			.meta_title
-				font 12pt/14pt 'MinionPro Semibold'
-				width 120px
-				float left
-				clear both
+			overflow hidden
+			.meta_column
+				margin-bottom 40px
+				&.title
+					width 40%
+					float left
+					font 14pt/22pt 'MinionPro Semibold'
+				&.data
+					width 60%
+					float right
+					font 14pt/22pt 'MinionPro Medium'
 
 .image
 	margin 0 auto

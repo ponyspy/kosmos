@@ -17,12 +17,14 @@ block content
 		.work_column.left
 			.work_title= work.i18n.title.get(locale)
 			.work_meta
-				.meta_title= __('Year')
-				.meta_year= work.year
-				.meta_title= __('Client')
-				.meta_client= work.i18n.client.get(locale)
-				.meta_title= __('Area')
-				.meta_area= work.i18n.area.get(locale)
+				.meta_column.title
+					.meta_title= __('Year')
+					.meta_title= __('Client')
+					.meta_title= __('Area')
+				.meta_column.data
+					.meta_year= work.year
+					.meta_client= work.i18n.client.get(locale)
+					.meta_area= work.i18n.area.get(locale)
 				img.work_poster(src=work.poster)
 		.work_column.right
 			.work_s_title= work.i18n.s_title.get(locale)
