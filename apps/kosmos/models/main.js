@@ -34,7 +34,7 @@ var workSchema = new Schema({
 	status: String,
 	type: 'String', // project, research
 	images: [{
-		size: Number,
+		size: String,
 		gallery: Boolean,
 		description: { type: String, trim: true, locale: true },
 		original: String,

@@ -39,7 +39,7 @@ $(function() {
 	$(document).on('click', '.image_size', function(event) {
 		var $this = $(this);
 
-		var arr_size = ['400', '600', '800'];
+		var arr_size = ['1x', '2x', '3x'];
 		var current = $this.children('input').val();
 		var index = arr_size.indexOf(current);
 
@@ -77,8 +77,8 @@ $(function() {
 			var gallery_form = $('<input />', {'class': 'gallery_form', 'type': 'hidden', 'name': 'images[gallery][]', 'value': 'false'});
 
 			var image_size = $('<div />', {'class': 'image_size'});
-			var size_label = $('<span />', { 'class': 'label', 'text': '600'});
-			var size_form = $('<input />', {'class': 'size_form', 'type': 'hidden', 'name': 'images[size][]', 'value': '600'});
+			var size_label = $('<span />', { 'class': 'label', 'text': '2x'});
+			var size_form = $('<input />', {'class': 'size_form', 'type': 'hidden', 'name': 'images[size][]', 'value': '2x'});
 
 			var image_description = $('<div />', {'class': 'image_description'});
 			var desc_ru = $('<textarea />', {'class': 'image_description_input ru_img', 'name': 'images[description][ru][]', 'placeholder':'Описание'});

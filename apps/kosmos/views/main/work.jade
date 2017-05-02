@@ -31,11 +31,11 @@ block content
 	.work_images
 		each item in images
 			if item.length
-				- var g_size = 'g_800'
-				if item.every(function(item) { return item.size == 600 })
-					- g_size = 'g_600'
-				else if item.every(function(item) { return item.size == 400 })
-					- g_size = 'g_400'
+				- var g_size = 'g_3x'
+				if item.every(function(item) { return item.size == '2x' })
+					- g_size = 'g_2x'
+				else if item.every(function(item) { return item.size == '1x' })
+					- g_size = 'g_1x'
 				.gallery-block(class=g_size)
 					.swiper-button-next.swiper-button-black
 					.swiper-button-prev.swiper-button-black
@@ -46,7 +46,7 @@ block content
 									img.slide_image(src=image.thumb)
 									.slide_description cool
 			else
-				- var sizes = ['size_400', 'size_600', 'size_800' ]
+				- var sizes = ['size_1x', 'size_2x', 'size_3x' ]
 				.image(class=sizes[sizes.indexOf('size_' + item.size)])
 					img(src=item.thumb)
 					.image_description= item.description.filter(function(lang) { return lang.lg == locale })[0].value
