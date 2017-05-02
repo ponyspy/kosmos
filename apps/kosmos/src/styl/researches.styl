@@ -1,0 +1,60 @@
+body
+	background-color black
+	color white
+	a
+		color white
+
+.title_block a, .footer_block a
+	&:hover
+		border-bottom 1px solid white
+	&.active
+		border-bottom 1px solid white
+
+.title_block
+	padding-bottom 30px
+
+.footer_block
+	padding-top 10px
+
+.researches_block
+	overflow hidden
+	.research_item
+		text-decoration none
+		display block
+		position relative
+		float left
+		width 40%
+		margin-left 5%
+		margin-right 5%
+		margin-top 10px
+		margin-bottom 140px
+		&:nth-child(2n)
+			float right
+		.research_poster
+			width 100%
+			height 240px
+			background-position center
+			background-size cover
+			background-repeat no-repeat
+			transition .3s linear
+		.research_title
+			margin-top 20px
+			font 26pt/28pt 'MinionPro Semibold'
+		.research_s_title
+			position absolute
+			display none
+			top 0
+			width 100%
+			height 100%
+			padding-top 20px
+			box-sizing border-box
+			font 20pt/22pt 'MinionPro Semibold'
+		&:hover
+			.research_s_title
+				display block
+			.research_poster
+				transition .3s linear
+				filter: brightness(50%) blur(2px)
+
+
+

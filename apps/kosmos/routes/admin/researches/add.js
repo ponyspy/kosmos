@@ -31,6 +31,9 @@ module.exports = function(Model, Params) {
 		locales.forEach(function(locale) {
 			checkNested(post, [locale, 'title'])
 				&& research.setPropertyLocalised('title', post[locale].title, locale);
+
+			checkNested(post, [locale, 's_title'])
+				&& research.setPropertyLocalised('s_title', post[locale].s_title, locale);
 		});
 
 		uploadPoster(research, 'researches', 'poster', file, null, function(err, research) {

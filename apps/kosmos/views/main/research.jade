@@ -5,20 +5,15 @@ block paths
 	- var menu_active = 'research'
 
 block content_style
-	link(rel='stylesheet', type='text/css', href='/build/css/' + __app_name + '/works.css' + version)
+	link(rel='stylesheet', type='text/css', href='/build/css/' + __app_name + '/researches.css' + version)
 
 block content_scripts
-	script(type='text/javascript', src='/build/js/' + __app_name + '/works.js' + version)
+	//- script(type='text/javascript', src='/build/js/' + __app_name + '/researches.js' + version)
 
 block content
-	//- .works_block
-		each work in works
-			a.work_item(href='/works/' + work._short_id, class=(work.poster_main ? 'hover' : ''))
-				if work.poster
-					.work_poster(style='background-image: url(' + work.poster + ')')
-				.work_images
-					if !work.poster_main
-						each image,i in work.images
-							if (!image.gallery)
-								.work_image(style='background-image: url(' + image.preview + ')')
-				.work_title= work.i18n.title.get(locale)
+	.researches_block
+		each research in researches
+			a.research_item(href='/researches/' + research._short_id)
+				.research_poster(style='background-image: url(' + research.poster + ')')
+				.research_title= research.i18n.title.get(locale)
+				.research_s_title= research.i18n.s_title.get(locale)

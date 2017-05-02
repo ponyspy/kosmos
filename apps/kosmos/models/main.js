@@ -47,6 +47,7 @@ var workSchema = new Schema({
 
 var researchSchema = new Schema({
 	title: { type: String, trim: true, locale: true },
+	s_title: { type: String, trim: true, locale: true },
 	poster: String,
 	file: String,
 	status: String,
@@ -87,6 +88,7 @@ var eventSchema = new Schema({
 var peopleSchema = new Schema({
 	name: { type: String, trim: true, locale: true },
 	description: { type: String, trim: true, locale: true },
+	file: String,
 	photo: String,
 	status: String,
 	_short_id: { type: String, unique: true, index: true, sparse: true },
@@ -100,7 +102,7 @@ var peopleSchema = new Schema({
 
 workSchema.index({'date': -1});
 workSchema.index({'title.value': 'text', 's_title.value': 'text', 'description.value': 'text'}, {language_override: 'lg', default_language: 'ru'});
-researchSchema.index({'title.value': 'text'}, {language_override: 'lg', default_language: 'ru'});
+researchSchema.index({'title.value': 'text', 's_title.value': 'text'}, {language_override: 'lg', default_language: 'ru'});
 publicationSchema.index({'title.value': 'text', 's_title.value': 'text'}, {language_override: 'lg', default_language: 'ru'});
 awardSchema.index({'title.value': 'text', 's_title.value': 'text'}, {language_override: 'lg', default_language: 'ru'});
 eventSchema.index({'title.value': 'text', 's_title.value': 'text'}, {language_override: 'lg', default_language: 'ru'});
