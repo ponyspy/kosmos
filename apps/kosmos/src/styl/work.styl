@@ -1,13 +1,46 @@
-.work_description
-	position absolute
-	width 180px
-	font 12pt/14pt 'Times'
+.work_columns
+	overflow hidden
+	margin-bottom 80px
+	.work_column
+		width 50%
+		box-sizing border-box
+		&.left
+			float left
+			padding-right 20px
+		&.right
+			float right
+			padding-left 20px
+		.work_title
+			font 26pt/28pt 'MinionPro Semibold'
+			margin-bottom 100px
+		.work_s_title
+			font 16pt/22pt 'MinionPro MediumIt'
+			margin-bottom 100px
+		.work_description
+			font 16pt/22pt 'MinionPro Medium'
+		.work_poster
+			width 100%
+			display block
+			margin-top 60px
+		.work_meta
+			line-height 30px
+			.meta_title
+				font 12pt/14pt 'MinionPro Semibold'
+				width 120px
+				float left
+				clear both
 
 .image
-	width 100%
 	margin 0 auto
-	display block
 	margin-bottom 60px
+	.image_description
+		font 16pt/22pt 'MinionPro Medium'
+		text-align center
+		margin-top 20px
+		hyphens auto
+	img
+		width 100%
+		display block
 	&.size_400
 		max-width 400px
 	&.size_600
@@ -22,36 +55,15 @@
 		margin-left auto
 		margin-right auto
 		.swiper-slide
-			background-size cover
+			background-size contain
 			background-position center
 			background-repeat no-repeat
-		&.gallery-top
-			height 600px
-		&.gallery-thumbs
-			height 200px
-			box-sizing border-box
-			padding 10px 0
-			.swiper-slide
-				width 25%
-				height 100%
-				opacity 0.7
-				&:hover
-					opacity 1
-			.swiper-slide-active
-				opacity 1
+			height 540px
 
-	&.g_600
-		.swiper-container
-			max-width 600px
-			&.gallery-top
-				height 400px
-			&.gallery-thumbs
-				height 140px
+	&.g_600 .swiper-container
+		max-width 600px
+		height 440px
 
-	&.g_400
-		.swiper-container
-			max-width 400px
-			&.gallery-top
-				height 280px
-			&.gallery-thumbs
-				height 100px
+	&.g_400 .swiper-container
+		max-width 400px
+		height 380px

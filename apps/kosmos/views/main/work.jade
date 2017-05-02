@@ -13,22 +13,38 @@ block content_scripts
 	script(type='text/javascript', src='/build/js/' + __app_name + '/work.js' + version)
 
 block content
-	.work_description!= work.i18n.description.get(locale)
-	each item in images
-		if item.length
-			- var g_size = 'g_800'
-			if item.every(function(item) { return item.size == 600 })
-				- g_size = 'g_600'
-			else if item.every(function(item) { return item.size == 400 })
-				- g_size = 'g_400'
-			.gallery-block(class=g_size)
-				.swiper-container.gallery-top: .swiper-wrapper
-					each image in item.reverse()
-						.swiper-slide(style='background-image:url(' + image.thumb  + ')')
+	.work_columns
+		.work_column.left
+			.work_title= work.i18n.title.get(locale)
+			.work_meta
+				.meta_title= __('Year')
+				.meta_year= work.year
+				.meta_title= __('Client')
+				.meta_client= work.i18n.client.get(locale)
+				.meta_title= __('Area')
+				.meta_area= work.i18n.area.get(locale)
+				img.work_poster(src=work.poster)
+		.work_column.right
+			.work_s_title= work.i18n.s_title.get(locale)
+			.work_description!= work.i18n.description.get(locale)
 
-				.swiper-container.gallery-thumbs: .swiper-wrapper
-					each image in item
-						.swiper-slide(style='background-image:url(' + image.thumb  + ')')
-		else
-			- var sizes = ['size_400', 'size_600', 'size_800' ]
-			img.image(src=item.thumb, class=sizes[sizes.indexOf('size_' + item.size)])
+	.work_images
+		each item in images
+			if item.length
+				- var g_size = 'g_800'
+				if item.every(function(item) { return item.size == 600 })
+					- g_size = 'g_600'
+				else if item.every(function(item) { return item.size == 400 })
+					- g_size = 'g_400'
+				.gallery-block(class=g_size)
+					.swiper-container.gallery-top
+						.swiper-button-next.swiper-button-black
+						.swiper-button-prev.swiper-button-black
+						.swiper-wrapper
+							each image in item
+								.swiper-slide(style='background-image:url(' + image.thumb  + ')')
+			else
+				- var sizes = ['size_400', 'size_600', 'size_800' ]
+				.image(class=sizes[sizes.indexOf('size_' + item.size)])
+					img(src=item.thumb)
+					.image_description= item.description.filter(function(lang) { return lang.lg == locale })[0].value
