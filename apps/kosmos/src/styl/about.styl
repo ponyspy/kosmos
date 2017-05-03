@@ -10,8 +10,10 @@
 .cv_block
 	overflow hidden
 	.cv_email
-		display block
 		font 26pt/28pt 'MinionPro Semibold'
+		text-decoration none
+		display block
+		// border-bottom 1px solid black
 	.cv_adress
 		margin-top 80px
 		width 40%
@@ -47,6 +49,7 @@
 			.people_photo
 				width 180px
 				height 220px
+				margin-bottom 10px
 				background-color lightgrey
 			.people_name
 			.people_open
@@ -60,6 +63,19 @@
 				.people_open
 					display block
 
+.press_block
+	position relative
+	.swiper-wrapper
+		padding-bottom 60px
+	.press_item
+		.press_title
+			font 26pt/28pt 'MinionPro Medium'
+			margin-bottom 20px
+		.press_s_title
+			font 16pt/22pt 'MinionPro MediumIt'
+		.press_year
+			font 16pt/22pt 'MinionPro MediumIt'
+
 .awards_block
 	.block_items
 		.award_item
@@ -69,14 +85,20 @@
 				float left
 				width 50%
 				font 16pt/22pt 'MinionPro Semibold'
+				padding-right 80px
+				box-sizing border-box
 			.award_s_title
 				float left
 				width 25%
 				font 16pt/22pt 'MinionPro MediumIt'
+				padding-right 40px
+				box-sizing border-box
 			.award_place
 				float left
 				width 15%
 				font 14pt/22pt 'MinionPro Medium'
+				padding-right 40px
+				box-sizing border-box
 			.award_year
 				float left
 				width 10%
@@ -92,14 +114,20 @@
 				float left
 				width 50%
 				font 16pt/22pt 'MinionPro Semibold'
+				padding-right 80px
+				box-sizing border-box
 			.event_s_title
 				float left
 				width 25%
 				font 16pt/22pt 'MinionPro MediumIt'
+				padding-right 40px
+				box-sizing border-box
 			.event_place
 				float left
 				width 15%
 				font 14pt/22pt 'MinionPro Medium'
+				padding-right 40px
+				box-sizing border-box
 			.event_year
 				float left
 				width 10%

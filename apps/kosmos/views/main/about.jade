@@ -5,10 +5,11 @@ block paths
 	- var menu_active = 'about'
 
 block content_style
-	link(rel='stylesheet', type='text/css', href='/build/css/' + __app_name + '/global.css' + version)
+	link(rel='stylesheet', type='text/css', href='/libs/css/swiper.min.css' + version)
 	link(rel='stylesheet', type='text/css', href='/build/css/' + __app_name + '/about.css' + version)
 
 block content_scripts
+	script(type='text/javascript', src='/libs/js/swiper.jquery.min.js' + version)
 	script(type='text/javascript', src='/build/js/' + __app_name + '/about.js' + version)
 
 block content
@@ -31,12 +32,15 @@ block content
 	.press_block
 		.block_title= __('Press')
 		.block_items
-			each item in press
-				.press_item
-					.press_poster
-					.press_title= item.i18n.title.get(locale)
-					.press_s_title= item.i18n.s_title.get(locale)
-					.press_year= item.year
+			.swiper-container.gallery-press
+				.swiper-wrapper
+					each item in press
+						.press_item.swiper-slide
+							.press_poster
+							.press_title= item.i18n.title.get(locale)
+							.press_s_title= item.i18n.s_title.get(locale)
+							.press_year= item.year
+				.swiper-pagination.swiper-pagination-black
 
 	.awards_block
 		.block_title= __('Awards')
