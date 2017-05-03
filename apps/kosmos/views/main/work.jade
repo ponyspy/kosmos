@@ -1,7 +1,7 @@
 extends layout
 
 block paths
-	- var content_title= __('K O S M O S') + ' :: ' + __('W O R K S') + ' :: ' + work.i18n.title.get(locale).toUpperCase()
+	- var content_title= (__('KOSMOS') + ' | ' + __('WORKS') + ' | ' + work.i18n.title.get(locale).toUpperCase()).split('').join(' ')
 	- var menu_active = 'works'
 
 block content_style
