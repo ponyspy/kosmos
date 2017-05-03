@@ -34,8 +34,8 @@ module.exports = function(Model, Params) {
 			checkNested(post, [locale, 's_title'])
 				&& award.setPropertyLocalised('s_title', post[locale].s_title, locale);
 
-			checkNested(post, [locale, 'country'])
-				&& award.setPropertyLocalised('country', post[locale].country, locale);
+			checkNested(post, [locale, 'place'])
+				&& award.setPropertyLocalised('place', post[locale].place, locale);
 		});
 
 		award.save(function(err, award) {

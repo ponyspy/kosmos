@@ -32,6 +32,8 @@ block content
 			+form_text_multi('description', people)
 			.form_title Фото:
 			input(type='file', name='photo')
+			.form_title Файл PDF:
+			input(type='file', name='file')
 			.form_title Видимость:
 			input(type='checkbox', name='status', value='hidden', checked=people.status == 'hidden')
 			!= ' скрыть'

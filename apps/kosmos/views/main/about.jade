@@ -36,7 +36,7 @@ block content
 					.press_poster
 					.press_title= item.i18n.title.get(locale)
 					.press_description= item.i18n.s_title.get(locale)
-					.press_year
+					.press_year= item.year
 
 	.awards_block
 		.block_title= __('Awards')
@@ -45,7 +45,8 @@ block content
 				.award_item
 					.award_title= award.i18n.title.get(locale)
 					.award_description= award.i18n.s_title.get(locale)
-					.award_year
+					.award_place= award.i18n.place.get(locale)
+					.award_year= award.year
 
 	.events_block
 		.block_title= __('Events')
@@ -54,4 +55,5 @@ block content
 				.event_item
 					.event_title= event.i18n.title.get(locale)
 					.event_description= event.i18n.s_title.get(locale)
-					.event_year
+					.event_place= event.i18n.place.get(locale)
+					.event_year= event.year
