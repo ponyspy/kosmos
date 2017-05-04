@@ -72,6 +72,25 @@
 	.swiper-wrapper
 		padding-bottom 60px
 	.press_item
+		min-height 200px
+		display block
+		text-decoration none
+		.press_poster
+			opacity 0
+			transition .3s linear
+			position absolute
+			z-index 99999
+			width 100%
+			height 100%
+			background-position center
+			background-size contain
+			background-repeat no-repeat
+		&:hover
+			.press_poster
+				transition .3s linear
+				opacity 1
+			.press_title, .press_s_title, .press_year
+				opacity .3
 		.press_title
 			font 26pt/28pt 'MinionPro Medium'
 			margin-bottom 20px

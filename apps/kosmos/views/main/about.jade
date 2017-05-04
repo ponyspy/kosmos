@@ -35,8 +35,8 @@ block content
 			.swiper-container.gallery-press
 				.swiper-wrapper
 					each item in press
-						.press_item.swiper-slide
-							.press_poster
+						a.press_item.swiper-slide(href='#')
+							.press_poster(style='background-image: url(' + item.poster + ')')
 							.press_title= item.i18n.title.get(locale)
 							.press_s_title= item.i18n.s_title.get(locale)
 							.press_year= item.year
