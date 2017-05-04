@@ -30,7 +30,7 @@ module.exports = function(Model) {
 				Publication.where('status').ne('hidden').sort('-date').exec(callback);
 			},
 			peoples: function(callback) {
-				People.where('status').ne('hidden').sort('-date').exec(callback);
+				People.where('status').ne('hidden').sort('date').exec(callback);
 			},
 			events: function(callback) {
 				Event.where('status').ne('hidden').sort('-date').exec(callback);
