@@ -30,6 +30,8 @@ block content
 			+form_text_single('title', publication)
 			.form_title Подзаголовок:
 			+form_text_single('s_title', publication)
+			.form_title Ссылка:
+			input(type='text', name='link', value=publication.link)
 			.form_title Год:
 			input(type='number', name='year', value=publication.year)
 			.form_title Обложка:

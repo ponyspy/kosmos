@@ -58,6 +58,7 @@ var researchSchema = new Schema({
 var publicationSchema = new Schema({
 	title: { type: String, trim: true, locale: true },
 	s_title: { type: String, trim: true, locale: true },
+	link: String,
 	year: Number,
 	poster: String,
 	status: String,

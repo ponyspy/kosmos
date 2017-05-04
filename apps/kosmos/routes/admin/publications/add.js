@@ -26,6 +26,7 @@ module.exports = function(Model, Params) {
 		publication.status = post.status;
 		publication.date = moment(post.date.date + 'T' + post.date.time.hours + ':' + post.date.time.minutes);
 		publication.year = post.year;
+		publication.link = post.link;
 
 		var locales = post.en ? ['ru', 'en'] : ['ru'];
 
