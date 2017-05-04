@@ -55,6 +55,7 @@
 				background-position center
 				background-repeat no-repeat
 				background-size contain
+				transition .3s linear
 			.people_name
 			.people_open
 				text-align center
@@ -66,6 +67,9 @@
 					display none
 				.people_open
 					display block
+				.people_photo
+					transition .3s linear
+					opacity .5
 
 .press_block
 	position relative
@@ -90,16 +94,19 @@
 				transition .3s linear
 				opacity 1
 			.press_title, .press_s_title, .press_year
-				opacity .3
+				opacity .4
 		.press_title
 			font 26pt/28pt 'MinionPro Medium'
 			margin-bottom 20px
 		.press_s_title
-			font 16pt/22pt 'MinionPro MediumIt'
+			font 16pt/22pt 'MinionPro Medium'
 		.press_year
-			font 16pt/22pt 'MinionPro MediumIt'
+			color grey
+			font 16pt/22pt 'MinionPro Medium'
 
 .awards_block
+	.block_title
+		margin-top 80px
 	.block_items
 		.award_item
 			overflow hidden
