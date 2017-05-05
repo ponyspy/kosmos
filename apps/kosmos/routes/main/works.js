@@ -1,11 +1,12 @@
-module.exports = function(Model) {
+module.exports = function(Model, Type) {
 	var module = {};
 
 	var Work = Model.Work;
+	var type = Type;
 
 	module.index = function(req, res) {
-		Work.where('status').ne('hidden').sort('-date').exec(function(err, works) {
-			res.render('main/works.jade', { works: works });
+		Work.where('status').ne('hidden').where('type').equals(type).sort('-date').exec(function(err, works) {
+			res.render('main/works.jade', { works: works, type: type });
 		});
 	};
 
@@ -15,7 +16,7 @@ module.exports = function(Model) {
 		Work.findOne({ _short_id: short_id }).exec(function(err, work) {
 			var images = work.images.reduce(function(prev, curr) {
 				if (prev.length && curr.gallery == prev[prev.length - 1][0].gallery) {
-					prev[prev.length - 1].push(curr)
+					prev[prev.length - 1].push(curr);
 				} else {
 					prev.push([curr]);
 				}

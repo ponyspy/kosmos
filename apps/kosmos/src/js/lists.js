@@ -176,7 +176,6 @@ $(function() {
 		.on('click', '.item_rm.publication', {path:'/admin/publication/remove', description: 'Удалить публикацию?'}, remove)
 		.on('click', '.item_rm.event', {path:'/admin/events/remove', description: 'Удалить событие?'}, remove)
 		.on('click', '.item_rm.award', {path:'/admin/awards/remove', description: 'Удалить награду?'}, remove)
-		.on('click', '.item_rm.research', {path:'/admin/researches/remove', description: 'Удалить исследование?'}, remove)
 		.on('click', '.item_rm.people', {path:'/admin/peoples/remove', description: 'Удалить человека?'}, remove);
 
 });

@@ -52,6 +52,12 @@ block content
 				span= ' | показать на главной'
 			.form_title Изображения:
 			+form_images_upload(work.images)
+			//- .form_title Файлы ZIP / PDF:
+			//- input(type='file')
+			.form_title Тип:
+			select(name='type')
+				option(value='project', selected= work.type == 'project' && 'project') Проект
+				option(value='research', selected= work.type == 'research' && 'research') Исследование
 			.form_title Видимость:
 			input(type='checkbox', name='status', value='hidden', checked=work.status == 'hidden')
 			!= ' скрыть'

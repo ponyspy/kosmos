@@ -1,8 +1,8 @@
 extends layout
 
 block paths
-	- var content_title= (__('KOSMOS') + ' | ' + __('WORKS')).split('').join(' ')
-	- var menu_active = 'works'
+	- var content_title= __('KOSMOS') + ' | ' + __(type == 'project' ? 'PROJECTS' : 'RESEARCH')
+	- var menu_active = type
 
 block content_style
 	link(rel='stylesheet', type='text/css', href='/build/css/' + __app_name + '/works.css' + version)
@@ -13,7 +13,7 @@ block content_scripts
 block content
 	.works_block
 		each work in works
-			a.work_item(href='/works/' + work._short_id)
+			a.work_item(href='/' + (work.type == 'project' ? 'projects' : 'research') + '/' + work._short_id)
 				.work_poster(style='background-image: url(' + work.poster + ')')
 				.work_title= work.i18n.title.get(locale)
 				.work_s_title= work.i18n.s_title.get(locale)

@@ -1,8 +1,8 @@
 extends layout
 
 block paths
-	- var content_title= (__('KOSMOS') + ' | ' + __('WORKS') + ' | ' + work.i18n.title.get(locale).toUpperCase()).split('').join(' ')
-	- var menu_active = 'works'
+	- var content_title= __('KOSMOS') + ' | ' + __(work.type == 'project' ? 'PROJECTS' : 'RESEARCH') + ' | ' + work.i18n.title.get(locale).toUpperCase()
+	- var menu_active = work.type
 
 block content_style
 	link(rel='stylesheet', type='text/css', href='/libs/css/swiper.min.css' + version)
@@ -18,13 +18,19 @@ block content
 			.work_title= work.i18n.title.get(locale)
 			.work_meta
 				.meta_column.title
-					.meta_title= __('Year')
-					.meta_title= __('Client')
-					.meta_title= __('Area')
+					if work.year
+						.meta_title= __('Year')
+					if work.i18n.client.get(locale) != ''
+						.meta_title= __('Client')
+					if work.i18n.area.get(locale) != ''
+						.meta_title= __('Area')
 				.meta_column.data
-					.meta_year= work.year
-					.meta_client= work.i18n.client.get(locale)
-					.meta_area= work.i18n.area.get(locale)
+					if work.year
+						.meta_year= work.year
+					if work.i18n.client.get(locale) != ''
+						.meta_client= work.i18n.client.get(locale)
+					if work.i18n.area.get(locale) != ''
+						.meta_area= work.i18n.area.get(locale)
 				img.work_poster(src=work.poster)
 		.work_column.right
 			.work_s_title= work.i18n.s_title.get(locale)

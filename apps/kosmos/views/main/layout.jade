@@ -3,13 +3,13 @@ html
 	head
 		block paths
 		include header
-	body
+	body(class=menu_active)
 		.main_block
 			.title_block
 				.menu_block
 					a(href='/', class=menu_active == 'main' ? 'active' : '')= __('KOSMOS')
 					a(href='/bureau', class=menu_active == 'bureau' ? 'active' : '')= __('BUREAU')
-					a(href='/works', class=menu_active == 'works' ? 'active' : '')= __('WORKS')
+					a(href='/projects', class=menu_active == 'project' ? 'active' : '')= __('PROJECTS')
 					a(href='/research', class=menu_active == 'research' ? 'active' : '')= __('RESEARCH')
 				if (session && session.user_id)
 					.stargazer_block

@@ -45,6 +45,12 @@ block content
 			input(type='file', name='poster')
 			.form_title Изображения:
 			+form_images_upload()
+			//- .form_title Файлы ZIP / PDF:
+			//- input(type='file')
+			.form_title Тип:
+			select(name='type')
+				option(value='project') Проект
+				option(value='research') Исследование
 			.form_title Видимость:
 			input(type='checkbox', name='status', value='hidden')
 			!= ' скрыть'
