@@ -17,21 +17,24 @@ block content
 		.work_column.left
 			.work_title= work.i18n.title.get(locale)
 			.work_meta
-				.meta_column.title
-					if work.year
+
+				if work.year
+					.meta_column
 						.meta_title= __('Year')
-					if work.i18n.client.get(locale) != ''
+						.meta_data= work.year
+
+				if work.i18n.client.get(locale) != ''
+					.meta_column
 						.meta_title= __('Client')
-					if work.i18n.area.get(locale) != ''
+						.meta_data= work.i18n.client.get(locale)
+
+				if work.i18n.area.get(locale) != ''
+					.meta_column
 						.meta_title= __('Area')
-				.meta_column.data
-					if work.year
-						.meta_year= work.year
-					if work.i18n.client.get(locale) != ''
-						.meta_client= work.i18n.client.get(locale)
-					if work.i18n.area.get(locale) != ''
-						.meta_area= work.i18n.area.get(locale)
-				img.work_poster(src=work.poster)
+						.meta_data= work.i18n.area.get(locale) != ''
+
+			img.work_poster(src=work.poster)
+
 		.work_column.right
 			.work_s_title= work.i18n.s_title.get(locale)
 			.work_description!= work.i18n.description.get(locale)
