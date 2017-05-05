@@ -8,7 +8,7 @@ $(function() {
 
 	$('.editor').each( function(index, element) {
 		$(element).wysiwyg({
-				classes: 'editor',
+				classes: 'editor' + ' ' + $(element).attr('class').split(' ')[0],
 				toolbar: 'top-selection',
 				buttons: {
 				insertlink: {

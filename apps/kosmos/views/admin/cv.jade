@@ -26,8 +26,7 @@ block content
 			input.ru(type='text', name='adress[ru]', value= content.adress_ru)
 			input.en(type='text', name='adress[en]', value= content.adress_en)
 			.form_title Текст CV:
-			textarea.ru.editor(name='cv[ru]')= content.cv_ru
-			textarea.en.editor(name='cv[en]')= content.cv_en
-			br
-			br
-			input(type='submit', style='display: block; clear: both;' value='сохранить')
+			.content(style='overflow: hidden;')
+				textarea.ru.editor(name='cv[ru]')= content.cv_ru
+				textarea.en.editor(name='cv[en]')= content.cv_en
+			input(type='submit', style='display: block;' value='сохранить')
