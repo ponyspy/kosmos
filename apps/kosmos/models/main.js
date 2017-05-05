@@ -41,16 +41,10 @@ var workSchema = new Schema({
 		thumb: String,
 		preview: String
 	}],
-	_short_id: { type: String, unique: true, index: true, sparse: true },
-	date: { type: Date, default: Date.now },
-});
-
-var researchSchema = new Schema({
-	title: { type: String, trim: true, locale: true },
-	s_title: { type: String, trim: true, locale: true },
-	poster: String,
-	file: String,
-	status: String,
+	files: [{
+		path: String,
+		desc: String
+	}],
 	_short_id: { type: String, unique: true, index: true, sparse: true },
 	date: { type: Date, default: Date.now },
 });
@@ -103,7 +97,6 @@ var peopleSchema = new Schema({
 
 workSchema.index({'date': -1});
 workSchema.index({'title.value': 'text', 's_title.value': 'text', 'description.value': 'text'}, {language_override: 'lg', default_language: 'ru'});
-researchSchema.index({'title.value': 'text', 's_title.value': 'text'}, {language_override: 'lg', default_language: 'ru'});
 publicationSchema.index({'title.value': 'text', 's_title.value': 'text'}, {language_override: 'lg', default_language: 'ru'});
 awardSchema.index({'title.value': 'text', 's_title.value': 'text'}, {language_override: 'lg', default_language: 'ru'});
 eventSchema.index({'title.value': 'text', 's_title.value': 'text'}, {language_override: 'lg', default_language: 'ru'});
@@ -118,7 +111,6 @@ peopleSchema.index({'name.value': 'text', 'description.value': 'text'}, {languag
 userSchema.plugin(mongooseBcrypt, { fields: ['password'] });
 
 workSchema.plugin(mongooseLocale);
-researchSchema.plugin(mongooseLocale);
 publicationSchema.plugin(mongooseLocale);
 awardSchema.plugin(mongooseLocale);
 eventSchema.plugin(mongooseLocale);
@@ -132,7 +124,6 @@ peopleSchema.plugin(mongooseLocale);
 
 module.exports.User = mongoose.model('User', userSchema);
 module.exports.Work = mongoose.model('Work', workSchema);
-module.exports.Research = mongoose.model('Research', researchSchema);
 module.exports.Publication = mongoose.model('Publication', publicationSchema);
 module.exports.Award = mongoose.model('Award', awardSchema);
 module.exports.Event = mongoose.model('Event', eventSchema);

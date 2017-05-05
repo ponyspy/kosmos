@@ -14,7 +14,7 @@ $(function() {
 			$('.en').prop('disabled', eng).filter('input').hide();
 			$('.en').parent('.wysiwyg-container').hide();
 			$('.en_img').prop('disabled', eng).hide();
-			$('.ru').css('float','none');
+			$('.ru').css('float','none').parent('.wysiwyg-container').removeAttr('style');
 		} else {
 			$('.en').prop('disabled', eng).filter('input').show();
 			$('.en').parent('.wysiwyg-container').show();
