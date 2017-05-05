@@ -2,6 +2,7 @@
 	font 26pt/28pt 'MinionPro Medium'
 	margin-top 100px
 	margin-bottom 60px
+	letter-spacing 2px
 
 .block_poster
 	width 100%
@@ -12,15 +13,21 @@
 	.cv_email
 		font 26pt/28pt 'MinionPro Semibold'
 		text-decoration none
-		display block
-		// border-bottom 1px solid black
+		display inline-block
+		float left
+		letter-spacing 2px
+		border-bottom 1px solid transparent
+		&:hover
+			border-bottom 1px solid black
 	.cv_adress
+		clear both
 		margin-top 80px
 		width 40%
 		float left
 		padding-right 20px
 		box-sizing border-box
 		font 26pt/28pt 'MinionPro Semibold'
+		letter-spacing 2px
 	.cv_body
 		margin-top 80px
 		width 60%
