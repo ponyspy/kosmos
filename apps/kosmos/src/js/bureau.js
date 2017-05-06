@@ -5,7 +5,7 @@ $(function() {
 			keyboardControl: true,
 			pagination: '.swiper-pagination',
 			paginationClickable: true,
-			spaceBetween: 40,
+			spaceBetween: 80,
 			slidesPerView: 3,
 			// autoHeight: true,
 			// centeredSlides: true,
