@@ -48,8 +48,8 @@ block content
 				else if item.every(function(item) { return item.size == '1x' })
 					- g_size = 'g_1x'
 				.gallery-block(class=g_size)
-					.swiper-button-next(class= work.type == 'project' ? 'swiper-button-black' : 'swiper-button-white' )
-					.swiper-button-prev(class= work.type == 'project' ? 'swiper-button-black' : 'swiper-button-white' )
+					.swiper-button-next(class='swiper-button-' + (work.type == 'project' ? 'black' : 'white'))
+					.swiper-button-prev(class='swiper-button-' + (work.type == 'project' ? 'black' : 'white'))
 					.swiper-container.gallery-top
 						.swiper-wrapper
 							each image in item
