@@ -1,12 +1,12 @@
 $(function() {
 
 	$('.gallery-block').each(function() {
-		var $gallery = $(this).children('.swiper-container');
+		var $this = $(this);
 
-		var gallery = new Swiper($gallery, {
+		var gallery = new Swiper($this.children('.swiper-container'), {
 			keyboardControl: true,
-			nextButton: '.swiper-button-next',
-			prevButton: '.swiper-button-prev',
+			nextButton: $this.children('.swiper-button-next'),
+			prevButton: $this.children('.swiper-button-prev'),
 			spaceBetween: 40,
 			autoHeight: true,
 			slidesPerView: 1,
