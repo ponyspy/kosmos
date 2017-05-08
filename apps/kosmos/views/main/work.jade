@@ -55,9 +55,11 @@ block content
 						each image in item
 							.swiper-slide
 								img.slide_image(src=image.thumb)
-								.slide_description cool
+								//- img.swiper-lazy.slide_image(data-src=image.thumb)
+								//- .swiper-lazy-preloader.swiper-lazy-preloader-white
+								.slide_description= image.description.filter(function(lang) { return lang.lg == locale })[0].value
 			else
 				- var sizes = ['size_1x', 'size_2x', 'size_3x' ]
 				.image_item(class=sizes[sizes.indexOf('size_' + item.size)])
-					img.image(class="b-lazy", src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==', data-src=item.thumb, data-src-small=item.preview)
+					img.image(class="b-lazy", src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==', data-src=item.thumb)
 					.image_description= item.description.filter(function(lang) { return lang.lg == locale })[0].value
