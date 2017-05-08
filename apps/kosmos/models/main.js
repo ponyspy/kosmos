@@ -10,6 +10,16 @@ mongoose.connect('localhost', __app_name);
 
 
 // ------------------------
+// *** Getters Block ***
+// ------------------------
+
+
+var pathCDN = function(path) {
+	return path ? '/cdn/' + __app_name + path : undefined;
+};
+
+
+// ------------------------
 // *** Schema Block ***
 // ------------------------
 
@@ -29,7 +39,7 @@ var workSchema = new Schema({
 	year: Number,
 	client: { type: String, trim: true, locale: true },
 	area: { type: String, trim: true, locale: true },
-	poster: String,
+	poster: { type: String, get: pathCDN },
 	poster_main: Boolean,
 	status: String,
 	type: 'String', // project, research
@@ -37,12 +47,12 @@ var workSchema = new Schema({
 		size: String,
 		gallery: Boolean,
 		description: { type: String, trim: true, locale: true },
-		original: String,
-		thumb: String,
-		preview: String
+		original: { type: String, get: pathCDN },
+		thumb: { type: String, get: pathCDN },
+		preview: { type: String, get: pathCDN }
 	}],
 	files: [{
-		path: String,
+		path: { type: String, get: pathCDN },
 		desc: String
 	}],
 	_short_id: { type: String, unique: true, index: true, sparse: true },

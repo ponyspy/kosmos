@@ -42,18 +42,14 @@ block content
 			.form_title Описание:
 			+form_text_multi('description', work)
 			.form_title Обложка:
-			input(type='file', name='poster')
-			if (work.poster)
-				input(type='checkbox', name='poster_del')
-				span= ' | удалить обложку'
-				br
-				br
+			+form_single_file('poster', work)(accept='image/jpeg,image/png,image/gif')
+			if work.poster
 				input(type='checkbox', name='poster_main', checked= work.poster_main)
-				span= ' | показать на главной'
+				span= ' | на главную'
 			.form_title Изображения:
 			+form_images_upload(work.images)
-			//- .form_title Файлы ZIP / PDF:
-			//- input(type='file')
+			.form_title Файлы ZIP / PDF:
+			+form_multiple_files('attach', work)(accept='application/pdf,application/zip')
 			.form_title Тип:
 			select(name='type')
 				option(value='project', selected= work.type == 'project' && 'project') Проект

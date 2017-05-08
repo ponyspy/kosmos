@@ -1,5 +1,6 @@
 var shortid = require('shortid');
 var moment = require('moment');
+var async = require('async');
 
 module.exports = function(Model, Params) {
 	var module = {};
@@ -7,7 +8,9 @@ module.exports = function(Model, Params) {
 	var Work = Model.Work;
 
 	var uploadImages = Params.upload.images;
-	var uploadPoster = Params.upload.image;
+	var uploadImage = Params.upload.image;
+	var filesUpload = Params.upload.files_upload;
+	var filesDelete = Params.upload.files_delete;
 	var checkNested = Params.locale.checkNested;
 
 
@@ -18,7 +21,7 @@ module.exports = function(Model, Params) {
 
 	module.form = function(req, res, next) {
 		var post = req.body;
-		var file = req.file;
+		var files = req.files;
 
 		var work = new Work();
 
@@ -48,17 +51,17 @@ module.exports = function(Model, Params) {
 
 		});
 
-		uploadImages(work, 'works', post.images, function(err, work) {
+		async.series([
+			async.apply(uploadImages, work, 'works', post.images),
+			async.apply(uploadImage, work, 'works', 'poster', 600, files.poster && files.poster[0], null),
+			async.apply(filesUpload, work, 'works', 'files', post, files),
+		], function(err, results) {
 			if (err) return next(err);
 
-			uploadPoster(work, 'works', 'poster', file, null, function(err, work) {
+			work.save(function(err, work) {
 				if (err) return next(err);
 
-				work.save(function(err, work) {
-					if (err) return next(err);
-
-					res.redirect('/admin/works');
-				});
+				res.redirect('/admin/works');
 			});
 		});
 	};

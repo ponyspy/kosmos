@@ -9,39 +9,53 @@ var mime = require('mime');
 var public_path = __glob_root + '/public';
 var preview_path = __glob_root + '/public/preview/';
 
-module.exports.image = function(obj, base_path, field_name, file, del_file, callback) {
+module.exports.image = function(obj, base_path, field_name, file_size, file, del_file, callback) {
+
 	if (del_file && obj[field_name]) {
-		rimraf.sync(public_path + obj[field_name]);
+		rimraf.sync(public_path + obj[field_name].replace(/jpg|png/, '*'), { glob: true });
 		obj[field_name] = undefined;
-		obj.poster_main = undefined;
 	}
-	if (!file) return callback.call(null, null, obj);
 
-	var dir_path = '/cdn/' + __app_name + '/images/' + base_path + '/' + obj._id;
-	var file_name = field_name + '.' + mime.extension(file.mimetype);
+	if (del_file || !file) return callback.call(null, null, obj);
 
-	mkdirp(public_path + dir_path, function() {
-		fs.rename(file.path, public_path + dir_path + '/' + file_name, function(err) {
-			obj[field_name] = dir_path + '/' + file_name;
-			callback.call(null, null, obj);
+	var file_path =  '/' + base_path + '/' + obj._id + '/images';
+	var cdn_path = '/cdn/' + __app_name + file_path;
+
+	rimraf(public_path + cdn_path + '/' + field_name + '.*', { glob: true }, function() {
+		mkdirp(public_path + cdn_path, function() {
+			if (/jpeg|png|gif/.test(mime.extension(file.mimetype))) {
+				gm(file.path).identify({ bufferStream: true }, function(err, meta) {
+					var file_name = field_name + '.' + mime.extension(file.mimetype);
+
+					this.resize(meta.size.width > file_size ? file_size : false, false);
+					this.quality(meta.size.width >= file_size ? 82 : 100);
+					this.write(public_path + cdn_path + '/' + file_name, function(err) {
+						obj[field_name] = file_path + '/' + file_name;
+						callback.call(null, null, obj);
+					});
+				});
+			} else {
+				callback.call(null, null, obj);
+			}
 		});
 	});
-
 };
 
 module.exports.images = function(obj, base_path, upload_images, callback) {
 	obj.images = [];
 	var images = [];
 
-	var dir_path = '/cdn/' + __app_name + '/images/' + base_path + '/' + obj._id;
+
+	var file_path = '/' + base_path + '/' + obj._id + '/images';
+	var cdn_path = '/cdn/' + __app_name; // dir_path
 
 	var images_path = {
-		original: dir_path + '/original/',
-		thumb: dir_path + '/thumb/',
-		preview: dir_path + '/preview/'
+		original: file_path + '/original/',
+		thumb: file_path + '/thumb/',
+		preview: file_path + '/preview/'
 	};
 
-	var map_paths = Object.values(images_path).map(function(path) { return public_path + path; });
+	var map_paths = Object.values(images_path).map(function(path) { return public_path + cdn_path + path; });
 
 	rimraf('{' + map_paths.join(',') + '}', { glob: true }, function(err, paths) {
 
@@ -65,17 +79,18 @@ module.exports.images = function(obj, base_path, upload_images, callback) {
 			}, function() {
 
 				async.eachSeries(images, function(image, callback) {
-					var name = path.basename(image.path).split('.')[0] || Date.now();
-					var original_path = images_path.original + name + '.jpg';
-					var thumb_path = images_path.thumb + name + '.jpg';
-					var preview_path = images_path.preview + name + '.jpg';
+					var name = path.basename(image.path);
 
-					gm(public_path + image.path).write(public_path + original_path, function(err) {
-						gm(public_path + image.path).resize(400, false).quality(60).write(public_path + preview_path, function(err) {
+					var original_path = images_path.original + name;
+					var thumb_path = images_path.thumb + name;
+					var preview_path = images_path.preview + name;
+
+					gm(public_path + image.path).write(public_path + cdn_path + original_path, function(err) {
+						gm(public_path + image.path).resize(400, false).quality(60).write(public_path + cdn_path + preview_path, function(err) {
 							gm(public_path + image.path).size({bufferStream: true}, function(err, size) {
 								this.resize(size.width > 1000 ? 1000 : false, false);
 								this.quality(size.width > 1000 ? 80 : 100);
-								this.write(public_path + thumb_path, function(err) {
+								this.write(public_path + cdn_path + thumb_path, function(err) {
 									var obj_img = {};
 
 									obj_img.original = original_path;
@@ -115,4 +130,46 @@ module.exports.preview = function(images, callback) {
 	}, function(err, results) {
 		callback.call(null, null, results);
 	});
+};
+
+module.exports.files_upload = function(obj, base_path, field_name, post, files, callback) {
+	console.log(files.attach);
+	if (files.attach && files.attach.length > 0) {
+		async.forEachOfSeries(files.attach, function(file, i, callback) {
+			var file_path = '/' + base_path + '/' + obj._id + '/files';
+			var cdn_path = '/cdn/' + __app_name + file_path;
+			var file_name = Date.now() + '.' + mime.extension(file.mimetype);
+
+			mkdirp(public_path + cdn_path, function() {
+				fs.rename(file.path, public_path + cdn_path + '/' + file_name, function() {
+					obj[field_name].push({
+						path: file_path + '/' + file_name,
+						desc: post.attach_desc[i] || ''
+					});
+					callback();
+				});
+			});
+		}, function() {
+			callback(null, 'files_upload');
+		});
+	} else {
+		callback(null, false);
+	}
+};
+
+module.exports.files_delete = function(obj, field_name, post, files, callback) {
+	if (post.files_delete && post.files_delete.length > 0) {
+		async.eachSeries(post.files_delete, function(path, callback) {
+			rimraf(public_path + path, { glob: false }, function() {
+				var num = obj[field_name].map(function(e) { return e.path; }).indexOf(path);
+				obj[field_name].splice(num, 1);
+				obj.markModified(field_name);
+				callback();
+			});
+		}, function() {
+			callback(null, 'files_delete');
+		});
+	} else {
+		callback(null, false);
+	}
 };

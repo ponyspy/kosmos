@@ -30,11 +30,11 @@ module.exports = (function() {
 		.get(checkAuth, admin.cv.edit)
 		.post(checkAuth, admin.cv.edit_form);
 
-	router.use('/works', checkAuth, upload.single('poster'), admin.works);
-	router.use('/publications', checkAuth, upload.single('poster'), admin.publications);
+	router.use('/works', checkAuth, upload.fields([ { name: 'attach' }, { name: 'poster' } ]), admin.works);
+	router.use('/publications', checkAuth, upload.fields([ { name: 'poster' } ]), admin.publications);
 	router.use('/awards', checkAuth, admin.awards);
 	router.use('/events', checkAuth, admin.events);
-	router.use('/peoples', checkAuth, upload.single('photo'), admin.peoples);
+	router.use('/peoples', checkAuth, upload.fields([ { name: 'attach' }, { name: 'photo' } ]), admin.peoples);
 	router.use('/users', checkAuth, admin.users);
 
 	router.post('/preview', checkAuth, upload.single('image'), admin.options.preview);

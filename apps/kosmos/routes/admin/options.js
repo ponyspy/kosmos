@@ -1,10 +1,11 @@
 var gm = require('gm').subClass({ imageMagick: true });
 var rimraf = require('rimraf');
+var mime = require('mime');
 
 
 module.exports.preview = function(req, res) {
 	var file = req.file;
-	var newPath = '/preview/' + Date.now() + '.jpg';
+	var newPath = '/preview/' + Date.now() + '.' + mime.extension(file.mimetype);
 
 	gm(file.path).size({ bufferStream: true }, function(err, size) {
 
