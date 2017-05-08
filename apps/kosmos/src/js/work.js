@@ -1,9 +1,9 @@
 $(function() {
 
 	$('.gallery-block').each(function() {
-		var $gallery_top = $(this).children('.gallery-top');
+		var $gallery = $(this).children('.swiper-container');
 
-		var galleryTop = new Swiper($gallery_top, {
+		var gallery = new Swiper($gallery, {
 			// initialSlide: 0,
 			keyboardControl: true,
 			nextButton: '.swiper-button-next',
@@ -14,6 +14,18 @@ $(function() {
 			// centeredSlides: true,
 		});
 
+	});
+
+	var bLazy = new Blazy({
+		offset: 100,
+		selector: '.image',
+		successClass: 'load',
+		breakpoints: [
+			{
+				width: 420,
+				src: 'data-src-small'
+			}
+		]
 	});
 
 });

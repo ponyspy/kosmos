@@ -35,6 +35,7 @@ body.research
 			padding-top 7px
 			margin-bottom 100px
 		.work_description
+			hyphens auto
 			font 16pt/22pt 'MinionPro Medium'
 		.work_poster
 			width 100%
@@ -63,9 +64,14 @@ body.research
 					float right
 					font 14pt/24pt 'MinionPro Medium'
 
-.image
+.image_item
 	margin 0 auto
 	margin-bottom 100px
+	.image
+		opacity 0
+		transition opacity .3s ease-in
+		&.load
+			opacity 1
 	.image_description
 		font 16pt/22pt 'MinionPro Medium'
 		margin-top 20px

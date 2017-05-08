@@ -10,6 +10,7 @@ block content_style
 
 block content_scripts
 	script(type='text/javascript', src='/libs/js/swiper.jquery.min.js' + version)
+	script(type='text/javascript', src='/libs/js/blazy.min.js' + version)
 	script(type='text/javascript', src='/build/js/' + __app_name + '/work.js' + version)
 
 block content
@@ -50,14 +51,13 @@ block content
 				.gallery-block(class=g_size)
 					.swiper-button-next(class='swiper-button-' + (work.type == 'project' ? 'black' : 'white'))
 					.swiper-button-prev(class='swiper-button-' + (work.type == 'project' ? 'black' : 'white'))
-					.swiper-container.gallery-top
-						.swiper-wrapper
-							each image in item
-								.swiper-slide
-									img.slide_image(src=image.thumb)
-									.slide_description cool
+					.swiper-container: .swiper-wrapper
+						each image in item
+							.swiper-slide
+								img.slide_image(src=image.thumb)
+								.slide_description cool
 			else
 				- var sizes = ['size_1x', 'size_2x', 'size_3x' ]
-				.image(class=sizes[sizes.indexOf('size_' + item.size)])
-					img(src=item.thumb)
+				.image_item(class=sizes[sizes.indexOf('size_' + item.size)])
+					img.image(class="b-lazy", src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==', data-src=item.thumb, data-src-small=item.preview)
 					.image_description= item.description.filter(function(lang) { return lang.lg == locale })[0].value
