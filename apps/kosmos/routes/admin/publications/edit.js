@@ -5,7 +5,7 @@ module.exports = function(Model, Params) {
 
 	var Publication = Model.Publication;
 
-	var uploadPoster = Params.upload.image;
+	var uploadImage = Params.upload.image;
 	var checkNested = Params.locale.checkNested;
 
 
@@ -23,7 +23,7 @@ module.exports = function(Model, Params) {
 
 	module.form = function(req, res, next) {
 		var post = req.body;
-		var file = req.file;
+		var files = req.files;
 		var id = req.params.publication_id;
 
 		Publication.findById(id).exec(function(err, publication) {
@@ -44,7 +44,7 @@ module.exports = function(Model, Params) {
 					&& publication.setPropertyLocalised('s_title', post[locale].s_title, locale);
 			});
 
-			uploadPoster(publication, 'publications', 'poster', file, post.poster_del, function(err, publication) {
+			uploadImage(publication, 'publications', 'poster', 600, files.poster && files.poster[0], post.poster_del, function(err, publication) {
 				if (err) return next(err);
 
 				publication.save(function(err, publication) {

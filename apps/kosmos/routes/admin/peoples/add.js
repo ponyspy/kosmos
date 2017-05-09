@@ -6,7 +6,7 @@ module.exports = function(Model, Params) {
 
 	var People = Model.People;
 
-	var uploadPoster = Params.upload.image;
+	var uploadImage = Params.upload.image;
 	var checkNested = Params.locale.checkNested;
 
 
@@ -17,7 +17,7 @@ module.exports = function(Model, Params) {
 
 	module.form = function(req, res, next) {
 		var post = req.body;
-		var file = req.file;
+		var files = req.files;
 
 		var people = new People();
 
@@ -35,7 +35,7 @@ module.exports = function(Model, Params) {
 				&& people.setPropertyLocalised('description', post[locale].description, locale);
 		});
 
-		uploadPoster(people, 'peoples', 'photo', file, null, function(err, people) {
+		uploadImage(people, 'peoples', 'photo', 400, files.photo && files.photo[0], null, function(err, people) {
 			if (err) return next(err);
 
 			people.save(function(err, people) {

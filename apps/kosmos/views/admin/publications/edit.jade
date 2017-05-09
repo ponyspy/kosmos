@@ -35,7 +35,7 @@ block content
 			.form_title Год:
 			input(type='number', name='year', value=publication.year)
 			.form_title Обложка:
-			input(type='file', name='poster')
+			+form_single_file('poster', publication)(accept='image/jpeg,image/png,image/gif')
 			.form_title Видимость:
 			input(type='checkbox', name='status', value='hidden', checked=publication.status == 'hidden')
 			!= ' скрыть'
