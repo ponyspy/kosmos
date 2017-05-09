@@ -7,7 +7,7 @@ module.exports = function(Model) {
 
 	module.index = function(req, res) {
 		Work.find({ 'poster_main': { '$eq': true } }).distinct('poster').exec(function(err, posters) {
-			res.render('main/index.jade', { posters: posters });
+			res.render('main/index.jade', { posters: posters.map(function(path) { return '/cdn/' + __app_name + path; }) });
 		});
 	};
 
