@@ -44,8 +44,9 @@ block content
 			.form_title Обложка:
 			+form_single_file('poster', work)(accept='image/jpeg,image/png,image/gif')
 			if work.poster
-				input(type='checkbox', name='poster_main', checked= work.poster_main)
-				span= ' | на главную'
+				label(style='margin-left: 45px;')
+					input(type='checkbox', name='poster_main', checked= work.poster_main)
+					span= ' | на главную'
 			.form_title Изображения:
 			+form_images_upload(work.images)
 			.form_title Файлы ZIP / PDF:
