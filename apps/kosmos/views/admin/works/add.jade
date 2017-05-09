@@ -34,7 +34,7 @@ block content
 			.form_title Подзаголовок:
 			+form_text_single('s_title')
 			.form_title Год:
-			input(type='number', name='year')
+			input(type='number', name='year', value=new Date().getFullYear())
 			.form_title Заказчик:
 			+form_text_single('client')
 			.form_title Площадь:

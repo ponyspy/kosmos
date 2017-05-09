@@ -33,7 +33,7 @@ block content
 			.form_title Место:
 			+form_text_single('place')
 			.form_title Год:
-			input(type='number', name='year')
+			input(type='number', name='year', value=new Date().getFullYear())
 			.form_title Видимость:
 			label
 				input(type='checkbox', name='status', value='hidden')

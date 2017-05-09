@@ -33,7 +33,7 @@ block content
 			.form_title Ссылка:
 			input(type='text', name='link')
 			.form_title Год:
-			input(type='number', name='year')
+			input(type='number', name='year', value=new Date().getFullYear())
 			.form_title Обложка:
 			+form_single_file('poster')(accept='image/jpeg,image/png,image/gif')
 			.form_title Видимость:
