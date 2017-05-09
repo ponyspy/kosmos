@@ -52,8 +52,9 @@ block content
 				option(value='project') Проект
 				option(value='research') Исследование
 			.form_title Видимость:
-			input(type='checkbox', name='status', value='hidden')
-			!= ' скрыть'
+			label
+				input(type='checkbox', name='status', value='hidden')
+				span= ' скрыть'
 			.form_title Дата публикации:
 			+form_date('date')
 			br
