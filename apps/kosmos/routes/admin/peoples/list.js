@@ -26,6 +26,14 @@ module.exports = function(Model) {
 			? People.find({ $text : { $search : post.context.text } } )
 			: People.find();
 
+		if (post.context.status && post.context.status == 'default') {
+			Query.where('status').ne('hidden');
+		}
+
+		if (post.context.status && post.context.status == 'hidden') {
+			Query.where('status').equals('hidden');
+		}
+
 		Query.count(function(err, count) {
 			if (err) return next(err);
 
