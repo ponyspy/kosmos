@@ -12,16 +12,24 @@ module.exports = function(Model) {
 	module.index = function(req, res, next) {
 		async.parallel({
 			cv_ru: function(callback) {
-				fs.readFile(__app_root + '/static/cv_ru.html', callback);
+				fs.readFile(__app_root + '/static/cv_ru.html', function(err, content) {
+					callback(null, content || '');
+				});
 			},
 			cv_en: function(callback) {
-				fs.readFile(__app_root + '/static/cv_en.html', callback);
+				fs.readFile(__app_root + '/static/cv_en.html', function(err, content) {
+					callback(null, content || '');
+				});
 			},
 			adress_ru: function(callback) {
-				fs.readFile(__app_root + '/static/adress_ru.html', callback);
+				fs.readFile(__app_root + '/static/adress_ru.html', function(err, content) {
+					callback(null, content || '');
+				});
 			},
 			adress_en: function(callback) {
-				fs.readFile(__app_root + '/static/adress_en.html', callback);
+				fs.readFile(__app_root + '/static/adress_en.html', function(err, content) {
+					callback(null, content || '');
+				});
 			},
 			awards: function(callback) {
 				Award.where('status').ne('hidden').sort('-date').exec(callback);
