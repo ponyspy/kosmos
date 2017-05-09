@@ -1,7 +1,7 @@
 mixin items(publications)
 	each publication in publications
 		.list_item
-			a.item_rm.publication(href='#', id=publication._id) удалить
+			a.item_rm.publication(href='#', id=publication._id) -- удалить
 			a.item_title(href='/admin/publications/edit/' + publication._id, class=publication.status =='hidden' ? 'hidden': '')= (publication.i18n.title.get('ru') || '!!! ПУСТОЕ ПОЛЕ !!!')
 
 mixin counters(count, skip)

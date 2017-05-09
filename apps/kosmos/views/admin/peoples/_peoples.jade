@@ -1,7 +1,7 @@
 mixin items(peoples)
 	each people in peoples
 		.list_item
-			a.item_rm.people(href='#', id=people._id) удалить
+			a.item_rm.people(href='#', id=people._id) -- удалить
 			a.item_title(href='/admin/peoples/edit/' + people._id, class=people.status =='hidden' ? 'hidden': '')= (people.i18n.name.get('ru') || '!!! ПУСТОЕ ПОЛЕ !!!')
 
 mixin counters(count, skip)

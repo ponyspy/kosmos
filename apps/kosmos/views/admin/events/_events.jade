@@ -1,7 +1,7 @@
 mixin items(events)
 	each event in events
 		.list_item
-			a.item_rm.event(href='#', id=event._id) удалить
+			a.item_rm.event(href='#', id=event._id) -- удалить
 			a.item_title(href='/admin/events/edit/' + event._id, class=event.status =='hidden' ? 'hidden': '')= (event.i18n.title.get('ru') || '!!! ПУСТОЕ ПОЛЕ !!!')
 
 mixin counters(count, skip)

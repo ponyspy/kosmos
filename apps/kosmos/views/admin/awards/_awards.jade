@@ -1,7 +1,7 @@
 mixin items(awards)
 	each award in awards
 		.list_item
-			a.item_rm.award(href='#', id=award._id) удалить
+			a.item_rm.award(href='#', id=award._id) -- удалить
 			a.item_title(href='/admin/awards/edit/' + award._id, class=award.status =='hidden' ? 'hidden': '')= (award.i18n.title.get('ru') || '!!! ПУСТОЕ ПОЛЕ !!!')
 
 mixin counters(count, skip)
