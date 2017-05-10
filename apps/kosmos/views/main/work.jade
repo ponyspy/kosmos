@@ -37,8 +37,8 @@ block content
 					.meta_column
 						.meta_title= __('Files')
 						.meta_data
-							each file in work.files
-								a.file(href=file.path)= file.desc
+							each file, i in work.files
+								a.file(href=file.path)= file.desc || 'file ' + i
 			img.work_poster(src=work.poster)
 		.work_column.right
 			.work_description!= work.i18n.description.get(locale)
