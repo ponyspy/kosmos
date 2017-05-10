@@ -14,6 +14,6 @@ block content
 	.works_block
 		each work in works
 			a.work_item(href='/' + (work.type == 'project' ? 'projects' : 'research') + '/' + work._short_id)
-				.work_poster(style='background-image: url(' + work.poster + ')')
+				.work_poster: .poster_image(style='background-image: url(' + work.poster + ')')
 				.work_title= work.i18n.title.get(locale)
 				.work_s_title= work.i18n.s_title.get(locale)
