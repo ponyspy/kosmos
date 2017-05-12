@@ -38,7 +38,8 @@ block content
 						.meta_title= __('Files')
 						.meta_data
 							each file, i in work.files
-								a.file(href=file.path)= file.desc || 'file ' + i
+								- var description = file.description.filter(function(lang) { return lang.lg == locale })
+								a.file(href=file.path)= (description.length && description[0].value != '') ? description[0].value : __('file') + ' ' + i
 			img.work_poster(src=work.poster)
 		.work_column.right
 			.work_description!= work.i18n.description.get(locale)

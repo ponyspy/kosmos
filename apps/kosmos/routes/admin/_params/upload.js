@@ -170,9 +170,16 @@ module.exports.files_upload = function(obj, base_path, field_name, post, files, 
 
 			mkdirp(public_path + cdn_path, function() {
 				fs.rename(file.path, public_path + cdn_path + '/' + file_name, function() {
+					var description = [];
+
+					description.push({ lg: 'ru', value: post.attach_desc.ru[i] });
+					if (post.attach_desc.en) {
+						description.push({ lg: 'en', value: post.attach_desc.en[i] });
+					}
+
 					obj[field_name].push({
 						path: file_path + '/' + file_name,
-						desc: post.attach_desc[i] || ''
+						description: description
 					});
 					callback();
 				});

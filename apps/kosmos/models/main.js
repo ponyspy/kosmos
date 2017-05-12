@@ -53,7 +53,7 @@ var workSchema = new Schema({
 	}],
 	files: [{
 		path: { type: String, get: pathCDN },
-		desc: String
+		description: { type: String, trim: true, locale: true }
 	}],
 	_short_id: { type: String, unique: true, index: true, sparse: true },
 	date: { type: Date, default: Date.now },
