@@ -22,7 +22,7 @@ block content
 		.block_title CV
 		.block_items
 			each people in peoples
-				a.people_item(href='#', target='_blank')
+				a.people_item(href=people.attach_cv)
 					.people_photo(style='background-image: url(' + people.photo + ')')
 					.people_name= people.i18n.name.get(locale)
 					.people_open= __('Open CV')
