@@ -32,9 +32,8 @@ block content
 			+form_text_multi('description')
 			.form_title Фото:
 			+form_single_file('photo')(accept='image/jpeg,image/png,image/gif')
-			.form_title Файл PDF:
-			input(type='file', name='file')
-			.form_title Видимость:
+			.form_title Файл ZIP / PDF:
+			+form_single_file('attach_cv')(accept='application/pdf,application/zip')
 			label
 				input(type='checkbox', name='status', value='hidden')
 				span= ' скрыть'

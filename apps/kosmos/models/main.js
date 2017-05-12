@@ -93,7 +93,7 @@ var eventSchema = new Schema({
 var peopleSchema = new Schema({
 	name: { type: String, trim: true, locale: true },
 	description: { type: String, trim: true, locale: true },
-	file: { type: String, get: pathCDN },
+	attach_cv: { type: String, get: pathCDN },
 	photo: { type: String, get: pathCDN },
 	status: String,
 	_short_id: { type: String, unique: true, index: true, sparse: true },

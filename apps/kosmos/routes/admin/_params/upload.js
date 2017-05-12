@@ -9,6 +9,32 @@ var mime = require('mime');
 var public_path = __glob_root + '/public';
 var preview_path = __glob_root + '/public/preview/';
 
+
+module.exports.file = function(obj, base_path, field_name, file, del_file, callback) {
+	if (del_file && obj[field_name]) {
+		rimraf.sync(public_path + obj[field_name].replace(/pdf|zip/, '*'), { glob: true });
+		obj[field_name] = undefined;
+	}
+
+	if (del_file || !file) return callback.call(null, null, obj);
+
+	var file_path =  '/' + base_path + '/' + obj._id + '/files';
+	var cdn_path = '/cdn/' + __app_name + file_path;
+	var file_name = field_name + '.' + mime.extension(file.mimetype);
+
+	rimraf(public_path + cdn_path + '/' + field_name + '.*', { glob: true }, function() {
+		mkdirp(public_path + cdn_path, function() {
+			fs.rename(file.path, public_path + cdn_path + '/' + file_name, function(err) {
+				obj[field_name] = file_path + '/' + file_name;
+
+				rimraf(file.path, { glob: false }, function() {
+					callback.call(null, null, obj);
+				});
+			});
+		});
+	});
+};
+
 module.exports.image = function(obj, base_path, field_name, file_size, file, del_file, callback) {
 
 	if (del_file && obj[field_name]) {

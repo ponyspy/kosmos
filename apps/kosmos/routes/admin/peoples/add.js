@@ -7,6 +7,7 @@ module.exports = function(Model, Params) {
 	var People = Model.People;
 
 	var uploadImage = Params.upload.image;
+	var uploadFile = Params.upload.file;
 	var checkNested = Params.locale.checkNested;
 
 
@@ -38,10 +39,14 @@ module.exports = function(Model, Params) {
 		uploadImage(people, 'peoples', 'photo', 400, files.photo && files.photo[0], null, function(err, people) {
 			if (err) return next(err);
 
-			people.save(function(err, people) {
+			uploadFile(people, 'peoples', 'attach_cv', files.attach_cv && files.attach_cv[0], null, function(err, people) {
 				if (err) return next(err);
 
-				res.redirect('/admin/peoples');
+				people.save(function(err, people) {
+					if (err) return next(err);
+
+					res.redirect('/admin/peoples');
+				});
 			});
 		});
 	};
