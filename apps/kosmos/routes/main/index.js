@@ -1,5 +1,3 @@
-var jade = require('jade');
-
 module.exports = function(Model) {
 	var module = {};
 
