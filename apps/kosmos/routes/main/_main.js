@@ -6,7 +6,7 @@ var main = {
 	index: require('./index.js')(Model),
 	projects: require('./works.js')(Model, 'project'),
 	researches: require('./works.js')(Model, 'research'),
-	bureau: require('./bureau.js')(Model)
+	office: require('./office.js')(Model)
 };
 
 module.exports = (function() {
@@ -15,8 +15,8 @@ module.exports = (function() {
 	router.route('/')
 		.get(main.index.index);
 
-	router.route('/bureau')
-		.get(main.bureau.index);
+	router.route('/office')
+		.get(main.office.index);
 
 	router.route('/projects')
 		.get(main.projects.index);

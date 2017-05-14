@@ -1,20 +1,21 @@
 extends layout
 
 block paths
-	- var content_title= __('KOSMOS') + ' | ' + __('BUREAU')
-	- var menu_active = 'bureau'
+	- var content_title= __('KOSMOS') + ' | ' + __('OFFICE')
+	- var menu_active = 'office'
 
 block content_style
 	link(rel='stylesheet', type='text/css', href='/libs/css/swiper.min.css' + version)
-	link(rel='stylesheet', type='text/css', href='/build/css/' + __app_name + '/bureau.css' + version)
+	link(rel='stylesheet', type='text/css', href='/build/css/' + __app_name + '/office.css' + version)
 
 block content_scripts
 	script(type='text/javascript', src='/libs/js/swiper.jquery.min.js' + version)
-	script(type='text/javascript', src='/build/js/' + __app_name + '/bureau.js' + version)
+	script(type='text/javascript', src='/build/js/' + __app_name + '/office.js' + version)
 
 block content
 	.cv_block
-		a.cv_email(href='mailto:info@k-s-m-s.com') info@k-s-m-s.com
+		//- a.cv_email(href='mailto:info@k-s-m-s.com') info@k-s-m-s.com
+		a.cv_email(href='mailto:kosmos.arch@gmail.com') kosmos.arch@gmail.com
 		.cv_adress!= locale == 'ru' ? adress_ru : adress_en
 		.cv_body!= locale == 'ru' ? cv_ru : cv_en
 

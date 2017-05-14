@@ -46,7 +46,7 @@ module.exports = function(Model) {
 		}, function(err, results) {
 			if (err) return next(err);
 
-			res.render('main/bureau.jade', results);
+			res.render('main/office.jade', results);
 		});
 	};
 
