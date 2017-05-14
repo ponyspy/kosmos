@@ -116,7 +116,7 @@ module.exports.images = function(obj, base_path, upload_images, callback) {
 					var preview_path = images_path.preview + name;
 
 					gm(public_path + image.path).write(public_path + cdn_path + original_path, function(err) {
-						gm(public_path + image.path).resize(600, false).quality(80).write(public_path + cdn_path + preview_path, function(err) {
+						gm(public_path + image.path).resize(420, false).quality(80).write(public_path + cdn_path + preview_path, function(err) {
 							gm(public_path + image.path).size({ bufferStream: true }, function(err, size) {
 								this.resize(size.width > 1280 ? 1280 : false, false);
 								this.quality(size.width > 1280 ? 80 : 100);

@@ -15,7 +15,7 @@ module.exports = function(Model) {
 						$push: {
 							$cond: {
 								if: {  '$eq': ['$images.main', true] },
-								then: '$images.preview',
+								then: '$images.thumb',
 								else: false
 							}
 						}
