@@ -97,6 +97,7 @@ module.exports.images = function(obj, base_path, upload_images, callback) {
 				images[i].path = upload_images.path[i];
 				images[i].size = upload_images.size[i];
 				images[i].gallery = upload_images.gallery[i];
+				images[i].main = upload_images.main[i];
 
 				images[i].description.push({ lg: 'ru', value: upload_images.description.ru[i] });
 				if (upload_images.description.en) {
@@ -129,6 +130,7 @@ module.exports.images = function(obj, base_path, upload_images, callback) {
 									obj_img.description = image.description;
 									obj_img.size = image.size;
 									obj_img.gallery = image.gallery;
+									obj_img.main = image.main;
 
 									obj.images.push(obj_img);
 

@@ -46,6 +46,7 @@ var workSchema = new Schema({
 	images: [{
 		size: String,
 		gallery: Boolean,
+		main: Boolean,
 		description: { type: String, trim: true, locale: true },
 		original: { type: String, get: pathCDN },
 		thumb: { type: String, get: pathCDN },

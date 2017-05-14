@@ -136,6 +136,9 @@ mixin form_images_upload(images)
 					.image_upload_preview(style='background-image:url(' + image.thumb + ')')
 						input.image_upload_form(type='hidden', name='images[path][]', value=images_preview[i])
 						.image_delete ×
+						.image_main
+							span.label= image.main ? '●' : '◦'
+							input.size_form(type='hidden', name='images[main][]', value=image.main ? 'true' : 'false')
 						.image_size
 							span.label= image.size
 							input.size_form(type='hidden', name='images[size][]', value=image.size)
