@@ -1,11 +1,44 @@
 @media screen and (max-width: 680px) {
 	.title_block, .content_block, .footer_block {
-		padding-left 10px!important
-		padding-right 10px!important
+		padding-left 20px!important
+		padding-right 20px!important
+	}
+
+	.menu_block {
+		// display inline-flex!important
+		display none!important
+		flex-direction: column
+		font 18pt/20pt 'MinionPro Semibold'!important
+	}
+
+	.menu_block a {
+		margin-bottom 40px
+	}
+
+	.menu_block .mail {
+		display block!important
+		margin-top 80px
+		font 14pt/16pt 'MinionPro Semibold'!important
+	}
+
+	.stargazer_block {
+		display none!important
 	}
 
 	.footer_block .logo {
 		display none
+	}
+
+	.footer_block .contacts a {
+		margin-left 5px
+	}
+
+	.footer_block .contacts span {
+		display none!important
+	}
+
+	.footer_block .contacts img {
+		display inline!important
 	}
 }
 
@@ -54,6 +87,8 @@ a
 		justify-content space-between
 		border-bottom 1px solid transparent
 		letter-spacing 4px
+		.mail
+			display none
 		span
 			padding-bottom 1px
 
@@ -69,9 +104,14 @@ a
 	box-sizing border-box
 	display flex
 	justify-content space-between
+	align-items flex-end
 	.logo, .contatcs
 		flex 5
 	.language
 		flex 4
 	a
-		margin-left 10px
+		margin-right 10px
+		&:last-child
+			margin-right 0
+	img
+		display none
