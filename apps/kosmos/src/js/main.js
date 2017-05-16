@@ -6,35 +6,32 @@ $(function() {
 
 	var interval = setInterval(timer, 3000);
 
-	// Not Lazy load
+	var $images = $('.poster_item');
 
-	var $images = $('.poster_item').on('click', function(e) {
+	$images.on('click', function(e) {
 
 		clearInterval(interval);
 		interval = setInterval(timer, 3000);
 
-		$(this).index() < $images.length - 1
-			? $images.removeClass('active').filter(this).next().addClass('active')
-			: $images.removeClass('active').first().addClass('active');
 
-	}).first().addClass('active').end();
+		if ($(this).index() < $images.length - 1) {
+			$images.filter(this).nextAll().slice(0, 2).not('.load').each(function() {
+				var $this = $(this);
+				$this.attr('src', $this.attr('data-src')).addClass('load').removeAttr('data-src');
+			});
 
-	// Lazy load
+			$images.removeClass('active').filter(this).next().addClass('active');
+		} else {
+			$images.first().nextAll().andSelf().slice(0, 2).not('.load').each(function() {
+				var $this = $(this);
+				$this.attr('src', $this.attr('data-src')).addClass('load').removeAttr('data-src');
+			});
 
-	// var $images = $('.poster_item');
-
-	// $images.on('click', function(e) {
-	// 	var $this = $(this);
-
-	// 	clearInterval(interval);
-	// 	interval = setInterval(timer, 3000);
-
-	// 	$this.index() < $images.length - 1
-	// 		? $images.removeClass('active').filter(this).next().not('.load').attr('src', $this.next().attr('data-src')).end().addClass('active load')
-	// 		: $images.removeClass('active').first().not('.load').attr('src', $images.first().attr('data-src')).end().addClass('active load');
+			$images.removeClass('active').first().addClass('active');
+		}
 
 
-	// }).last().trigger('click');
+	}).last().trigger('click');
 
 
 });
