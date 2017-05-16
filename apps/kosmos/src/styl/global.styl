@@ -5,20 +5,63 @@
 	}
 
 	.menu_block {
-		// display inline-flex!important
-		display none!important
-		flex-direction: column
+		flex-direction: column;
+		justify-content flex-start!important
 		font 18pt/20pt 'MinionPro Semibold'!important
+		top 0
+		padding-top 20px
+		position fixed
+		z-index 99999
+		background-color white
+		width 100%
 	}
+
+	.menu_drop {
+		display block!important
+	}
+
+	// menu open start
+
+	html.menu_open, body.menu_open, .main_block.menu_open {
+		height 100%!important
+	}
+
+	.menu_open .title_block {
+		height 100%!important
+	}
+
+	.menu_open .menu_block {
+		background-color white
+		width 100%
+		height 100%
+		position absolute
+		z-index 999
+	}
+
+	.menu_open .footer_block {
+		bottom 20px
+		width 100%
+		position absolute
+		z-index 9999999
+		padding-top 50px
+	}
+
+	.menu_open .menu_block a.hidden {
+		display block!important
+	}
+
+	.menu_open .menu_block a {
+		margin-bottom 40px!important
+	}
+
+	// menu open end
 
 	.menu_block a {
-		margin-bottom 40px
+		margin-bottom 20px
 	}
 
-	.menu_block .mail {
-		display block!important
-		margin-top 80px
-		font 14pt/16pt 'MinionPro Semibold'!important
+	.menu_block a.hidden {
+		display none!important
 	}
 
 	.stargazer_block {
@@ -39,6 +82,16 @@
 
 	.footer_block .contacts img {
 		display inline!important
+	}
+
+	.footer_block .contacts .mail {
+		display block!important
+		position absolute
+		left 0
+		bottom 60px
+		left 20px
+		letter-spacing 2px
+		font 14pt/16pt 'MinionPro Semibold'!important
 	}
 }
 
@@ -80,17 +133,53 @@ a
 	.stargazer_block
 		margin-top 5px
 	.menu_block
-		z-index 99999
-		position relative
 		font 14pt/16pt 'MinionPro Medium'
 		display flex
 		justify-content space-between
 		border-bottom 1px solid transparent
 		letter-spacing 4px
-		.mail
-			display none
 		span
 			padding-bottom 1px
+	.menu_drop
+		display none
+		width 40px
+		height 40px
+		position fixed
+		right 20px
+		z-index 999999
+		transform rotate(0deg)
+		transition .5s ease-in-out
+		cursor pointer
+		span
+			display block
+			position absolute
+			height 3px
+			width 100%
+			background black
+			opacity 1
+			left 0
+			transform rotate(0deg)
+			transition .25s ease-in-out
+		span:nth-child(1)
+			top 0px
+		span:nth-child(2)
+		span:nth-child(3)
+			top 12px
+		span:nth-child(4)
+			top 24px
+		&.open
+			span:nth-child(1)
+				top 12px
+				width 0%
+				left 50%
+			span:nth-child(2)
+				transform rotate(45deg)
+			span:nth-child(3)
+				transform rotate(-45deg)
+			span:nth-child(4)
+				top 12px
+				width 0%
+				left 50%
 
 .content_block
 	padding-left 40px
@@ -105,6 +194,8 @@ a
 	display flex
 	justify-content space-between
 	align-items flex-end
+	.mail
+		display none
 	.logo, .contatcs
 		flex 5
 	.language
