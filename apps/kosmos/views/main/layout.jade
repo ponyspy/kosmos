@@ -7,10 +7,10 @@ html
 		.main_block
 			.title_block
 				.menu_block
-					a(href='/', class=menu_active == 'main' ? 'active' : '')= __('KOSMOS')
-					a(href='/office', class=menu_active == 'office' ? 'active' : '')= __('OFFICE')
-					a(href='/projects', class=menu_active == 'project' ? 'active' : '')= __('PROJECTS')
-					a(href='/research', class=menu_active == 'research' ? 'active' : '')= __('RESEARCH')
+					a(href='/', class=menu_active == 'main' ? 'active' : ''): span= __('KOSMOS')
+					a(href='/office', class=menu_active == 'office' ? 'active' : ''): span= __('OFFICE')
+					a(href='/projects', class=menu_active == 'project' ? 'active' : ''): span= __('PROJECTS')
+					a(href='/research', class=menu_active == 'research' ? 'active' : ''): span= __('RESEARCH')
 				if (session && session.user_id)
 					.stargazer_block
 							a(href='/auth') stargazer
@@ -21,10 +21,10 @@ html
 			.footer_block
 				.logo!= '&copy;K-S-M-S ' + new Date().getFullYear()
 				.language
-					a(href='/lang/ru', class=locale == 'ru' ? 'active': '') RUS
-					a(href='/lang/en', class=locale == 'en' ? 'active': '') ENG
+					a(href='/lang/ru', class=locale == 'ru' ? 'active': ''): span RUS
+					a(href='/lang/en', class=locale == 'en' ? 'active': ''): span ENG
 				.contacts
-					//- a(href='mailto:info@k-s-m-s.com') e-mail
-					a(href='mailto:kosmos.arch@gmail.com') e-mail
-					a(href='https://www.facebook.com/kosmosarchitects', target='_blank') facebook
-					a(href='https://www.instagram.com/kosmos_architects', target='_blank') instagram
+					//- a(href='mailto:info@k-s-m-s.com'): span e-mail
+					a(href='mailto:kosmos.arch@gmail.com'): span e-mail
+					a(href='https://www.facebook.com/kosmosarchitects', target='_blank'): span facebook
+					a(href='https://www.instagram.com/kosmos_architects', target='_blank'): span instagram

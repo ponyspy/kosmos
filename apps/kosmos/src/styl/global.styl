@@ -1,7 +1,11 @@
 @media screen and (max-width: 680px) {
 	.title_block, .content_block, .footer_block {
-		padding-left 20px!important
-		padding-right 20px!important
+		padding-left 10px!important
+		padding-right 10px!important
+	}
+
+	.footer_block .logo {
+		display none
 	}
 }
 
@@ -16,9 +20,11 @@ a
 
 .title_block a, .footer_block a
 	text-decoration none
-	&:hover
-		border-bottom 1px solid black
-	&.active
+	span
+		border-bottom 1px solid transparent
+		&:hover
+			border-bottom 1px solid black
+	&.active span
 		text-decoration none
 		border-bottom 1px solid black
 
@@ -41,11 +47,15 @@ a
 	.stargazer_block
 		margin-top 5px
 	.menu_block
+		z-index 99999
+		position relative
 		font 14pt/16pt 'MinionPro Medium'
 		display flex
 		justify-content space-between
 		border-bottom 1px solid transparent
 		letter-spacing 4px
+		span
+			padding-bottom 1px
 
 .content_block
 	padding-left 40px
