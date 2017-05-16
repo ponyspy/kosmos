@@ -13,22 +13,19 @@ $(function() {
 		clearInterval(interval);
 		interval = setInterval(timer, 3000);
 
+		var flag_round = $(this).index() < $images.length - 1;
+		var $next_load = flag_round
+			? $images.filter(this).nextAll()
+			: $images.first().nextAll().andSelf();
 
-		if ($(this).index() < $images.length - 1) {
-			$images.filter(this).nextAll().slice(0, 2).not('.load').each(function() {
-				var $this = $(this);
-				$this.attr('src', $this.attr('data-src')).addClass('load').removeAttr('data-src');
-			});
+		$next_load.slice(0, 2).not('.load').each(function() {
+			var $this = $(this);
+			$this.attr('src', $this.attr('data-src')).addClass('load').removeAttr('data-src');
+		});
 
-			$images.removeClass('active').filter(this).next().addClass('active');
-		} else {
-			$images.first().nextAll().andSelf().slice(0, 2).not('.load').each(function() {
-				var $this = $(this);
-				$this.attr('src', $this.attr('data-src')).addClass('load').removeAttr('data-src');
-			});
-
-			$images.removeClass('active').first().addClass('active');
-		}
+		flag_round
+			? $images.removeClass('active').filter(this).next().addClass('active')
+			: $images.removeClass('active').first().addClass('active');
 
 
 	}).last().trigger('click');
