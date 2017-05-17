@@ -9,11 +9,13 @@
 		justify-content flex-start!important
 		font 18pt/20pt 'MinionPro Semibold'!important
 		top 0
+		left 0
+		width 100%
+		padding-left 20px
 		padding-top 20px
 		position fixed
 		z-index 99999
 		background-color white
-		width 100%
 	}
 
 	.menu_drop {
@@ -22,42 +24,31 @@
 
 	// menu open start
 
-	html.menu_open, body.menu_open, .main_block.menu_open {
-		height 100%!important
-	}
-
-	.menu_open .title_block {
-		height 100%!important
+	body.menu_open, .main_block.menu_open {
+		overflow hidden
 	}
 
 	.menu_open .menu_block {
-		background-color white
-		width 100%
 		height 100%
-		position absolute
-		z-index 999
-	}
-
-	.menu_open .footer_block {
-		bottom 20px
-		width 100%
-		position absolute
-		z-index 9999999
-		padding-top 50px
 	}
 
 	.menu_open .menu_block a.hidden {
-		display block!important
+		display inline-block!important
 	}
 
 	.menu_open .menu_block a {
 		margin-bottom 40px!important
 	}
 
+	.menu_open .footer_block .contacts .mail {
+		display inline!important
+	}
+
 	// menu open end
 
 	.menu_block a {
-		margin-bottom 20px
+		display inline-block!important
+		margin-bottom 15px
 	}
 
 	.menu_block a.hidden {
@@ -74,6 +65,7 @@
 
 	.footer_block .contacts a {
 		margin-left 5px
+		border-bottom 1px solid transparent!important
 	}
 
 	.footer_block .contacts span {
@@ -85,13 +77,17 @@
 	}
 
 	.footer_block .contacts .mail {
-		display block!important
-		position absolute
-		left 0
-		bottom 60px
+		border-bottom 1px solid transparent
+		position fixed
+		z-index 9999999999
+		top 320px
 		left 20px
 		letter-spacing 2px
 		font 14pt/16pt 'MinionPro Semibold'!important
+	}
+
+	.footer_block .contacts .mail:hover {
+		border-bottom 1px solid black
 	}
 }
 
@@ -104,15 +100,14 @@ html, body
 a
 	color black
 
-.title_block a, .footer_block a
-	text-decoration none
-	span
+.title_block, .footer_block
+	a
+		text-decoration none
 		border-bottom 1px solid transparent
 		&:hover
 			border-bottom 1px solid black
-	&.active span
-		text-decoration none
-		border-bottom 1px solid black
+		&.active
+			border-bottom 1px solid black
 
 .main_block
 	max-width 960px
@@ -138,7 +133,7 @@ a
 		justify-content space-between
 		border-bottom 1px solid transparent
 		letter-spacing 4px
-		span
+		a
 			padding-bottom 1px
 	.menu_drop
 		display none

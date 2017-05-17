@@ -7,10 +7,10 @@ html
 		.main_block
 			.title_block
 				.menu_block
-					a(href='/', class=menu_active == 'main' ? 'active' : ''): span= __('KOSMOS')
-					a.hidden(href='/office', class=menu_active == 'office' ? 'active' : ''): span= __('OFFICE')
-					a.hidden(href='/projects', class=menu_active == 'project' ? 'active' : ''): span= __('PROJECTS')
-					a.hidden(href='/research', class=menu_active == 'research' ? 'active' : ''): span= __('RESEARCH')
+					span: a(href='/', class=menu_active == 'main' ? 'active' : '')= __('KOSMOS')
+					span: a.hidden(href='/office', class=menu_active == 'office' ? 'active' : '')= __('OFFICE')
+					span: a.hidden(href='/projects', class=menu_active == 'project' ? 'active' : '')= __('PROJECTS')
+					span: a.hidden(href='/research', class=menu_active == 'research' ? 'active' : '')= __('RESEARCH')
 				.menu_drop
 					each span in new Array(4)
 						span
