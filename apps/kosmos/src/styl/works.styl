@@ -3,6 +3,8 @@
 		float none!important
 		width auto!important
 		margin-bottom 70px!important
+		margin-left 0!important
+		margin-right 0!important
 	}
 
 	.work_item:nth-child(2n) {
@@ -14,7 +16,14 @@
 	}
 
 	.work_s_title {
+		display block!important
+		position relative!important
 		font 16pt/18pt 'MinionPro Semibold'!important
+	}
+
+	.work_item:hover .work_poster {
+		transition none!important
+		filter: none!important
 	}
 }
 
@@ -28,6 +37,12 @@ body.research
 			border-bottom 1px solid white
 		&.active
 			border-bottom 1px solid white
+	.menu_block
+		background-color black
+	.menu_drop span
+		background-color white
+	.footer_block .contacts .mail:hover
+		border-bottom 1px solid white
 
 .title_block
 	padding-bottom 30px
