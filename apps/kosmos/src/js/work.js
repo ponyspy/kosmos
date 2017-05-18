@@ -18,10 +18,30 @@ $(function() {
 
 	});
 
-	var bLazy = new Blazy({
-		offset: 100,
-		selector: '.image',
-		successClass: 'loaded'
+	var $images = $('.image').on('load', function(e) {
+		$(this).addClass('loaded');
 	});
+
+	var $document = $(document).on('scroll', function() {
+		$images.each(function() {
+			var $this = $(this);
+
+			if ($document.scrollTop() + $document.height() + 200 > $this.offset().top) {
+				if ($images.length === 0) {
+					$document.off('scroll');
+				} else {
+					$images = $images.filter(this);
+				}
+
+				$this.attr('src', $this.attr('data-src'));
+			}
+		});
+	});
+
+	// var bLazy = new Blazy({
+	// 	offset: 100,
+	// 	selector: '.image',
+	// 	successClass: 'loaded'
+	// });
 
 });
