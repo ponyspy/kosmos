@@ -18,30 +18,24 @@ $(function() {
 
 	});
 
-	var $images = $('.image').on('load', function(e) {
+	var $images = $('.image').one('load', function(e) {
 		$(this).addClass('loaded');
 	});
 
-	var $document = $(document).on('scroll', function() {
+	var $document = $(document).on('scroll', function(e) {
 		$images.each(function() {
 			var $this = $(this);
 
-			if ($document.scrollTop() + $document.height() + 200 > $this.offset().top) {
-				if ($images.length === 0) {
-					$document.off('scroll');
-				} else {
-					$images = $images.filter(this);
-				}
-
+			if ($document.scrollTop() + $(window).height() + 200 > $this.offset().top) {
 				$this.attr('src', $this.attr('data-src'));
+
+				if ($images.length - 1 > 0) {
+					$images = $images.not(this);
+				} else {
+					$document.off('scroll');
+				}
 			}
 		});
 	});
-
-	// var bLazy = new Blazy({
-	// 	offset: 100,
-	// 	selector: '.image',
-	// 	successClass: 'loaded'
-	// });
 
 });

@@ -10,7 +10,6 @@ block content_style
 
 block content_scripts
 	script(type='text/javascript', src='/libs/js/swiper.jquery.min.js' + version)
-	script(type='text/javascript', src='/libs/js/blazy.min.js' + version)
 	script(type='text/javascript', src='/build/js/' + __app_name + '/work.js' + version)
 
 block content
@@ -66,6 +65,6 @@ block content
 			else
 				- var sizes = ['size_1x', 'size_2x', 'size_3x' ]
 				.image_item(class=sizes[sizes.indexOf('size_' + item.size)])
-					img.image(class='b-lazy', src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==', data-src=item.thumb)
+					img.image(data-src=item.thumb)
 					- var description = item.description.filter(function(lang) { return lang.lg == locale })
 					.image_description= description.length ? description[0].value : ''
