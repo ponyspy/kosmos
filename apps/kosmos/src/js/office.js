@@ -11,7 +11,7 @@ $(function() {
 			// centeredSlides: true,
 		});
 
-		$('.cut_title').on('click', function() {
+		$('.block_cut').on('click', function() {
 			$(this).nextAll().removeClass('hidden').end().remove();
 		});
 });
