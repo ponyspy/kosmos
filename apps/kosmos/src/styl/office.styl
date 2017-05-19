@@ -118,12 +118,23 @@
 		width 100%
 		display table
 		border-collapse collapse
+		.cut_title
+			display table-row
+			font 12pt/14pt 'MinionPro Medium'
+			text-transform uppercase
+			letter-spacing 4px
+			span
+				cursor pointer
+				&:hover
+					border-bottom 1px solid black
 		.award_item
 			display table-row
 			overflow hidden
 			border-bottom 20px solid transparent
 			&:last-child
 				border-bottom none
+			&.hidden
+				display none
 			.award_title
 				width 50%
 				display table-cell
@@ -154,12 +165,23 @@
 		width 100%
 		display table
 		border-collapse collapse
+		.cut_title
+			display table-row
+			font 12pt/14pt 'MinionPro Medium'
+			text-transform uppercase
+			letter-spacing 2px
+			span
+				cursor pointer
+				&:hover
+					border-bottom 1px solid black
 		.event_item
 			display table-row
 			overflow hidden
 			border-bottom 20px solid transparent
 			&:last-child
 				border-bottom none
+			&.hidden
+				display none
 			.event_title
 				width 50%
 				display table-cell

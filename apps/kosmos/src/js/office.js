@@ -10,4 +10,8 @@ $(function() {
 			// autoHeight: true,
 			// centeredSlides: true,
 		});
+
+		$('.cut_title').on('click', function() {
+			$(this).nextAll().removeClass('hidden').end().remove();
+		});
 });
