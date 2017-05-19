@@ -1,6 +1,7 @@
 - var version = '?ver=1.0'
 
 meta(charset="utf-8")
+link(rel='icon', href='/stuff/' + __app_name + '/icons/favicon.ico')
 meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
 
 if content_title
@@ -13,4 +14,5 @@ link(rel='stylesheet', type='text/css', href='/build/css/' + __app_name + '/glob
 block content_style
 
 script(type='text/javascript', src='/libs/js/jquery-2.2.4.min.js' + version)
+script(type='text/javascript', src='/build/js/' + __app_name + '/global.js' + version)
 block content_scripts
