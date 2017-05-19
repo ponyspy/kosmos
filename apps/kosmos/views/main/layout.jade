@@ -11,6 +11,8 @@ html
 					span: a.hidden(href='/office', class=menu_active == 'office' ? 'active' : '')= __('OFFICE')
 					span: a.hidden(href='/projects', class=menu_active == 'project' ? 'active' : '')= __('PROJECTS')
 					span: a.hidden(href='/research', class=menu_active == 'research' ? 'active' : '')= __('RESEARCH')
+					//- info@k-s-m-s.com
+					span.mail: a.hidden(href='mailto:kosmos.arch@gmail.com') kosmos.arch@gmail.com
 				.menu_drop
 					each span in new Array(4)
 						span
@@ -30,7 +32,6 @@ html
 					//- info@k-s-m-s.com
 					a(href='mailto:kosmos.arch@gmail.com')
 						span e-mail
-						span.mail kosmos.arch@gmail.com
 					a(href='https://www.facebook.com/kosmosarchitects', target='_blank')
 						span facebook
 						img(src='/stuff/' + __app_name +'/icons/social/fb.svg')

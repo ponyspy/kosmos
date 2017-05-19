@@ -4,8 +4,12 @@
 		padding-right 20px!important
 	}
 
+	.stargazer_block {
+		display none!important
+	}
+
 	.menu_block {
-		flex-direction: column;
+		flex-direction column
 		justify-content flex-start!important
 		font 20pt/22pt 'MinionPro Semibold'!important
 		top 0
@@ -22,7 +26,7 @@
 		display block!important
 	}
 
-	// menu open start
+	// MENU OPEN START
 
 	body.menu_open, .main_block.menu_open {
 		overflow hidden
@@ -40,22 +44,22 @@
 		margin-bottom 40px!important
 	}
 
-	.menu_open .footer_block .contacts .mail {
-		display inline!important
+	.menu_open .menu_block .mail {
+		margin-top 40px
 	}
 
-	// menu open end
+	// MENU OPEN END
 
 	.menu_block a {
 		display inline-block!important
 		margin-bottom 10px
 	}
 
-	.menu_block a.hidden {
-		display none!important
+	.menu_block .mail {
+		display inline!important
 	}
 
-	.stargazer_block {
+	.menu_block a.hidden {
 		display none!important
 	}
 
@@ -74,20 +78,6 @@
 
 	.footer_block .contacts img {
 		display inline!important
-	}
-
-	.footer_block .contacts .mail {
-		border-bottom 1px solid transparent
-		position fixed
-		z-index 9999999999
-		top 320px
-		left 20px
-		letter-spacing 2px
-		font 14pt/16pt 'MinionPro Semibold'!important
-	}
-
-	.footer_block .contacts .mail:hover {
-		border-bottom 1px solid black
 	}
 }
 
@@ -133,6 +123,10 @@ a
 		justify-content space-between
 		border-bottom 1px solid transparent
 		letter-spacing 4px
+		.mail
+			display none
+			letter-spacing 2px
+			font 14pt/16pt 'MinionPro Semibold'
 		a
 			padding-bottom 1px
 	.menu_drop
@@ -189,8 +183,6 @@ a
 	display flex
 	justify-content space-between
 	align-items flex-end
-	.mail
-		display none
 	.logo, .contatcs
 		flex 5
 	.language
