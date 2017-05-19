@@ -14,21 +14,24 @@ block content_scripts
 
 block content
 	.cv_block
-		//- a.cv_email(href='mailto:info@k-s-m-s.com') info@k-s-m-s.com
+		//- info@k-s-m-s.com
 		a.cv_email(href='mailto:kosmos.arch@gmail.com') kosmos.arch@gmail.com
 		.cv_adress!= locale == 'ru' ? adress_ru : adress_en
 		.cv_body!= locale == 'ru' ? cv_ru : cv_en
+
 
 	.peoples_block
 		.block_title CV
 		.block_items
 			each people in peoples
-				a.people_item(href=people.attach_cv)
-					.people_photo(style='background-image: url(' + people.photo + ')')
-					.people_name= people.i18n.name.get(locale)
-					.people_open= __('Open CV')
+				a.block_item(href=people.attach_cv)
+					.item_photo(style='background-image: url(' + people.photo + ')')
+					.item_name= people.i18n.name.get(locale)
+					.item_open= __('Open CV')
+
 
 	//- img.block_poster(src='/stuff/kosmos/backgrounds/about.png')
+
 
 	if press.length > 0
 		.press_block
@@ -37,12 +40,13 @@ block content
 				.swiper-container.gallery-press
 					.swiper-wrapper
 						each item in press
-							a.press_item.swiper-slide(href='#')
-								.press_poster(style='background-image: url(' + item.poster + ')')
-								.press_title= item.i18n.title.get(locale)
-								.press_s_title= item.i18n.s_title.get(locale)
-								.press_year= item.year
+							a.block_item.swiper-slide(href='#')
+								.item_poster(style='background-image: url(' + item.poster + ')')
+								.item_title= item.i18n.title.get(locale)
+								.item_s_title= item.i18n.s_title.get(locale)
+								.item_year= item.year
 					.swiper-pagination.swiper-pagination-black
+
 
 	if awards.length > 0
 		.awards_block
@@ -50,12 +54,13 @@ block content
 			.block_items
 				each award, i in awards
 					if (i == 3)
-						.cut_title: span More awards
-					.award_item(class= (i >= 3) ? 'hidden' : '')
-						.award_title= award.i18n.title.get(locale)
-						.award_s_title= award.i18n.s_title.get(locale)
-						.award_place= award.i18n.place.get(locale)
-						.award_year= award.year
+						.block_cut: span= __('More awards')
+					.block_item(class= (i >= 3) ? 'hidden' : '')
+						.item_title= award.i18n.title.get(locale)
+						.item_s_title= award.i18n.s_title.get(locale)
+						.item_place= award.i18n.place.get(locale)
+						.item_year= award.year
+
 
 	if events.length > 0
 		.events_block
@@ -63,11 +68,13 @@ block content
 			.block_items
 				each event, i in events
 					if (i == 3)
-						.cut_title: span More events
-					.event_item(class= (i >= 3) ? 'hidden' : '')
-						.event_title= event.i18n.title.get(locale)
-						.event_s_title= event.i18n.s_title.get(locale)
-						.event_place= event.i18n.place.get(locale)
-						.event_year= event.year
+						.block_cut: span= __('More events')
+					.block_item(class= (i >= 3) ? 'hidden' : '')
+						.item_title= event.i18n.title.get(locale)
+						.item_s_title= event.i18n.s_title.get(locale)
+						.item_place= event.i18n.place.get(locale)
+						.item_year= event.year
+
 
 	//- img.block_poster(src='/stuff/kosmos/backgrounds/about.png')
+

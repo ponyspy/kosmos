@@ -50,12 +50,12 @@
 		width 90%
 		float right
 		overflow hidden
-		.people_item
+		.block_item
 			display block
 			text-decoration none
 			float right
 			margin-left 40px
-			.people_photo
+			.item_photo
 				width 140px
 				height 180px
 				margin-bottom 10px
@@ -63,18 +63,17 @@
 				background-repeat no-repeat
 				background-size contain
 				transition .3s linear
-			.people_name
-			.people_open
+			.item_name, .item_open
 				text-align center
 				font 16pt/22pt 'MinionPro Medium'
-			.people_open
+			.item_open
 				display none
 			&:hover
-				.people_name
+				.item_name
 					display none
-				.people_open
+				.item_open
 					display block
-				.people_photo
+				.item_photo
 					transition .3s linear
 					opacity .5
 
@@ -82,11 +81,11 @@
 	position relative
 	.swiper-wrapper
 		padding-bottom 60px
-	.press_item
+	.block_item
 		min-height 200px
 		display block
 		text-decoration none
-		.press_poster
+		.item_poster
 			opacity 0
 			transition .3s linear
 			position absolute
@@ -97,75 +96,32 @@
 			background-size contain
 			background-repeat no-repeat
 		&:hover
-			.press_poster
+			.item_poster
 				transition .3s linear
 				opacity 1
-			.press_title, .press_s_title, .press_year
+			.item_title, .item_s_title, .item_year
 				opacity .4
-		.press_title
+		.item_title
 			font 26pt/28pt 'MinionPro Medium'
 			margin-bottom 20px
-		.press_s_title
+		.item_s_title
 			font 16pt/22pt 'MinionPro Medium'
-		.press_year
+		.item_year
 			color grey
 			font 16pt/22pt 'MinionPro Medium'
 
-.awards_block
-	.block_title
-		margin-top 80px
-	.block_items
-		width 100%
-		display table
-		border-collapse collapse
-		.cut_title
-			display table-row
-			font 12pt/14pt 'MinionPro Medium'
-			text-transform uppercase
-			letter-spacing 4px
-			span
-				cursor pointer
-				&:hover
-					border-bottom 1px solid black
-		.award_item
-			display table-row
-			overflow hidden
-			border-bottom 20px solid transparent
-			&:last-child
-				border-bottom none
-			&.hidden
-				display none
-			.award_title
-				width 50%
-				display table-cell
-				font 16pt/22pt 'MinionPro Semibold'
-				padding-right 80px
-				box-sizing border-box
-			.award_s_title
-				width 25%
-				display table-cell
-				font 16pt/22pt 'MinionPro MediumIt'
-				padding-right 40px
-				box-sizing border-box
-			.award_place
-				width 15%
-				display table-cell
-				font 14pt/22pt 'MinionPro Medium'
-				padding-right 40px
-				box-sizing border-box
-			.award_year
-				width 10%
-				display table-cell
-				text-align right
-				font 14pt/22pt 'MinionPro Medium'
+.awards_block .block_title
+	margin-top 80px
 
 .events_block
 	margin-bottom 100px
+
+.events_block, .awards_block
 	.block_items
 		width 100%
 		display table
 		border-collapse collapse
-		.cut_title
+		.block_cut
 			display table-row
 			font 12pt/14pt 'MinionPro Medium'
 			text-transform uppercase
@@ -174,7 +130,7 @@
 				cursor pointer
 				&:hover
 					border-bottom 1px solid black
-		.event_item
+		.block_item
 			display table-row
 			overflow hidden
 			border-bottom 20px solid transparent
@@ -182,25 +138,25 @@
 				border-bottom none
 			&.hidden
 				display none
-			.event_title
+			.item_title
 				width 50%
 				display table-cell
 				font 16pt/22pt 'MinionPro Semibold'
 				padding-right 80px
 				box-sizing border-box
-			.event_s_title
+			.item_s_title
 				width 25%
 				display table-cell
 				font 16pt/22pt 'MinionPro MediumIt'
 				padding-right 40px
 				box-sizing border-box
-			.event_place
+			.item_place
 				width 15%
 				display table-cell
 				font 14pt/22pt 'MinionPro Medium'
 				padding-right 40px
 				box-sizing border-box
-			.event_year
+			.item_year
 				width 10%
 				display table-cell
 				text-align right
