@@ -5,4 +5,10 @@ $(function() {
 		$(this).toggleClass('open');
 		$('body, .main_block').toggleClass('menu_open');
 	});
+
+	$('.logo').on('click', function() {
+		$('body').animate({
+			'scrollTop': 0
+		}, 400);
+	});
 });

@@ -54,7 +54,7 @@ block content
 			.block_items
 				each award, i in awards
 					if (i == 3)
-						.block_cut: span= __('More awards')
+						.block_cut: span=  __('More') + ' ' +  __('Awards')
 					.block_item(class= (i >= 3) ? 'hidden' : '')
 						.item_title= award.i18n.title.get(locale)
 						.item_s_title= award.i18n.s_title.get(locale)
@@ -68,7 +68,7 @@ block content
 			.block_items
 				each event, i in events
 					if (i == 3)
-						.block_cut: span= __('More events')
+						.block_cut: span= __('More') + ' ' +  __('Events')
 					.block_item(class= (i >= 3) ? 'hidden' : '')
 						.item_title= event.i18n.title.get(locale)
 						.item_s_title= event.i18n.s_title.get(locale)

@@ -24,7 +24,7 @@ html
 			.content_block
 				block content
 			.footer_block
-				.logo!= '&copy;K-S-M-S ' + new Date().getFullYear()
+				.logo: span!= '&copy;K-S-M-S ' + new Date().getFullYear()
 				.language
 					a(href='/lang/ru', class=locale == 'ru' ? 'active': ''): span RUS
 					a(href='/lang/en', class=locale == 'en' ? 'active': ''): span ENG
