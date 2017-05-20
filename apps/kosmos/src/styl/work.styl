@@ -87,17 +87,18 @@ body.research
 	margin 0 auto
 	margin-bottom 100px
 	.image
-		opacity 0
-		transition opacity .3s ease-in
 		min-height 200px
+		opacity 0
+		transform translateY(100px)
+		transition .4s ease-in-out
 		&.loaded
-			opacity 1
 			min-height 0
+			opacity 1
+			transform translateY(0px)
 	.image_description
 		font 16pt/22pt 'MinionPro Medium'
 		margin-top 20px
 		hyphens auto
-		// text-align center
 	img
 		width 100%
 		display block

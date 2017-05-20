@@ -23,10 +23,12 @@ $(function() {
 	});
 
 	var $document = $(document).on('scroll', function(e) {
+
 		$images.each(function() {
 			var $this = $(this);
+			var height = $(window).height();
 
-			if ($document.scrollTop() + $(window).height() + 200 > $this.offset().top) {
+			if ($document.scrollTop() + height + ($document.width() / height < 1 ? 100 : -100) > $this.offset().top) {
 				$this.attr('src', $this.attr('data-src'));
 
 				if ($images.length - 1 > 0) {
