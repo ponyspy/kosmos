@@ -14,20 +14,21 @@ block content_scripts
 
 block content
 	.cv_block
-		//- info@k-s-m-s.com
-		a.cv_email(href='mailto:kosmos.arch@gmail.com') kosmos.arch@gmail.com
-		.cv_adress!= locale == 'ru' ? adress_ru : adress_en
-		.cv_body!= locale == 'ru' ? cv_ru : cv_en
+		.contacts_block
+			//- info@k-s-m-s.com
+			a.cv_email(href='mailto:kosmos.arch@gmail.com') kosmos.arch@gmail.com
+			.cv_adress!= locale == 'ru' ? adress_ru : adress_en
+			.cv_body!= locale == 'ru' ? cv_ru : cv_en
 
 
-	.peoples_block
-		.block_title CV
-		.block_items
-			each people in peoples
-				a.block_item(href=people.attach_cv)
-					.item_photo(style='background-image: url(' + people.photo + ')')
-					.item_name= people.i18n.name.get(locale)
-					.item_open= __('Open CV')
+		.peoples_block
+			.block_title CV
+			.block_items
+				each people in peoples
+					a.block_item(href=people.attach_cv)
+						.item_photo(style='background-image: url(' + people.photo + ')')
+						.item_name= people.i18n.name.get(locale)
+						.item_open= __('Open CV')
 
 
 	//- img.block_poster(src='/stuff/kosmos/backgrounds/about.png')

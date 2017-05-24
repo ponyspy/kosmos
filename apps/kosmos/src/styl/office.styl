@@ -1,3 +1,65 @@
+@media screen and (max-width: 680px) {
+	.cv_block {
+		display flex!important
+		flex-direction column
+		justify-content flex-start
+	}
+
+	.peoples_block {
+		margin-top 0!important
+		margin-bottom 60px!important
+		order 1
+	}
+
+	.contacts_block {
+		order 2
+	}
+
+	.peoples_block .block_title {
+		width auto!important
+		float none!important
+	}
+
+	.peoples_block .block_items {
+		width auto!important
+		float none!important
+		display flex
+		justify-content space-between
+	}
+
+	.peoples_block .block_items .block_item {
+		float left!important
+		margin-left 0!important
+		margin-right 10px!important
+		width 25%!important
+		text-align center
+	}
+
+	.peoples_block .block_items .block_item .item_photo {
+		width 70px!important
+		height 90px!important
+		margin 0 auto
+	}
+
+	.cv_email {
+		display none!important
+	}
+
+	.cv_adress {
+		width auto!important
+		float none!important
+		margin-top 0px!important
+		padding 0!important
+	}
+
+	.cv_body {
+		width auto!important
+		float none!important
+		padding 0!important
+		margin-top 60px!important
+	}
+}
+
 .block_title
 	font 26pt/28pt 'MinionPro Medium'
 	margin-top 100px
@@ -8,7 +70,7 @@
 	width 100%
 	display block
 
-.cv_block
+.contacts_block
 	overflow hidden
 	.cv_email
 		font 26pt/28pt 'MinionPro Semibold'

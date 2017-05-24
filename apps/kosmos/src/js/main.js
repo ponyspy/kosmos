@@ -16,7 +16,7 @@ $(function() {
 		var flag_round = $(this).index() < $images.length - 1;
 		var $next_load = flag_round
 			? $images.filter(this).nextAll()
-			: $images.first().nextAll().andSelf();
+			: $images.first().nextAll().addBack();
 
 		$next_load.slice(0, 2).not('.load').each(function() {
 			var $this = $(this);

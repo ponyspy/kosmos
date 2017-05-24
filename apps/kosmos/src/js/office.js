@@ -9,6 +9,12 @@ $(function() {
 			slidesPerView: 3,
 			// autoHeight: true,
 			// centeredSlides: true,
+			breakpoints: {
+				680: {
+					slidesPerView: 1,
+					spaceBetween: 10
+				},
+			}
 		});
 
 		$('.block_cut').on('click', function() {
