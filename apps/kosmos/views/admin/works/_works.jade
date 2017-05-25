@@ -8,6 +8,9 @@ mixin items(works)
 			if work.images.some(function(image) { return image.main == true })
 				span= ' + '
 				span.item_poster= 'p'
+			span.item_preview
+				span= ' --> '
+				a(href='/' + (work.type == 'project' ? 'projects' : 'research') + '/' + work._short_id, target='_blank') превью
 
 mixin counters(count, skip)
 	a.list_back(href='#'): b назад
