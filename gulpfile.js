@@ -19,6 +19,8 @@ var gulp = require('gulp'),
 var Prod = util.env.p || util.env.prod;
 var Lint = util.env.l || util.env.lint;
 var Maps = util.env.m || util.env.maps;
+var Force = util.env.f || util.env.force;
+var Reset = util.env.reset;
 
 
 // Decorators Block
@@ -33,6 +35,8 @@ var _ = function(flags, description, task) {
 		if (flag == 'dev') task.flags['-d --dev'] = 'Builds in ' + util.colors.underline.yellow('development') + ' mode (default).';
 		if (flag == 'lint') task.flags['-l --lint']	= 'Lint JavaScript code.';
 		if (flag == 'maps') task.flags['-m --maps']	= 'Generate sourcemaps files.';
+		if (flag == 'force') task.flags['-f --force']	= 'Force clean public data.';
+		if (flag == 'reset') task.flags['--reset']	= 'Reset project to initial state.';
 	});
 
 	return task;
@@ -92,15 +96,24 @@ var paths = {
 		src: 'apps/**/stuff/**',
 		dest: 'public/stuff'
 	},
-	clean: '{' + 'public/build/**' + ',' + 'public/stuff/**' + '}'
+	clean: {
+		base: ['public/build/**', 'public/stuff/**'],
+		force: ['public/preview/**/(!.gitignore)', 'uploads/**'],
+		reset: ['node_modules/**', 'public/cdn/**']
+	}
 };
 
 
 // Tasks Block
 
 
-gulp.task('clean', _(null, 'Delete dest folder', function(callback) {
-	return rimraf(paths.clean, callback);
+gulp.task('clean', _(['force', 'reset'], 'Clean project folders', function(callback) {
+	var clean = paths.clean.base;
+
+	if (Force) clean = clean.concat(paths.clean.force);
+	if (Reset) clean = clean.concat(paths.clean.reset);
+
+	return rimraf('{' + clean.join(',') + '}', callback);
 }));
 
 gulp.task('build:stuff', _(null, 'Build Stuff files', function() {
