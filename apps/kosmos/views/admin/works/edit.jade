@@ -43,6 +43,8 @@ block content
 			+form_text_multi('description', work)
 			.form_title Обложка:
 			+form_single_file('poster', work)(accept='image/jpeg,image/png,image/gif')
+			.form_title Обложка (в колонке):
+			+form_single_file('poster_column', work)(accept='image/jpeg,image/png,image/gif')
 			.form_title Изображения:
 			+form_images_upload(work.images)
 			.form_title Файлы ZIP / PDF:

@@ -40,6 +40,7 @@ var workSchema = new Schema({
 	client: { type: String, trim: true, locale: true },
 	area: { type: String, trim: true, locale: true },
 	poster: { type: String, get: pathCDN },
+	poster_column: { type: String, get: pathCDN },
 	poster_main: Boolean,
 	status: String,
 	type: 'String', // project, research
