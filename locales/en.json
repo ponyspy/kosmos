@@ -1,16 +1,16 @@
 {
-	"Press": "Press",
-	"Awards": "Awards",
-	"Events": "Events",
+	"KOSMOS": "KOSMOS",
 	"OFFICE": "OFFICE",
 	"PROJECTS": "PROJECTS",
 	"RESEARCH": "RESEARCH",
-	"KOSMOS": "KOSMOS",
+	"Open CV": "Open CV",
+	"Press": "Press",
+	"Awards": "Awards",
+	"Events": "Events",
 	"Year": "Year",
 	"Client": "Client",
 	"Area": "Area",
-	"Open CV": "Open CV",
 	"Files": "Files",
 	"file": "file",
-	"More": "More",
+	"More": "More"
 }
