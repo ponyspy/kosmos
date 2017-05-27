@@ -1,5 +1,10 @@
 @media screen and (max-width: 680px) {
+	.works_block {
+		display block!important
+	}
+
 	.work_item {
+		display block!important
 		float none!important
 		width auto!important
 		margin-bottom 70px!important
@@ -52,9 +57,11 @@ body.research
 
 .works_block
 	overflow hidden
+	display table
+	width 100%
 	.work_item
 		text-decoration none
-		display block
+		display table-cell
 		position relative
 		float left
 		width 40%
@@ -62,8 +69,6 @@ body.research
 		margin-right 5%
 		margin-top 10px
 		margin-bottom 140px
-		// &:nth-child(2n)
-		// 	float right
 		.work_poster
 			position relative
 			// padding-bottom 56.25%
