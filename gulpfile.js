@@ -98,7 +98,7 @@ var paths = {
 	},
 	clean: {
 		base: ['public/build/**', 'public/stuff/**'],
-		force: ['public/preview/**/(!.gitignore)', 'uploads/**'],
+		force: ['public/preview/**/*', 'uploads/**/*'],
 		reset: ['node_modules/**', 'public/cdn/**']
 	}
 };
