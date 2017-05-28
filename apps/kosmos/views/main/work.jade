@@ -57,8 +57,8 @@ block content
 					.swiper-container: .swiper-wrapper
 						each image in item
 							.swiper-slide
-								img.slide_image(src=image.thumb)
-								//- img.swiper-lazy.slide_image(data-src=image.thumb)
+								//- img.slide_image(src=image.thumb)
+								img.swiper-lazy.slide_image(data-src=image.thumb)
 								//- .swiper-lazy-preloader.swiper-lazy-preloader-white
 								- var description = image.description.filter(function(lang) { return lang.lg == locale })
 								.slide_description= description.length ? description[0].value : ''

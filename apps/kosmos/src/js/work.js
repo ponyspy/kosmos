@@ -10,10 +10,17 @@ $(function() {
 			spaceBetween: 40,
 			autoHeight: true,
 			slidesPerView: 1,
-			// preloadImages: false,
-			// lazyLoading: true,
-			// lazyLoadingInPrevNext: true,
-			// lazyLoadingInPrevNextAmount: 2
+
+			preloadImages: false,
+			lazyLoading: true,
+			lazyLoadingInPrevNext: true,
+			lazyLoadingInPrevNextAmount: 2
+		});
+
+		gallery.once('lazyImageReady', function(swiper) {
+			setTimeout(function() {
+				$(swiper.wrapper).height($(swiper.slides).eq(swiper.activeIndex).height());
+			}, 300);
 		});
 
 	});
