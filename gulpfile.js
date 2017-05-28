@@ -111,7 +111,7 @@ gulp.task('clean', _(['force', 'reset'], 'Clean project folders', function(callb
 	var clean = paths.clean.base;
 
 	if (Force) clean = clean.concat(paths.clean.force);
-	if (Reset) clean = clean.concat(paths.clean.reset);
+	if (Reset) clean = [].concat(paths.clean.base, paths.clean.force, paths.clean.reset);
 
 	return rimraf('{' + clean.join(',') + '}', callback);
 }));
