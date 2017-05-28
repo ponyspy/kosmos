@@ -4,7 +4,6 @@
 	}
 
 	.work_item {
-		display block!important
 		float none!important
 		width auto!important
 		margin-bottom 70px!important
@@ -57,11 +56,12 @@ body.research
 
 .works_block
 	overflow hidden
-	display table
 	width 100%
+	display flex
+	flex-direction row
+	flex-wrap wrap
 	.work_item
 		text-decoration none
-		display table-cell
 		position relative
 		float left
 		width 40%
