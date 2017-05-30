@@ -1,0 +1,91 @@
+@media screen and (max-width: 680px) {
+	.title_block, .content_block, .footer_block {
+		padding-left 20px!important
+		padding-right 20px!important
+	}
+
+	.title_block {
+		height 40px!important
+	}
+
+	.footer_block {
+		padding-top 0px!important
+	}
+
+	.stargazer_block {
+		display none!important
+	}
+
+	.menu_block {
+		flex-direction column
+		justify-content flex-start!important
+		font 20pt/22pt 'MinionPro Semibold'!important
+		top 0
+		left 0
+		width 100%
+		padding-left 20px
+		padding-top 20px
+		position fixed
+		background-color white
+		z-index 99999
+	}
+
+	.menu_drop {
+		display block!important
+	}
+
+	// MENU OPEN START
+
+	body.menu_open, .main_block.menu_open {
+		overflow hidden
+	}
+
+	.menu_open .menu_block {
+		height 100%
+	}
+
+	.menu_open .menu_block a.hidden {
+		display inline-block!important
+	}
+
+	.menu_open .menu_block a {
+		margin-bottom 40px!important
+	}
+
+	.menu_open .menu_block .mail {
+		margin-top 40px
+	}
+
+	// MENU OPEN END
+
+	.menu_block a {
+		display inline-block!important
+		margin-bottom 10px
+	}
+
+	.menu_block .mail {
+		display inline!important
+	}
+
+	.menu_block a.hidden {
+		display none!important
+	}
+
+	.footer_block .logo {
+		display none
+	}
+
+	.footer_block .contacts a {
+		margin-left 5px
+		border-bottom 1px solid transparent!important
+	}
+
+	.footer_block .contacts span {
+		display none!important
+	}
+
+	.footer_block .contacts img {
+		display inline!important
+		width 20px
+	}
+}

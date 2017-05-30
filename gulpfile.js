@@ -85,7 +85,8 @@ var watch_logger = function(event) {
 
 var paths = {
 	stylus: {
-		src: 'apps/**/src/styl/*.styl',
+		watch: 'apps/**/src/styl/**/*.styl',
+		src: 'apps/**/src/styl/[^_]*.{styl,css}',
 		dest: 'public/build/css'
 	},
 	scripts: {
@@ -157,7 +158,7 @@ gulp.task('build:scripts', _(['prod', 'dev', 'lint', 'maps'], 'Build JavaScript'
 
 gulp.task('watch', _(null, 'Watch files and build on change', function() {
 	gulp.watch(paths.scripts.src, ['build:scripts']).on('change', watch_logger);
-	gulp.watch(paths.stylus.src, ['build:stylus']).on('change', watch_logger);
+	gulp.watch(paths.stylus.watch, ['build:stylus']).on('change', watch_logger);
 	gulp.watch(paths.stuff.src, ['build:stuff']).on('change', watch_logger);
 }));
 
