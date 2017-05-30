@@ -5,6 +5,9 @@ var pump = require('pump');
 var gulp = require('gulp'),
 		util = require('gulp-util'),
 		changed = require('gulp-changed'),
+		cache = require('gulp-cached'),
+		progeny = require('gulp-progeny'),
+		filter = require('gulp-filter'),
 		rename = require('gulp-rename'),
 		sourcemaps = require('gulp-sourcemaps'),
 		stylus = require('gulp-stylus'),
@@ -21,6 +24,16 @@ var Lint = util.env.l || util.env.lint;
 var Maps = util.env.m || util.env.maps;
 var Force = util.env.f || util.env.force;
 var Reset = util.env.reset;
+
+util.log([
+	'Lint ',
+	(Lint ? util.colors.green('enabled') : util.colors.red('disabled')),
+	', sourcemaps ',
+	(Maps ? util.colors.green('enabled') : util.colors.yellow('disabled')),
+	', build in ',
+	(Prod ? util.colors.underline.green('production') : util.colors.underline.yellow('development')),
+	' mode.',
+].join(''));
 
 
 // Decorators Block
@@ -43,20 +56,10 @@ var _ = function(flags, description, task) {
 };
 
 
-// Loggers Block
+// Handlers Block
 
 
-util.log([
-	'Lint ',
-	(Lint ? util.colors.green('enabled') : util.colors.red('disabled')),
-	', sourcemaps ',
-	(Maps ? util.colors.green('enabled') : util.colors.yellow('disabled')),
-	', build in ',
-	(Prod ? util.colors.underline.green('production') : util.colors.underline.yellow('development')),
-	' mode.',
-].join(''));
-
-var error_logger = function(err) {
+var errorLogger = function(err) {
 	if (err) util.log([
 		'',
 		util.colors.bold.inverse.red('---------- ERROR MESSAGE START ----------'),
@@ -69,7 +72,7 @@ var error_logger = function(err) {
 	].join('\n'));
 };
 
-var watch_logger = function(event) {
+var watchLogger = function(event) {
 	util.log([
 		'File ',
 		util.colors.green(event.path.replace(__dirname + '/', '')),
@@ -79,18 +82,28 @@ var watch_logger = function(event) {
 	].join(''));
 };
 
+var cacheForgetScripts = function(event) {
+	if (event.type === 'deleted') {
+		delete cache.caches.scripts[event.path];
+	}
+};
+
+var cacheForgetStylus = function(event) {
+	if (event.type === 'deleted') {
+		delete cache.caches.stylus[event.path];
+	}
+};
 
 // Paths Block
 
 
 var paths = {
 	stylus: {
-		watch: 'apps/**/src/styl/**/*.styl',
-		src: 'apps/**/src/styl/[^_]*.{styl,css}',
+		src: 'apps/**/src/styl/**/*.styl',
 		dest: 'public/build/css'
 	},
 	scripts: {
-		src: 'apps/**/src/js/*.js',
+		src: 'apps/**/src/js/**/*.js',
 		dest: 'public/build/js'
 	},
 	stuff: {
@@ -123,13 +136,14 @@ gulp.task('build:stuff', _(null, 'Build Stuff files', function() {
 			changed(paths.stuff.dest),
 			rename(function(path) { path.dirname = path.dirname.replace('/stuff', ''); }),
 		gulp.dest(paths.stuff.dest)
-	], error_logger);
+	], errorLogger);
 }));
 
 gulp.task('build:stylus', _(['prod', 'dev', 'maps'], 'Build Stylus', function() {
 	return pump([
 		gulp.src(paths.stylus.src),
-			changed(paths.stylus.dest),
+			cache('stylus'),
+			progeny(),
 			Maps ? sourcemaps.init({ loadMaps: true }) : util.noop(),
 			stylus({ compress: Prod }),
 			autoprefixer({
@@ -137,15 +151,16 @@ gulp.task('build:stylus', _(['prod', 'dev', 'maps'], 'Build Stylus', function() 
 				cascade: !Prod
 			}),
 			Maps ? sourcemaps.write('.') : util.noop(),
+			filter(['**', '!**/_*.css']),
 			rename(function(path) { path.dirname = path.dirname.replace('/src/styl', ''); }),
 		gulp.dest(paths.stylus.dest)
-	], error_logger);
+	], errorLogger);
 }));
 
 gulp.task('build:scripts', _(['prod', 'dev', 'lint', 'maps'], 'Build JavaScript', function() {
 	return pump([
 		gulp.src(paths.scripts.src),
-			changed(paths.scripts.dest),
+			cache('scripts'),
 			Lint ? jshint({ laxbreak: true, expr: true, '-W041': false }) : util.noop(),
 			Lint ? jshint.reporter('jshint-stylish') : util.noop(),
 			Maps ? sourcemaps.init({ loadMaps: true }) : util.noop(),
@@ -153,13 +168,13 @@ gulp.task('build:scripts', _(['prod', 'dev', 'lint', 'maps'], 'Build JavaScript'
 			Maps ? sourcemaps.write('.', { mapSources: function(path) { return path.split('/').slice(-1)[0]; } }) : util.noop(),
 			rename(function(path) { path.dirname = path.dirname.replace('/src/js', ''); }),
 		gulp.dest(paths.scripts.dest)
-	], error_logger);
+	], errorLogger);
 }));
 
 gulp.task('watch', _(null, 'Watch files and build on change', function() {
-	gulp.watch(paths.scripts.src, ['build:scripts']).on('change', watch_logger);
-	gulp.watch(paths.stylus.watch, ['build:stylus']).on('change', watch_logger);
-	gulp.watch(paths.stuff.src, ['build:stuff']).on('change', watch_logger);
+	gulp.watch(paths.scripts.src, ['build:scripts']).on('change', cacheForgetScripts).on('change', watchLogger);
+	gulp.watch(paths.stylus.src, ['build:stylus']).on('change', cacheForgetStylus).on('change', watchLogger);
+	gulp.watch(paths.stuff.src, ['build:stuff']).on('change', watchLogger);
 }));
 
 
