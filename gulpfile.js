@@ -145,6 +145,7 @@ gulp.task('build:stylus', _(['prod', 'dev', 'maps'], 'Build Stylus', function() 
 		gulp.src(paths.stylus.src),
 			cache('stylus'),
 			progeny(),
+			filter(['**', '!**/_*.styl']),
 			Maps ? sourcemaps.init({ loadMaps: true }) : util.noop(),
 			stylus({ compress: Prod }),
 			autoprefixer({
@@ -152,7 +153,6 @@ gulp.task('build:stylus', _(['prod', 'dev', 'maps'], 'Build Stylus', function() 
 				cascade: !Prod
 			}),
 			Maps ? sourcemaps.write('.') : util.noop(),
-			filter(['**', '!**/_*.css']),
 			rename(function(path) { path.dirname = path.dirname.replace('/src/styl', ''); }),
 		gulp.dest(paths.stylus.dest)
 	], errorLogger);
