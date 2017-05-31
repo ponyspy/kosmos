@@ -1,110 +1,78 @@
-@media screen and (max-width: 680px) {
-	.cv_block {
-		display flex!important
-		flex-direction column
-		justify-content flex-start
-	}
+.cv_block
+	display flex!important
+	flex-direction column
+	justify-content flex-start
 
-	.peoples_block {
-		margin-top 0!important
-		margin-bottom 60px!important
-		order 1
-	}
-
-	.contacts_block {
-		order 2
-	}
-
-	.peoples_block .block_title {
+.peoples_block
+	margin-top 0!important
+	margin-bottom 60px!important
+	order 1
+	.block_title
 		width auto!important
 		float none!important
-	}
-
-	.peoples_block .block_items {
+	.block_items
 		width auto!important
 		float none!important
 		display flex
 		justify-content space-between
-	}
+		.block_item
+			float left!important
+			margin-left 0!important
+			margin-right 10px!important
+			width 25%!important
+			text-align center
+			.item_photo
+				width 70px!important
+				height 90px!important
+				margin 0 auto
 
-	.peoples_block .block_items .block_item {
-		float left!important
-		margin-left 0!important
-		margin-right 10px!important
-		width 25%!important
-		text-align center
-	}
-
-	.peoples_block .block_items .block_item .item_photo {
-		width 70px!important
-		height 90px!important
-		margin 0 auto
-	}
-
-	.cv_email {
+.contacts_block
+	order 2
+	.cv_email
 		display none!important
-	}
-
-	.cv_adress {
+	.cv_adress
 		width auto!important
 		float none!important
 		margin-top 0px!important
 		padding 0!important
-	}
-
-	.cv_body {
+	.cv_body
 		width auto!important
 		float none!important
 		padding 0!important
 		margin-top 60px!important
-	}
 
-	.events_block .block_cut, .awards_block .block_cut {
+.awards_block
+.events_block
+	.block_cut
 		text-align center
-	}
-
-	.events_block .block_item, .awards_block .block_item {
+	.block_item
 		display flex!important
 		flex-direction column
 		justify-content flex-start
 		margin-bottom 40px
-	}
-
-	.events_block .block_item.hidden, .awards_block .block_item.hidden {
-		display none!important
-	}
-
-	.events_block .block_item:last-child, .awards_block .block_item:last-child {
-		margin-bottom 0
-	}
-
-	.events_block .item_title, .awards_block .item_title {
-		display flex!important
-		padding-right 0!important
-		margin-bottom 10px
-		width 100%!important
-		order 2!important
-	}
-
-	.events_block .item_s_title, .awards_block .item_s_title {
-		display flex!important
-		width 100%!important
-		padding-right 0!important
-		margin-bottom 10px
-		order 1!important
-	}
-
-	.events_block .item_place, .awards_block .item_place {
-		order 3!important
-		width 80%!important
-		position absolute
-		padding-right 20px
-	}
-
-	.events_block .item_year, .awards_block .item_year {
-		order 4!important
-		width 10%!important
-		position absolute
-		right 20px
-	}
-}
+		&.hidden
+			display none!important
+		&:last-child
+			margin-bottom 0
+		.item_title
+			display flex!important
+			padding-right 0!important
+			margin-bottom 10px
+			width 100%!important
+			order 2!important
+		.item_s_title
+			display flex!important
+			width 100%!important
+			padding-right 0!important
+			margin-bottom 10px
+			order 1!important
+		.item_place
+			order 3!important
+			width 80%!important
+			position absolute
+			padding-right 20px
+		.item_year
+			order 4!important
+			width 10%!important
+			position absolute
+			right 20px
