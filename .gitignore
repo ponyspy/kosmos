@@ -7,3 +7,4 @@
 /public/stuff*
 /public/cdn*
 .DS_Store
+package-lock.json

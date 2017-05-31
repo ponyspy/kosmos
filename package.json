@@ -19,7 +19,7 @@
     "moment": "^2.10.6",
     "mongoose": "^4.5.0",
     "mongoose-bcrypt": "^1.1.1",
-    "mongoose-locale": "ponyspy/mongoose-locale",
+    "mongoose-locale": "github:ponyspy/mongoose-locale",
     "multer": "^1.0.0",
     "request": "^2.67.0",
     "rimraf": "^2.5.4",

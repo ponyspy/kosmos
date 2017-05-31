@@ -145,7 +145,7 @@ gulp.task('build:stylus', _(['prod', 'dev', 'maps'], 'Build Stylus', function() 
 		gulp.src(paths.stylus.src),
 			cache('stylus'),
 			progeny(),
-			filter(['**', '!**/_*.styl']),
+			filter(['**/*.styl', '!**/_*.styl']),
 			Maps ? sourcemaps.init({ loadMaps: true }) : util.noop(),
 			stylus({ compress: Prod }),
 			autoprefixer({
