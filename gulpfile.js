@@ -25,7 +25,7 @@ var Maps = util.env.m || util.env.maps;
 var Force = util.env.f || util.env.force;
 var Reset = util.env.reset;
 
-util.log([
+if (!Force && !Reset) util.log([
 	'Lint ',
 	(Lint ? util.colors.green('enabled') : util.colors.red('disabled')),
 	', sourcemaps ',
