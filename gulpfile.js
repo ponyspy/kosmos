@@ -101,11 +101,11 @@ var cacheForgetStylus = function(event) {
 var paths = {
 	stylus: {
 		src: 'apps/**/src/styl/**/*.styl',
-		dest: 'public/build/css'
+		dest: 'public/build'
 	},
 	scripts: {
 		src: 'apps/**/src/js/**/*.js',
-		dest: 'public/build/js'
+		dest: 'public/build'
 	},
 	stuff: {
 		src: 'apps/**/stuff/**',
@@ -153,7 +153,7 @@ gulp.task('build:stylus', _(['prod', 'dev', 'maps'], 'Build Stylus', function() 
 				cascade: !Prod
 			}),
 			Maps ? sourcemaps.write('.') : util.noop(),
-			rename(function(path) { path.dirname = path.dirname.replace('/src/styl', ''); }),
+			rename(function(path) { path.dirname = path.dirname.replace('/src/styl', '/css'); }),
 		gulp.dest(paths.stylus.dest)
 	], errorLogger);
 }));
@@ -167,7 +167,7 @@ gulp.task('build:scripts', _(['prod', 'dev', 'lint', 'maps'], 'Build JavaScript'
 			Maps ? sourcemaps.init({ loadMaps: true }) : util.noop(),
 			Prod ? uglify() : util.noop(),
 			Maps ? sourcemaps.write('.', { mapSources: function(path) { return path.split('/').slice(-1)[0]; } }) : util.noop(),
-			rename(function(path) { path.dirname = path.dirname.replace('/src/js', ''); }),
+			rename(function(path) { path.dirname = path.dirname.replace('/src/js', '/js'); }),
 		gulp.dest(paths.scripts.dest)
 	], errorLogger);
 }));
