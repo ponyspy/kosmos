@@ -82,14 +82,9 @@ var watchLogger = function(event) {
 	].join(''));
 };
 
-var cacheForgetScripts = function(event) {
+var cacheClean = function(event) {
 	if (event.type === 'deleted') {
 		delete cache.caches.scripts[event.path];
-	}
-};
-
-var cacheForgetStylus = function(event) {
-	if (event.type === 'deleted') {
 		delete cache.caches.stylus[event.path];
 	}
 };
@@ -173,8 +168,8 @@ gulp.task('build:scripts', _(['prod', 'dev', 'lint', 'maps'], 'Build JavaScript'
 }));
 
 gulp.task('watch', _(null, 'Watch files and build on change', function() {
-	gulp.watch(paths.scripts.src, ['build:scripts']).on('change', cacheForgetScripts).on('change', watchLogger);
-	gulp.watch(paths.stylus.src, ['build:stylus']).on('change', cacheForgetStylus).on('change', watchLogger);
+	gulp.watch(paths.scripts.src, ['build:scripts']).on('change', cacheClean).on('change', watchLogger);
+	gulp.watch(paths.stylus.src, ['build:stylus']).on('change', cacheClean).on('change', watchLogger);
 	gulp.watch(paths.stuff.src, ['build:stuff']).on('change', watchLogger);
 }));
 
