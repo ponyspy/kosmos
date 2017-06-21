@@ -15,7 +15,7 @@ mongoose.connect('localhost', __app_name);
 
 
 var pathCDN = function(path) {
-	return path ? '/cdn/' + __app_name + path : undefined;
+	return path ? '/cdn' + path : undefined;
 };
 
 
