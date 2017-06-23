@@ -10,16 +10,6 @@ mongoose.connect('localhost', __app_name);
 
 
 // ------------------------
-// *** Getters Block ***
-// ------------------------
-
-
-var pathCDN = function(path) {
-	return path ? '/cdn' + path : undefined;
-};
-
-
-// ------------------------
 // *** Schema Block ***
 // ------------------------
 
@@ -39,8 +29,8 @@ var workSchema = new Schema({
 	year: Number,
 	client: { type: String, trim: true, locale: true },
 	area: { type: String, trim: true, locale: true },
-	poster: { type: String, get: pathCDN },
-	poster_column: { type: String, get: pathCDN },
+	poster: { type: String },
+	poster_column: { type: String },
 	poster_main: Boolean,
 	status: String,
 	type: 'String', // project, research
@@ -49,12 +39,12 @@ var workSchema = new Schema({
 		gallery: Boolean,
 		main: Boolean,
 		description: { type: String, trim: true, locale: true },
-		original: { type: String, get: pathCDN },
-		thumb: { type: String, get: pathCDN },
-		preview: { type: String, get: pathCDN }
+		original: { type: String },
+		thumb: { type: String },
+		preview: { type: String }
 	}],
 	files: [{
-		path: { type: String, get: pathCDN },
+		path: { type: String },
 		description: { type: String, trim: true, locale: true }
 	}],
 	_short_id: { type: String, unique: true, index: true, sparse: true },
@@ -66,7 +56,7 @@ var publicationSchema = new Schema({
 	s_title: { type: String, trim: true, locale: true },
 	link: String,
 	year: Number,
-	poster: { type: String, get: pathCDN },
+	poster: { type: String },
 	status: String,
 	_short_id: { type: String, unique: true, index: true, sparse: true },
 	date: { type: Date, default: Date.now },
@@ -95,8 +85,8 @@ var eventSchema = new Schema({
 var peopleSchema = new Schema({
 	name: { type: String, trim: true, locale: true },
 	description: { type: String, trim: true, locale: true },
-	attach_cv: { type: String, get: pathCDN },
-	photo: { type: String, get: pathCDN },
+	attach_cv: { type: String },
+	photo: { type: String },
 	status: String,
 	_short_id: { type: String, unique: true, index: true, sparse: true },
 	date: { type: Date, default: Date.now },

@@ -26,7 +26,7 @@ module.exports = function(Model) {
 				.exec(function(err, result) {
 					var result = result && result[0] && result[0].images || [];
 
-					res.render('main/index.jade', { posters: result.map(function(path) { return '/cdn' + path; }) });
+					res.render('main/index.jade', { posters: result });
 				});
 	};
 

@@ -18,14 +18,13 @@ module.exports.file = function(obj, base_path, field_name, file, del_file, callb
 
 	if (del_file || !file) return callback.call(null, null, obj);
 
-	var file_path =  '/' + base_path + '/' + obj._id + '/files';
-	var cdn_path = '/cdn' + file_path;
+	var cdn_path = '/cdn/' + base_path + '/' + obj._id + '/files';
 	var file_name = field_name + '.' + mime.extension(file.mimetype);
 
 	rimraf(public_path + cdn_path + '/' + field_name + '.*', { glob: true }, function() {
 		mkdirp(public_path + cdn_path, function() {
 			fs.rename(file.path, public_path + cdn_path + '/' + file_name, function(err) {
-				obj[field_name] = file_path + '/' + file_name;
+				obj[field_name] = cdn_path + '/' + file_name;
 
 				rimraf(file.path, { glob: false }, function() {
 					callback.call(null, null, obj);
@@ -44,8 +43,7 @@ module.exports.image = function(obj, base_path, field_name, file_size, file, del
 
 	if (del_file || !file) return callback.call(null, null, obj);
 
-	var file_path =  '/' + base_path + '/' + obj._id + '/images';
-	var cdn_path = '/cdn' + file_path;
+	var cdn_path = '/cdn/' + base_path + '/' + obj._id + '/images';
 
 	rimraf(public_path + cdn_path + '/' + field_name + '.*', { glob: true }, function() {
 		mkdirp(public_path + cdn_path, function() {
@@ -56,7 +54,7 @@ module.exports.image = function(obj, base_path, field_name, file_size, file, del
 					this.resize(meta.size.width > file_size ? file_size : false, false);
 					this.quality(meta.size.width >= file_size ? 82 : 100);
 					this.write(public_path + cdn_path + '/' + file_name, function(err) {
-						obj[field_name] = file_path + '/' + file_name;
+						obj[field_name] = cdn_path + '/' + file_name;
 
 						rimraf(file.path, { glob: false }, function() {
 							callback.call(null, null, obj);
@@ -123,9 +121,9 @@ module.exports.images = function(obj, base_path, upload_images, callback) {
 								this.write(cdn_path + thumb_path, function(err) {
 									var obj_img = {};
 
-									obj_img.original = original_path;
-									obj_img.thumb = thumb_path;
-									obj_img.preview = preview_path;
+									obj_img.original = '/cdn' + original_path;
+									obj_img.thumb = '/cdn' + thumb_path;
+									obj_img.preview = '/cdn' + preview_path;
 
 									obj_img.description = image.description;
 									obj_img.size = image.size;
@@ -180,7 +178,7 @@ module.exports.files_upload = function(obj, base_path, field_name, post, files, 
 					}
 
 					obj[field_name].push({
-						path: file_path + '/' + file_name,
+						path: '/cdn' + file_path + '/' + file_name,
 						description: description
 					});
 					callback();
