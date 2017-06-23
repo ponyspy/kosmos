@@ -73,8 +73,7 @@ module.exports.images = function(obj, base_path, upload_images, callback) {
 	var images = [];
 
 
-	var file_path = '/' + base_path + '/' + obj._id + '/images';
-	var cdn_path = public_path + '/cdn';
+	var file_path = '/cdn/' + base_path + '/' + obj._id + '/images';
 
 	var images_path = {
 		original: file_path + '/original/',
@@ -82,7 +81,7 @@ module.exports.images = function(obj, base_path, upload_images, callback) {
 		preview: file_path + '/preview/'
 	};
 
-	var map_paths = Object.values(images_path).map(function(path) { return cdn_path + path; });
+	var map_paths = Object.values(images_path).map(function(path) { return public_path + path; });
 
 	rimraf('{' + map_paths.join(',') + '}', { glob: true }, function(err, paths) {
 
@@ -113,17 +112,17 @@ module.exports.images = function(obj, base_path, upload_images, callback) {
 					var thumb_path = images_path.thumb + name;
 					var preview_path = images_path.preview + name;
 
-					gm(public_path + image.path).write(cdn_path + original_path, function(err) {
-						gm(public_path + image.path).resize(420, false).quality(80).write(cdn_path + preview_path, function(err) {
+					gm(public_path + image.path).write(public_path + original_path, function(err) {
+						gm(public_path + image.path).resize(420, false).quality(80).write(public_path + preview_path, function(err) {
 							gm(public_path + image.path).size({ bufferStream: true }, function(err, size) {
 								this.resize(size.width > 1280 ? 1280 : false, false);
 								this.quality(size.width > 1280 ? 80 : 100);
-								this.write(cdn_path + thumb_path, function(err) {
+								this.write(public_path + thumb_path, function(err) {
 									var obj_img = {};
 
-									obj_img.original = '/cdn' + original_path;
-									obj_img.thumb = '/cdn' + thumb_path;
-									obj_img.preview = '/cdn' + preview_path;
+									obj_img.original = original_path;
+									obj_img.thumb = thumb_path;
+									obj_img.preview = preview_path;
 
 									obj_img.description = image.description;
 									obj_img.size = image.size;
