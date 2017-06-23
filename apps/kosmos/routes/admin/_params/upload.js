@@ -18,13 +18,13 @@ module.exports.file = function(obj, base_path, field_name, file, del_file, callb
 
 	if (del_file || !file) return callback.call(null, null, obj);
 
-	var cdn_path = '/cdn/' + base_path + '/' + obj._id + '/files';
+	var file_path = '/cdn/' + base_path + '/' + obj._id + '/files';
 	var file_name = field_name + '.' + mime.extension(file.mimetype);
 
-	rimraf(public_path + cdn_path + '/' + field_name + '.*', { glob: true }, function() {
-		mkdirp(public_path + cdn_path, function() {
-			fs.rename(file.path, public_path + cdn_path + '/' + file_name, function(err) {
-				obj[field_name] = cdn_path + '/' + file_name;
+	rimraf(public_path + file_path + '/' + field_name + '.*', { glob: true }, function() {
+		mkdirp(public_path + file_path, function() {
+			fs.rename(file.path, public_path + file_path + '/' + file_name, function(err) {
+				obj[field_name] = file_path + '/' + file_name;
 
 				rimraf(file.path, { glob: false }, function() {
 					callback.call(null, null, obj);
@@ -43,18 +43,18 @@ module.exports.image = function(obj, base_path, field_name, file_size, file, del
 
 	if (del_file || !file) return callback.call(null, null, obj);
 
-	var cdn_path = '/cdn/' + base_path + '/' + obj._id + '/images';
+	var file_path = '/cdn/' + base_path + '/' + obj._id + '/images';
 
-	rimraf(public_path + cdn_path + '/' + field_name + '.*', { glob: true }, function() {
-		mkdirp(public_path + cdn_path, function() {
+	rimraf(public_path + file_path + '/' + field_name + '.*', { glob: true }, function() {
+		mkdirp(public_path + file_path, function() {
 			if (/jpeg|png|gif/.test(mime.extension(file.mimetype))) {
 				gm(file.path).identify({ bufferStream: true }, function(err, meta) {
 					var file_name = field_name + '.' + mime.extension(file.mimetype);
 
 					this.resize(meta.size.width > file_size ? file_size : false, false);
 					this.quality(meta.size.width >= file_size ? 82 : 100);
-					this.write(public_path + cdn_path + '/' + file_name, function(err) {
-						obj[field_name] = cdn_path + '/' + file_name;
+					this.write(public_path + file_path + '/' + file_name, function(err) {
+						obj[field_name] = file_path + '/' + file_name;
 
 						rimraf(file.path, { glob: false }, function() {
 							callback.call(null, null, obj);
@@ -164,12 +164,11 @@ module.exports.preview = function(images, callback) {
 module.exports.files_upload = function(obj, base_path, field_name, post, files, callback) {
 	if (files.attach && files.attach.length > 0) {
 		async.forEachOfSeries(files.attach, function(file, i, callback) {
-			var file_path = '/' + base_path + '/' + obj._id + '/files';
-			var cdn_path = public_path + '/cdn';
+			var file_path = '/cdn/' + base_path + '/' + obj._id + '/files';
 			var file_name = Date.now() + '.' + mime.extension(file.mimetype);
 
-			mkdirp(cdn_path + file_path, function() {
-				fs.rename(file.path, cdn_path + file_path + '/' + file_name, function() {
+			mkdirp(public_path + file_path, function() {
+				fs.rename(file.path, public_path + file_path + '/' + file_name, function() {
 					var description = [];
 
 					description.push({ lg: 'ru', value: post.attach_desc.ru[i] });
@@ -178,7 +177,7 @@ module.exports.files_upload = function(obj, base_path, field_name, post, files, 
 					}
 
 					obj[field_name].push({
-						path: '/cdn' + file_path + '/' + file_name,
+						path: file_path + '/' + file_name,
 						description: description
 					});
 					callback();
