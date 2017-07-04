@@ -12,5 +12,5 @@ block content_scripts
 
 block content
 	.poster_block
-		each poster in posters
+		each poster in posters.sort(function() { return .5 - Math.random(); })
 			img.poster_item(data-src=poster)
