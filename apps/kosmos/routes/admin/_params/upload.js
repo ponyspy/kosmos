@@ -105,7 +105,7 @@ module.exports.images = function(obj, base_path, upload_images, callback) {
 
 			}, function() {
 
-				async.eachSeries(images, function(image, callback) {
+				async.eachLimit(images, 5, function(image, callback) {
 					var name = path.basename(image.path);
 
 					var original_path = images_path.original + name;
