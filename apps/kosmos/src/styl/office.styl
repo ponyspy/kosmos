@@ -89,7 +89,7 @@
 		display block
 		text-decoration none
 		.item_poster
-			opacity 0
+			opacity 1
 			transition .3s linear
 			position absolute
 			z-index 99999
@@ -101,15 +101,18 @@
 		&:hover
 			.item_poster
 				transition .3s linear
-				opacity 1
+				opacity 0.2
 			.item_title, .item_s_title, .item_year
-				opacity .4
+				opacity 1
 		.item_title
+			opacity 0
 			font 26pt/28pt 'MinionPro Medium'
 			margin-bottom 20px
 		.item_s_title
+			opacity 0
 			font 16pt/22pt 'MinionPro Medium'
 		.item_year
+			opacity 0
 			color grey
 			font 16pt/22pt 'MinionPro Medium'
 
