@@ -89,15 +89,14 @@ body.research
 .image_item
 	margin 0 auto
 	margin-bottom 100px
+	opacity 0
+	transform translateY(100px)
+	transition .4s ease-in-out
+	&.loaded
+		opacity 1
+		transform translateY(0px)
 	.image
 		min-height 200px
-		opacity 0
-		transform translateY(100px)
-		transition .4s ease-in-out
-		&.loaded
-			min-height 0
-			opacity 1
-			transform translateY(0px)
 	.image_description
 		font 16pt/22pt 'MinionPro Medium'
 		margin-top 20px

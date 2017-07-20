@@ -26,7 +26,7 @@ $(function() {
 	});
 
 	var $images = $('.image').one('load', function(e) {
-		$(this).addClass('loaded');
+		$(this).parent('.image_item').addClass('loaded');
 	});
 
 	var $document = $(document).on('scroll', function(e) {
