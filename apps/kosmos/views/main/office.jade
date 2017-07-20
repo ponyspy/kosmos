@@ -25,10 +25,15 @@ block content
 			.block_title CV
 			.block_items
 				each people in peoples
-					a.block_item(href=people.attach_cv)
-						.item_photo(style='background-image: url(' + people.photo + ')')
-						.item_name= people.i18n.name.get(locale)
-						.item_open= __('Open CV')
+					if people.attach_cv
+						a.block_item.open(href=people.attach_cv)
+							.item_photo(style='background-image: url(' + people.photo + ')')
+							.item_name= people.i18n.name.get(locale)
+							.item_open= __('Open CV')
+					else
+						.block_item
+							.item_photo(style='background-image: url(' + people.photo + ')')
+							.item_name= people.i18n.name.get(locale)
 
 
 	//- img.block_poster(src='/stuff/kosmos/backgrounds/about.png')
