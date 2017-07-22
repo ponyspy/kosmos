@@ -2,6 +2,8 @@ extends layout
 
 block paths
 	- var content_title= __('KOSMOS') + ' | ' + __(work.type == 'project' ? 'PROJECTS' : 'RESEARCH') + (work.i18n.title.get(locale) ? ' | ' + work.i18n.title.get(locale).toUpperCase() : '')
+	- var content_description = work.i18n.description.get(locale)
+	- var content_images = [work.poster_column ? work.poster_column : work.poster]
 	- var menu_active = work.type
 
 block content_style
@@ -14,8 +16,8 @@ block content_scripts
 
 block content
 	.work_header
-		.work_title= work.i18n.title.get(locale)
-		.work_s_title= work.i18n.s_title.get(locale)
+		h1.work_title= work.i18n.title.get(locale)
+		h2.work_s_title= work.i18n.s_title.get(locale)
 
 	.work_columns
 		.work_column.left
