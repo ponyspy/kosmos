@@ -2,6 +2,7 @@ extends layout
 
 block paths
 	- var content_title= __('KOSMOS') + ' | ' + __('OFFICE')
+	- var content_description = locale == 'ru' ? cv_ru : cv_en
 	- var menu_active = 'office'
 
 block content_style

@@ -23,7 +23,8 @@
     "multer": "^1.0.0",
     "request": "^2.67.0",
     "rimraf": "^2.5.4",
-    "shortid": "^2.2.2"
+    "shortid": "^2.2.2",
+    "sitemap": "^1.13.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",

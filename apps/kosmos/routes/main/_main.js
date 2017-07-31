@@ -6,7 +6,8 @@ var main = {
 	index: require('./index.js')(Model),
 	projects: require('./works.js')(Model, 'project'),
 	researches: require('./works.js')(Model, 'research'),
-	office: require('./office.js')(Model)
+	office: require('./office.js')(Model),
+	options: require('./options.js')(Model)
 };
 
 module.exports = (function() {
@@ -34,6 +35,9 @@ module.exports = (function() {
 		res.cookie('locale', req.params.locale);
 		res.redirect('back');
 	});
+
+	router.route('/sitemap.xml')
+		.get(main.options.sitemap);
 
 	return router;
 })();
