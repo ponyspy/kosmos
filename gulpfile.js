@@ -144,7 +144,7 @@ gulp.task('build:stylus', _(['prod', 'dev', 'maps'], 'Build Stylus', function() 
 			Maps ? sourcemaps.init({ loadMaps: true }) : util.noop(),
 			stylus({ compress: Prod }),
 			autoprefixer({
-				browsers: ['last 2 versions'],
+				browsers: ['last 12 versions'],
 				cascade: !Prod
 			}),
 			Maps ? sourcemaps.write('.') : util.noop(),
