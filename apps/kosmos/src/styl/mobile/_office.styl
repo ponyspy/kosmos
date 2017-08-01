@@ -1,32 +1,4 @@
-.cv_block
-	display flex!important
-	flex-direction column
-	justify-content flex-start
-
-.peoples_block
-	margin-top 0!important
-	margin-bottom 60px!important
-	order 1
-	.block_title
-		width auto!important
-		float none!important
-	.block_items
-		width auto!important
-		float none!important
-		display flex
-		justify-content space-between
-		.block_item
-			float left!important
-			margin-left 0!important
-			margin-right 10px!important
-			width 25%!important
-			text-align center
-			.item_photo
-				width 70px!important
-				height 90px!important
-
 .contacts_block
-	order 2
 	.cv_email
 		display none!important
 	.cv_adress
@@ -39,6 +11,29 @@
 		float none!important
 		padding 0!important
 		margin-top 60px!important
+
+.peoples_block
+	.block_title
+		width auto!important
+		float none!important
+	.block_items
+		width auto!important
+		float none!important
+		.block_item
+			width 240px!important
+			margin-bottom 60px!important
+			margin-left 0!important
+			.item_photo
+				width 240px!important
+				height 280px!important
+			.item_open
+				opacity 1!important
+		.items_master
+			flex-direction column!important
+			align-items center
+		.items_slave
+			margin-top 0!important
+			padding-left 0!important
 
 .awards_block
 .events_block
