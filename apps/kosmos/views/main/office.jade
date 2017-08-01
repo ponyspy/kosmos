@@ -50,16 +50,15 @@ block content
 		.press_block
 			.block_title= __('Press')
 			.block_items
-				.swiper-container.gallery-press
-					.swiper-wrapper
-						each item in press
-							- var link = item.attach ? item.attach : item.link
-							a.block_item.swiper-slide(href=link, class= !link ? 'no_link' : '',  target='_blank', onclick= !link ? 'return false;' : '')
-								.item_poster(style='background-image: url(' + item.poster + ')')
-								.item_title= item.i18n.title.get(locale)
-								.item_s_title= item.i18n.s_title.get(locale)
-								.item_year= item.year
-					.swiper-pagination.swiper-pagination-black
+				each item, i in press
+					- var link = item.attach ? item.attach : item.link
+					a.block_item(href=link, class= (i >= 6) ? 'hidden' : '', class= !link ? 'no_link' : '',  target='_blank', onclick= !link ? 'return false;' : '')
+						.item_poster(style='background-image: url(' + item.poster + ')')
+						.item_title= item.i18n.title.get(locale)
+						.item_s_title= item.i18n.s_title.get(locale)
+						.item_year= item.year
+			if (press.length >= 6)
+				.block_cut: span=  __('More') + ' ' +  __('Press')
 
 
 	if awards.length > 0
@@ -67,13 +66,13 @@ block content
 			.block_title= __('Awards')
 			.block_items
 				each award, i in awards
-					if (i == 5)
-						.block_cut: span=  __('More') + ' ' +  __('Awards')
 					.block_item(class= (i >= 5) ? 'hidden' : '')
 						.item_title= award.i18n.title.get(locale)
 						.item_s_title= award.i18n.s_title.get(locale)
 						.item_place= award.i18n.place.get(locale)
 						.item_year= award.year
+			if (awards.length >= 5)
+				.block_cut: span=  __('More') + ' ' +  __('Awards')
 
 
 	if events.length > 0
@@ -81,13 +80,13 @@ block content
 			.block_title= __('Events')
 			.block_items
 				each event, i in events
-					if (i == 5)
-						.block_cut: span= __('More') + ' ' +  __('Events')
 					.block_item(class= (i >= 5) ? 'hidden' : '')
 						.item_title= event.i18n.title.get(locale)
 						.item_s_title= event.i18n.s_title.get(locale)
 						.item_place= event.i18n.place.get(locale)
 						.item_year= event.year
+			if (events.length >= 5)
+				.block_cut: span= __('More') + ' ' +  __('Events')
 
 
 	//- img.block_poster(src='/stuff/kosmos/backgrounds/about.png')
