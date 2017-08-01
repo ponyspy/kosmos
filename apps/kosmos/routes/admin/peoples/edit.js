@@ -31,6 +31,7 @@ module.exports = function(Model, Params) {
 			if (err) return next(err);
 
 			people.status = post.status;
+			people.type = post.type;
 			people.date = moment(post.date.date + 'T' + post.date.time.hours + ':' + post.date.time.minutes);
 
 			var locales = post.en ? ['ru', 'en'] : ['ru'];

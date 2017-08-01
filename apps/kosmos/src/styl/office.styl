@@ -43,23 +43,36 @@
 
 .peoples_block
 	overflow hidden
-	margin-top 40px
+	margin-top 80px
 	margin-bottom 100px
 	.block_title
 		float left
 		margin-top 0
-		width 10%
+		width 40%
 	.block_items
-		width 90%
+		width 60%
 		float right
 		overflow hidden
+		.items_master
+			display flex
+			flex-direction row
+			flex-wrap wrap
+			justify-content space-between
+		.items_slave
+			font 16pt/22pt 'MinionPro Medium'
+			padding-left 20px
+			margin-top 20px
+			.item_name
+				display inline
+				&:after
+					content ','
+				&:last-child:after
+					content '.'
 		.block_item
-			display block
 			text-decoration none
-			float right
 			margin-left 20px
-			// margin-bottom 20px
-			width 200px
+			margin-bottom 20px
+			width 140px
 			.item_photo
 				width 140px
 				height 180px
@@ -69,16 +82,16 @@
 				background-repeat no-repeat
 				background-size cover
 				transition .3s linear
-			.item_name, .item_open
+			.item_name
 				text-align center
 				font 16pt/22pt 'MinionPro Medium'
 			.item_open
-				display none
+				opacity 0
+				text-align center
+				font 14pt/22pt 'MinionPro Medium'
 			&.open:hover
-				.item_name
-					display none
 				.item_open
-					display block
+					opacity 1
 				.item_photo
 					transition .3s linear
 					opacity .5

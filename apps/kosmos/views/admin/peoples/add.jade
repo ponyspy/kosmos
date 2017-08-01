@@ -34,6 +34,11 @@ block content
 			+form_single_file('photo')(accept='image/jpeg,image/png,image/gif')
 			.form_title Файл ZIP / PDF:
 			+form_single_file('attach_cv')(accept='application/pdf,application/zip')
+			.form_title Тип:
+			select(name='type')
+				option(value='master') Master
+				option(value='slave') Slave
+			.form_title Видимость:
 			label
 				input(type='checkbox', name='status', value='hidden')
 				span= ' скрыть'
