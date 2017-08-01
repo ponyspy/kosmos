@@ -57,6 +57,7 @@ var publicationSchema = new Schema({
 	link: String,
 	year: Number,
 	poster: { type: String },
+	attach: { type: String },
 	status: String,
 	_short_id: { type: String, unique: true, index: true, sparse: true },
 	date: { type: Date, default: Date.now },

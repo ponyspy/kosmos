@@ -31,7 +31,7 @@ module.exports = (function() {
 		.post(checkAuth, admin.cv.edit_form);
 
 	router.use('/works', checkAuth, upload.fields([ { name: 'attach' }, { name: 'poster' }, { name: 'poster_column' } ]), admin.works);
-	router.use('/publications', checkAuth, upload.fields([ { name: 'poster' } ]), admin.publications);
+	router.use('/publications', checkAuth, upload.fields([ { name: 'poster' }, { name: 'attach' } ]), admin.publications);
 	router.use('/awards', checkAuth, admin.awards);
 	router.use('/events', checkAuth, admin.events);
 	router.use('/peoples', checkAuth, upload.fields([ { name: 'attach_cv' }, { name: 'photo' } ]), admin.peoples);

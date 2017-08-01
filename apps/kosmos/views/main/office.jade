@@ -53,7 +53,8 @@ block content
 				.swiper-container.gallery-press
 					.swiper-wrapper
 						each item in press
-							a.block_item.swiper-slide(href=item.link ? item.link : '#', target= item.link ? '_blank' : '_self')
+							- var link = item.attach ? item.attach : item.link
+							a.block_item.swiper-slide(href=link, class= !link ? 'no_link' : '',  target='_blank', onclick= !link ? 'return false;' : '')
 								.item_poster(style='background-image: url(' + item.poster + ')')
 								.item_title= item.i18n.title.get(locale)
 								.item_s_title= item.i18n.s_title.get(locale)

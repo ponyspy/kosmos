@@ -6,6 +6,7 @@ module.exports = function(Model, Params) {
 	var Publication = Model.Publication;
 
 	var uploadImage = Params.upload.image;
+	var uploadFile = Params.upload.file;
 	var checkNested = Params.locale.checkNested;
 
 
@@ -47,10 +48,14 @@ module.exports = function(Model, Params) {
 			uploadImage(publication, 'publications', 'poster', 600, files.poster && files.poster[0], post.poster_del, function(err, publication) {
 				if (err) return next(err);
 
-				publication.save(function(err, publication) {
+				uploadFile(publication, 'publications', 'attach', files.attach && files.attach[0], post.attach_del, function(err, publication) {
 					if (err) return next(err);
 
-					res.redirect('/admin/publications');
+					publication.save(function(err, publication) {
+						if (err) return next(err);
+
+						res.redirect('/admin/publications');
+					});
 				});
 			});
 		});

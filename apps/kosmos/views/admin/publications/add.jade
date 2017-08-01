@@ -34,6 +34,8 @@ block content
 			input(type='text', name='link')
 			.form_title Год:
 			input(type='number', name='year', value=new Date().getFullYear())
+			.form_title Файл ZIP / PDF:
+			+form_single_file('attach')(accept='application/pdf,application/zip')
 			.form_title Обложка:
 			+form_single_file('poster')(accept='image/jpeg,image/png,image/gif')
 			.form_title Видимость:
