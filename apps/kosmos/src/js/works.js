@@ -13,9 +13,6 @@ $(function() {
 			$.ajax({url: '/' + type, method: 'POST', data: { context: context }, async: false }).done(function(data) {
 				if (data !== 'end') {
 					$('.works_block').append(data);
-					setTimeout(function(err, d) {
-						$('.work_item').addClass('load');
-					}, 300);
 					context.skip += 6;
 					$window.on('scroll', scrollLoader);
 				}
@@ -35,10 +32,7 @@ $(function() {
 					var elems = $(data);
 					context.skip = elems.length;
 
-					$('.works_block').empty().append(elems);
-					setTimeout(function(err, d) {
-						$('.work_item').addClass('load');
-					}, 300);
+					$('.works_block').empty().append(data);
 					$('.category_item').removeClass('current').filter('.' + context.category).addClass('current');
 
 					$window.on('scroll', scrollLoader);

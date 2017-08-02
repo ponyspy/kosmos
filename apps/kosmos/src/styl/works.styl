@@ -1,6 +1,11 @@
 @media screen and (max-width: 680px)
 	@import 'mobile/_works.styl'
 
+@keyframes load {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
 body.research
 	background-color black
 	color white
@@ -37,9 +42,7 @@ body.research
 		margin-top 10px
 		margin-bottom 140px
 		opacity 0
-		&.load
-			opacity 1
-			transition .3s linear
+		animation load .6s linear forwards
 		.work_link
 			text-decoration none
 			.work_poster
