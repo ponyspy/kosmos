@@ -3,7 +3,7 @@ $(function() {
 	var type = $('body').attr('class').split(' ')[0] == 'project' ? 'projects' : 'research';
 	var context = {
 		skip: 0,
-		limit: 8,
+		limit: 6,
 		category: window.location.hash === '' ? 'all' : window.location.hash.replace('#','')
 	};
 
@@ -13,7 +13,10 @@ $(function() {
 			$.ajax({url: '/' + type, method: 'POST', data: { context: context }, async: false }).done(function(data) {
 				if (data !== 'end') {
 					$('.works_block').append(data);
-					context.skip += 8;
+					setTimeout(function(err, d) {
+						$('.work_item').addClass('load');
+					}, 300);
+					context.skip += 6;
 					$window.on('scroll', scrollLoader);
 				}
 			});
@@ -24,11 +27,8 @@ $(function() {
 		.on('scroll', scrollLoader)
 		.on('load hashchange', function(event) {
 			context.skip = 0;
-			context.limit = 8;
+			context.limit = 6;
 			context.category = window.location.hash === '' ? 'all' : window.location.hash.replace('#', '');
-
-			// $('.category_item').removeClass('current');
-			// $('.category_item.' + context.category).addClass('current');
 
 			$.ajax({url: '/' + type, method: 'POST', data: { context: context }, async: false }).done(function(data) {
 				if (data !== 'end') {
@@ -36,6 +36,11 @@ $(function() {
 					context.skip = elems.length;
 
 					$('.works_block').empty().append(elems);
+					setTimeout(function(err, d) {
+						$('.work_item').addClass('load');
+					}, 300);
+					$('.category_item').removeClass('current').filter('.' + context.category).addClass('current');
+
 					$window.on('scroll', scrollLoader);
 				}
 			});

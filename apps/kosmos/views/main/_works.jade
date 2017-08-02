@@ -1,5 +1,9 @@
 each work in works
-	a.work_item(href='/' + (work.type == 'project' ? 'projects' : 'research') + '/' + work._short_id)
-		.work_poster: .poster_image(style='background-image: url(' + work.poster + ')')
-		.work_title= work.i18n.title.get(locale)
-		.work_s_title= work.i18n.s_title.get(locale)
+	.work_item
+		a.work_link(href='/' + (work.type == 'project' ? 'projects' : 'research') + '/' + work._short_id)
+			.work_poster: .poster_image(style='background-image: url(' + work.poster + ')')
+			.work_title= work.i18n.title.get(locale)
+			.work_s_title= work.i18n.s_title.get(locale)
+		.work_categorys
+			each category in work.categorys
+				a.category_item(class=category._id.toString(), href='#' + category._id)= category.i18n.title.get(locale)

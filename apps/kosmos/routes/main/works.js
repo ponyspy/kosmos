@@ -13,7 +13,11 @@ module.exports = function(Model, Type) {
 	module.get_works = function(req, res) {
 		var post = req.body;
 
-		Work.where('status').ne('hidden').where('type').equals(type).sort('-date').skip(+post.context.skip).limit(+post.context.limit).exec(function(err, works) {
+		var Query = post.context.category == 'all'
+			? Work.find({ 'type': type })
+			: Work.find({ 'type': type, 'categorys': post.context.category });
+
+		Query.where('status').ne('hidden').sort('-date').skip(+post.context.skip).limit(+post.context.limit).populate('categorys').exec(function(err, works) {
 			var opts = {
 				locale: req.locale,
 				works: works,
