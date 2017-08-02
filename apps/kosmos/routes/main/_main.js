@@ -28,7 +28,7 @@ module.exports = (function() {
 
 	router.route('/research')
 		.get(main.researches.index)
-		// .post(main.researches.get_works);
+		.post(main.researches.get_works);
 
 	router.route('/research/:short_id')
 		.get(main.researches.work);
