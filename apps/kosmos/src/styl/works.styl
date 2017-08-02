@@ -2,8 +2,8 @@
 	@import 'mobile/_works.styl'
 
 @keyframes load {
-	0% { opacity: 0; }
-	100% { opacity: 1; }
+	0% { opacity: 0; transform translateY(100px); }
+	100% { opacity: 1; transform translateY(0); }
 }
 
 body.research
@@ -22,6 +22,8 @@ body.research
 		background-color white
 	.footer_block .logo span:hover
 		border-bottom 1px solid white
+	.category_item:hover, .category_item.current
+		border-bottom 1px solid white!important
 
 .title_block
 	padding-bottom 30px
@@ -34,6 +36,7 @@ body.research
 	display flex
 	flex-direction row
 	flex-wrap wrap
+	min-height 600px
 	.work_item
 		position relative
 		width 40%
@@ -42,7 +45,7 @@ body.research
 		margin-top 10px
 		margin-bottom 140px
 		opacity 0
-		animation load .6s linear forwards
+		animation load .3s linear forwards
 		.work_link
 			text-decoration none
 			.work_poster
