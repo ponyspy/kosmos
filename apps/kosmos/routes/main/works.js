@@ -7,7 +7,9 @@ module.exports = function(Model, Type) {
 	var type = Type;
 
 	module.index = function(req, res) {
-		res.render('main/works.jade', { type: type });
+		Work.find({ 'type': type }).where('status').ne('hidden').sort('-date').skip(0).limit(6).populate('categorys').exec(function(err, works) {
+			res.render('main/works.jade', { type: type, works: works });
+		});
 	};
 
 	module.get_works = function(req, res) {
@@ -20,6 +22,7 @@ module.exports = function(Model, Type) {
 		Query.where('status').ne('hidden').sort('-date').skip(+post.context.skip).limit(+post.context.limit).populate('categorys').exec(function(err, works) {
 			var opts = {
 				locale: req.locale,
+				load: true,
 				works: works,
 				compileDebug: false, debug: false, cache: true, pretty: false
 			};

@@ -36,7 +36,6 @@ body.research
 	display flex
 	flex-direction row
 	flex-wrap wrap
-	min-height 600px
 	.work_item
 		position relative
 		width 40%
@@ -44,8 +43,9 @@ body.research
 		margin-right 5%
 		margin-top 10px
 		margin-bottom 140px
-		opacity 0
-		animation load .3s linear forwards
+		&.load
+			opacity 0
+			animation load .3s linear forwards
 		.work_link
 			text-decoration none
 			.work_poster

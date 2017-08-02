@@ -2,7 +2,7 @@ $(function() {
 	var $window = $(window);
 	var type = $('body').attr('class').split(' ')[0] == 'project' ? 'projects' : 'research';
 	var context = {
-		skip: 0,
+		skip: 6,
 		limit: 4,
 		category: window.location.hash === '' ? 'all' : window.location.hash.replace('#','')
 	};
@@ -24,7 +24,7 @@ $(function() {
 
 	$window
 		.on('scroll', scrollLoader)
-		.on('load hashchange', function(e) {
+		.on('hashchange', function(e) {
 			context.skip = 0;
 			context.limit = 4;
 			context.category = window.location.hash === '' ? 'all' : window.location.hash.replace('#', '');
