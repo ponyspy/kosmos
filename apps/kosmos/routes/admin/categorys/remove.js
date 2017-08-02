@@ -4,7 +4,7 @@ module.exports = function(Model) {
 	var module = {};
 
 	var Category = Model.Category;
-	var Article = Model.Article;
+	var Work = Model.Work;
 
 
 	module.index = function(req, res, next) {
@@ -12,7 +12,7 @@ module.exports = function(Model) {
 
 		async.parallel([
 			function(callback) {
-				Article.update({'categorys': id}, { $pull: { 'categorys': id } }, { 'multi': true }).exec(callback);
+				Work.update({'categorys': id}, { $pull: { 'categorys': id } }, { 'multi': true }).exec(callback);
 			},
 			function(callback) {
 				Category.findByIdAndRemove(id).exec(callback);

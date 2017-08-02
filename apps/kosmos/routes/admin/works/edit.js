@@ -5,6 +5,7 @@ module.exports = function(Model, Params) {
 	var module = {};
 
 	var Work = Model.Work;
+	var Category = Model.Category;
 
 	var previewImages = Params.upload.preview;
 	var uploadImages = Params.upload.images;
@@ -20,10 +21,14 @@ module.exports = function(Model, Params) {
 		Work.findById(id).exec(function(err, work) {
 			if (err) return next(err);
 
-			previewImages(work.images, function(err, images_preview) {
+			Category.find().exec(function(err, categorys) {
 				if (err) return next(err);
 
-				res.render('admin/works/edit.jade', { work: work, images_preview: images_preview });
+				previewImages(work.images, function(err, images_preview) {
+					if (err) return next(err);
+
+					res.render('admin/works/edit.jade', { work: work, categorys: categorys, images_preview: images_preview });
+				});
 			});
 		});
 
@@ -40,6 +45,7 @@ module.exports = function(Model, Params) {
 
 			work.status = post.status;
 			work.date = moment(post.date.date + 'T' + post.date.time.hours + ':' + post.date.time.minutes);
+			work.categorys = post.categorys.filter(function(category) { return category != 'none'; });
 			work.year = post.year;
 			work.type = post.type;
 

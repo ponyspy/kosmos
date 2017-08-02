@@ -34,6 +34,7 @@ var workSchema = new Schema({
 	poster_main: Boolean,
 	status: String,
 	type: 'String', // project, research
+	categorys: [{ type: ObjectId, ref: 'Category' }],
 	images: [{
 		size: String,
 		gallery: Boolean,

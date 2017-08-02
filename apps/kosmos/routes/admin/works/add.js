@@ -6,6 +6,7 @@ module.exports = function(Model, Params) {
 	var module = {};
 
 	var Work = Model.Work;
+	var Category = Model.Category;
 
 	var uploadImages = Params.upload.images;
 	var uploadImage = Params.upload.image;
@@ -15,7 +16,11 @@ module.exports = function(Model, Params) {
 
 
 	module.index = function(req, res, next) {
-		res.render('admin/works/add.jade');
+		Category.find().exec(function(err, categorys) {
+			if (err) return next(err);
+
+			res.render('admin/works/add.jade', { categorys: categorys });
+		});
 	};
 
 
@@ -28,6 +33,7 @@ module.exports = function(Model, Params) {
 		work._short_id = shortid.generate();
 		work.status = post.status;
 		work.date = moment(post.date.date + 'T' + post.date.time.hours + ':' + post.date.time.minutes);
+		work.categorys = post.categorys.filter(function(category) { return category != 'none'; });
 		work.year = post.year;
 		work.type = post.type;
 

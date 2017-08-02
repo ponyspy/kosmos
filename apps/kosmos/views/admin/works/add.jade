@@ -49,6 +49,8 @@ block content
 			+form_images_upload()
 			.form_title Файлы ZIP / PDF:
 			+form_multiple_files('attach')(accept='application/pdf,application/zip')
+			.form_title Категории:
+			+form_multiple_select('categorys', categorys)
 			.form_title Тип:
 			select(name='type')
 				option(value='project') Проект
