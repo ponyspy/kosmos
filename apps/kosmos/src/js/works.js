@@ -12,7 +12,9 @@ $(function() {
 			$window.off('scroll');
 			$.ajax({url: '/' + type, method: 'POST', data: { context: context }, async: false }).done(function(data) {
 				if (data !== 'end') {
-					$('.works_block').append(data);
+					$('.works_block').append(data).promise().done(function() {
+						$('.category_item').removeClass('current').filter('.' + context.category).addClass('current');
+					});
 					context.skip += 6;
 					$window.on('scroll', scrollLoader);
 				}
@@ -32,8 +34,9 @@ $(function() {
 					var elems = $(data);
 					context.skip = elems.length;
 
-					$('.works_block').empty().append(data);
-					$('.category_item').removeClass('current').filter('.' + context.category).addClass('current');
+					$('.works_block').empty().append(data).promise().done(function() {
+						$('.category_item').removeClass('current').filter('.' + context.category).addClass('current');
+					});
 
 					$window.on('scroll', scrollLoader);
 				}
