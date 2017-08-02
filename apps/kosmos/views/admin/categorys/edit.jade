@@ -1,0 +1,37 @@
+extends ../layout
+include ../_forms
+
+block paths
+	- var content_title= 'РЕДАКТИРОВАТЬ КАТЕГОРИЮ'
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/libs/css/font-awesome.css' + version)
+	link(rel='stylesheet', type='text/css', href='/libs/css/wysiwyg-editor.min.css' + version)
+	link(rel='stylesheet', type='text/css', href='/build/' + __app_name +  '/css/add.css' + version)
+
+block content_scripts
+	script(type='text/javascript', src='/libs/js/wysiwyg.min.js' + version)
+	script(type='text/javascript', src='/libs/js/wysiwyg-editor.min.js' + version)
+	script(type='text/javascript', src='/build/' + __app_name +  '/js/editor.js' + version)
+	script(type='text/javascript', src='/build/' + __app_name +  '/js/add.js' + version)
+
+block sub_menu
+	a.sub_item.back_link(href='/admin/categorys') Назад
+	span.sub_item.toggle_eng Перевод
+
+
+block content
+	.form_block
+		.title= content_title
+		form(action="", method="post")
+			.form_title Название:
+			+form_text_single('title', category)
+			.form_title Описание:
+			+form_text_multi('description', category)
+			.form_title Видимость:
+			label
+				input(type='checkbox', name='status', value='hidden', checked=category.status)
+				!= ' скрыть'
+			br
+			br
+			input(type='submit', value='отправить')

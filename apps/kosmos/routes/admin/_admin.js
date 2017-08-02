@@ -10,6 +10,7 @@ var admin = {
 	awards: require('./awards/_awards.js'),
 	events: require('./events/_events.js'),
 	peoples: require('./peoples/_peoples.js'),
+	categorys: require('./categorys/_categorys.js'),
 	cv: require('./cv.js'),
 	users: require('./users/_users.js'),
 	options: require('./options.js')
@@ -35,6 +36,7 @@ module.exports = (function() {
 	router.use('/awards', checkAuth, admin.awards);
 	router.use('/events', checkAuth, admin.events);
 	router.use('/peoples', checkAuth, upload.fields([ { name: 'attach_cv' }, { name: 'photo' } ]), admin.peoples);
+	router.use('/categorys', checkAuth, admin.categorys);
 	router.use('/users', checkAuth, admin.users);
 
 	router.post('/preview', checkAuth, upload.single('image'), admin.options.preview);

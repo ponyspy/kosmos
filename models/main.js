@@ -94,6 +94,15 @@ var peopleSchema = new Schema({
 	date: { type: Date, default: Date.now },
 });
 
+var categorySchema = new Schema({
+	title: { type: String, trim: true, locale: true },
+	description: { type: String, trim: true, locale: true },
+	status: String,	// hidden
+	_short_id: { type: String, unique: true, index: true, sparse: true },
+	date: { type: Date, default: Date.now, index: true },
+});
+
+
 // ------------------------
 // *** Index Block ***
 // ------------------------
@@ -105,6 +114,7 @@ publicationSchema.index({'title.value': 'text', 's_title.value': 'text'}, {langu
 awardSchema.index({'title.value': 'text', 's_title.value': 'text'}, {language_override: 'lg', default_language: 'ru'});
 eventSchema.index({'title.value': 'text', 's_title.value': 'text'}, {language_override: 'lg', default_language: 'ru'});
 peopleSchema.index({'name.value': 'text', 'description.value': 'text'}, {language_override: 'lg', default_language: 'ru'});
+categorySchema.index({'title.value': 'text', 'description.value': 'text'}, {language_override: 'lg', default_language: 'ru'});
 
 
 // ------------------------
@@ -119,6 +129,7 @@ publicationSchema.plugin(mongooseLocale);
 awardSchema.plugin(mongooseLocale);
 eventSchema.plugin(mongooseLocale);
 peopleSchema.plugin(mongooseLocale);
+categorySchema.plugin(mongooseLocale);
 
 
 // ------------------------
@@ -132,3 +143,4 @@ module.exports.Publication = mongoose.model('Publication', publicationSchema);
 module.exports.Award = mongoose.model('Award', awardSchema);
 module.exports.Event = mongoose.model('Event', eventSchema);
 module.exports.People = mongoose.model('People', peopleSchema);
+module.exports.Category = mongoose.model('Category', categorySchema);
