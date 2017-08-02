@@ -20,13 +20,15 @@ module.exports = (function() {
 		.get(main.office.index);
 
 	router.route('/projects')
-		.get(main.projects.index);
+		.get(main.projects.index)
+		.post(main.projects.get_works);
 
 	router.route('/projects/:short_id')
 		.get(main.projects.work);
 
 	router.route('/research')
-		.get(main.researches.index);
+		.get(main.researches.index)
+		// .post(main.researches.get_works);
 
 	router.route('/research/:short_id')
 		.get(main.researches.work);

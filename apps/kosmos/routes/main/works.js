@@ -1,3 +1,5 @@
+var jade = require('jade');
+
 module.exports = function(Model, Type) {
 	var module = {};
 
@@ -5,8 +7,24 @@ module.exports = function(Model, Type) {
 	var type = Type;
 
 	module.index = function(req, res) {
-		Work.where('status').ne('hidden').where('type').equals(type).sort('-date').exec(function(err, works) {
-			res.render('main/works.jade', { works: works, type: type });
+		res.render('main/works.jade', { type: type });
+	};
+
+	module.get_works = function(req, res) {
+		var post = req.body;
+
+		Work.where('status').ne('hidden').where('type').equals(type).sort('-date').skip(+post.context.skip).limit(+post.context.limit).exec(function(err, works) {
+			var opts = {
+				locale: req.locale,
+				works: works,
+				compileDebug: false, debug: false, cache: true, pretty: false
+			};
+
+			if (works && works.length > 0) {
+				res.send(jade.renderFile(__app_root + '/views/main/_works.jade', opts));
+			} else {
+				res.send('end');
+			}
 		});
 	};
 
