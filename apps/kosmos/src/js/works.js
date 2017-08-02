@@ -3,7 +3,7 @@ $(function() {
 	var type = $('body').attr('class').split(' ')[0] == 'project' ? 'projects' : 'research';
 	var context = {
 		skip: 0,
-		limit: 10,
+		limit: 8,
 		category: window.location.hash === '' ? 'all' : window.location.hash.replace('#','')
 	};
 
@@ -13,7 +13,7 @@ $(function() {
 			$.ajax({url: '/' + type, method: 'POST', data: { context: context }, async: false }).done(function(data) {
 				if (data !== 'end') {
 					$('.works_block').append(data);
-					context.skip += 10;
+					context.skip += 8;
 					$window.on('scroll', scrollLoader);
 				}
 			});
@@ -24,7 +24,7 @@ $(function() {
 		.on('scroll', scrollLoader)
 		.on('load hashchange', function(event) {
 			context.skip = 0;
-			context.limit = 10;
+			context.limit = 8;
 			context.category = window.location.hash === '' ? 'all' : window.location.hash.replace('#', '');
 
 			// $('.category_item').removeClass('current');
