@@ -7,9 +7,7 @@ module.exports = function(Model, Type) {
 	var type = Type;
 
 	module.index = function(req, res) {
-		Work.find({ 'type': type }).where('status').ne('hidden').sort('-date').skip(0).limit(6).populate('categorys').exec(function(err, works) {
-			res.render('main/works.jade', { type: type, works: works });
-		});
+		res.render('main/works.jade', { type: type });
 	};
 
 	module.get_works = function(req, res) {
@@ -22,7 +20,6 @@ module.exports = function(Model, Type) {
 		Query.where('status').ne('hidden').sort('-date').skip(+post.context.skip).limit(+post.context.limit).populate('categorys').exec(function(err, works) {
 			var opts = {
 				locale: req.locale,
-				load: true,
 				works: works,
 				compileDebug: false, debug: false, cache: true, pretty: false
 			};
@@ -38,7 +35,7 @@ module.exports = function(Model, Type) {
 	module.work = function(req, res) {
 		var short_id = req.params.short_id;
 
-		Work.findOne({ _short_id: short_id }).exec(function(err, work) {
+		Work.findOne({ _short_id: short_id }).populate('categorys').exec(function(err, work) {
 			var images = work.images.reduce(function(prev, curr) {
 				if (prev.length && curr.gallery == prev[prev.length - 1][0].gallery) {
 					prev[prev.length - 1].push(curr);
@@ -55,7 +52,7 @@ module.exports = function(Model, Type) {
 				}
 			}, []);
 
-			res.render('main/work.jade', { work: work, images: images });
+			res.render('main/work.jade', { work: work, type: type, images: images });
 		});
 	};
 

@@ -1,5 +1,5 @@
 each work in works
-	.work_item(class= load ? 'load' : '')
+	.work_item
 		a.work_link(href='/' + (work.type == 'project' ? 'projects' : 'research') + '/' + work._short_id)
 			.work_poster: .poster_image(style='background-image: url(' + work.poster + ')')
 			.work_title= work.i18n.title.get(locale)

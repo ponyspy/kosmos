@@ -19,6 +19,8 @@ body.research
 		border-bottom 1px solid white
 	.image_description, .slide_description
 		color white
+	.file:hover, .category:hover
+		border-bottom 1px solid white!important
 
 .footer_block
 	padding-top 50px
@@ -84,7 +86,16 @@ body.research
 					float right
 					font 14pt/24pt 'MinionPro Medium'
 				.file
-					display block
+				.category
+					font 14pt/16pt 'MinionPro Medium'
+					display inline-block
+					text-transform lowercase
+					margin-right 15px
+					text-decoration none
+					&:hover
+						border-bottom 1px solid black
+				.category:before
+						content '#'
 
 .image_item
 	margin 0 auto
