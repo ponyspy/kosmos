@@ -1,5 +1,7 @@
 $(function() {
 	var $window = $(window);
+	var $document = $(document);
+
 	var work_type = $('body').attr('class').split(' ')[0] == 'project' ? 'projects' : 'research';
 	var context = {
 		skip: 0,
@@ -8,8 +10,10 @@ $(function() {
 	};
 
 	var scrollLoader = function(e) {
-		if ($window.scrollTop() + $window.height() + 200 >= $(document).height()) {
+		if ($window.scrollTop() + $window.height() + 200 >= $document.height()) {
+
 			$window.off('scroll');
+
 			$.ajax({url: '/' + work_type, method: 'POST', data: { context: context }, async: false }).done(function(data) {
 				if (data !== 'end') {
 
@@ -24,25 +28,23 @@ $(function() {
 		}
 	};
 
-	$window
-		.on('scroll', scrollLoader)
-		.on('load hashchange', function(e) {
-			context.skip = 0;
-			context.limit = 4;
-			context.category = window.location.hash.replace('#', '');
+	$window.on('load hashchange', function(e) {
+		context.skip = 0;
+		context.limit = 4;
+		context.category = window.location.hash.replace('#', '');
 
-			$.ajax({url: '/' + work_type, method: 'POST', data: { context: context }, async: false }).done(function(data) {
-				if (data !== 'end') {
-					var $data = $(data);
+		$.ajax({url: '/' + work_type, method: 'POST', data: { context: context }, async: false }).done(function(data) {
+			if (data !== 'end') {
+				var $data = $(data);
 
-					$('.works_block').empty().append($data).promise().done(function() {
-						$('.category_item').removeClass('current').filter(context.category != '' ? '.' + context.category : '').addClass('current');
-						$window.scrollTop(0);
-					});
+				$('.works_block').empty().append($data).promise().done(function() {
+					$('.category_item').removeClass('current').filter(context.category != '' ? '.' + context.category : '').addClass('current');
+				});
 
-					context.skip = $data.length;
-					$window.on('scroll', scrollLoader);
-				}
-			});
+				context.skip = $data.length;
+				$window.off('scroll').scrollTop(0).on('scroll', scrollLoader);
+			}
 		});
+	});
+
 });
