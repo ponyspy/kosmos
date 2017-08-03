@@ -7,20 +7,22 @@ $(function() {
 		category: window.location.hash === '' ? 'all' : window.location.hash.replace('#','')
 	};
 
-	function scrollLoader(e) {
+	var scrollLoader = function(e) {
 		if ($window.scrollTop() + $window.height() + 200 >= $(document).height()) {
 			$window.off('scroll');
 			$.ajax({url: '/' + work_type, method: 'POST', data: { context: context }, async: false }).done(function(data) {
 				if (data !== 'end') {
+
 					$('.works_block').append(data).promise().done(function() {
 						$('.category_item').removeClass('current').filter('.' + context.category).addClass('current');
 					});
+
 					context.skip += 4;
 					$window.on('scroll', scrollLoader);
 				}
 			});
 		}
-	}
+	};
 
 	$window
 		.on('scroll', scrollLoader)
@@ -31,14 +33,14 @@ $(function() {
 
 			$.ajax({url: '/' + work_type, method: 'POST', data: { context: context }, async: false }).done(function(data) {
 				if (data !== 'end') {
-					var elems = $(data);
-					context.skip = elems.length;
+					var $data = $(data);
 
-					$('.works_block').empty().append(data).promise().done(function() {
+					$('.works_block').empty().append($data).promise().done(function() {
 						$('.category_item').removeClass('current').filter('.' + context.category).addClass('current');
 						$window.scrollTop(0);
 					});
 
+					context.skip = $data.length;
 					$window.on('scroll', scrollLoader);
 				}
 			});
