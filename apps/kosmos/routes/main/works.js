@@ -4,6 +4,7 @@ module.exports = function(Model, Type) {
 	var module = {};
 
 	var Work = Model.Work;
+	var Category = Model.Category;
 	var type = Type;
 
 	module.index = function(req, res) {
@@ -13,22 +14,25 @@ module.exports = function(Model, Type) {
 	module.get_works = function(req, res) {
 		var post = req.body;
 
-		var Query = post.context.category == 'all'
-			? Work.find({ 'type': type })
-			: Work.find({ 'type': type, 'categorys': post.context.category });
+		Category.distinct('_id', { $text: { $search: post.context.category } }).exec(function(err, categorys) {
 
-		Query.where('status').ne('hidden').sort('-date').skip(+post.context.skip).limit(+post.context.limit).populate('categorys').exec(function(err, works) {
-			var opts = {
-				locale: req.locale,
-				works: works,
-				compileDebug: false, debug: false, cache: true, pretty: false
-			};
+			var Query = categorys.length > 0
+				? Work.find({ 'type': type, 'categorys': { $in: categorys } })
+				: Work.find({ 'type': type });
 
-			if (works && works.length > 0) {
-				res.send(jade.renderFile(__app_root + '/views/main/_works.jade', opts));
-			} else {
-				res.send('end');
-			}
+			Query.where('status').ne('hidden').sort('-date').skip(+post.context.skip).limit(+post.context.limit).populate('categorys').exec(function(err, works) {
+				var opts = {
+					locale: req.locale,
+					works: works,
+					compileDebug: false, debug: false, cache: true, pretty: false
+				};
+
+				if (works && works.length > 0) {
+					res.send(jade.renderFile(__app_root + '/views/main/_works.jade', opts));
+				} else {
+					res.send('end');
+				}
+			});
 		});
 	};
 

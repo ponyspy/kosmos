@@ -4,7 +4,7 @@ $(function() {
 	var context = {
 		skip: 0,
 		limit: 4,
-		category: window.location.hash === '' ? 'all' : window.location.hash.replace('#','')
+		category: window.location.hash.replace('#', '')
 	};
 
 	var scrollLoader = function(e) {
@@ -14,7 +14,7 @@ $(function() {
 				if (data !== 'end') {
 
 					$('.works_block').append(data).promise().done(function() {
-						$('.category_item').removeClass('current').filter('.' + context.category).addClass('current');
+						$('.category_item').removeClass('current').filter(context.category != '' ? '.' + context.category : '').addClass('current');
 					});
 
 					context.skip += 4;
@@ -29,14 +29,14 @@ $(function() {
 		.on('load hashchange', function(e) {
 			context.skip = 0;
 			context.limit = 4;
-			context.category = window.location.hash === '' ? 'all' : window.location.hash.replace('#', '');
+			context.category = window.location.hash.replace('#', '');
 
 			$.ajax({url: '/' + work_type, method: 'POST', data: { context: context }, async: false }).done(function(data) {
 				if (data !== 'end') {
 					var $data = $(data);
 
 					$('.works_block').empty().append($data).promise().done(function() {
-						$('.category_item').removeClass('current').filter('.' + context.category).addClass('current');
+						$('.category_item').removeClass('current').filter(context.category != '' ? '.' + context.category : '').addClass('current');
 						$window.scrollTop(0);
 					});
 

@@ -26,6 +26,10 @@ module.exports = function(Model, Params) {
 
 			category.status = post.status;
 
+			if (checkNested(post, ['ru', 'title']) && /\s/g.test(post['ru'].title) || checkNested(post, ['en', 'title']) && /\s/g.test(post['en'].title)) {
+				return next(new Error('The title should not include spaces!'));
+			}
+
 			var locales = post.en ? ['ru', 'en'] : ['ru'];
 
 			locales.forEach(function(locale) {

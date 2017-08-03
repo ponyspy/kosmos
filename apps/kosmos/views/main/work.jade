@@ -39,7 +39,8 @@ block content
 						.meta_title= __('Tags')
 						.meta_data
 							each category, i in work.categorys
-								a.category(href='/' + (type == 'project' ? 'projects' : 'research') + '#' + category._id)= category.i18n.title.get(locale)
+								- var category_sym = category.i18n.title.get('en').toLowerCase();
+								a.category(href='/' + (type == 'project' ? 'projects' : 'research') + '#' + category_sym)= category.i18n.title.get(locale)
 				if work.files.length > 0
 					.meta_column
 						.meta_title= __('Files')

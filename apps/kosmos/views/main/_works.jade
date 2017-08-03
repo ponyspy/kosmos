@@ -6,4 +6,5 @@ each work in works
 			.work_s_title= work.i18n.s_title.get(locale)
 		.work_categorys
 			each category in work.categorys
-				a.category_item(class=category._id.toString(), href='#' + category._id)= category.i18n.title.get(locale)
+				- var category_sym = category.i18n.title.get('en').toLowerCase();
+				a.category_item(class=category_sym, href='#' + category_sym)= category.i18n.title.get(locale)
