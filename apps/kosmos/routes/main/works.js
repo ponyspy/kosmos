@@ -14,7 +14,7 @@ module.exports = function(Model, Type) {
 	module.get_works = function(req, res) {
 		var post = req.body;
 
-		Category.distinct('_id', { $text: { $search: post.context.category } }).exec(function(err, categorys) {
+		Category.distinct('_id', { status: { $ne: 'hidden' }, $text: { $search: post.context.category } }).exec(function(err, categorys) {
 
 			var Query = categorys.length > 0
 				? Work.find({ 'type': type, 'categorys': { $in: categorys } })

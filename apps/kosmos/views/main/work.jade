@@ -34,13 +34,14 @@ block content
 					.meta_column
 						.meta_title= __('Area')
 						.meta_data= work.i18n.area.get(locale)
-				if work.categorys.length > 0
+				if (work.categorys.length > 0 && work.categorys.every(function(category) { return category.status !== 'hidden' }))
 					.meta_column
 						.meta_title= __('Tags')
 						.meta_data
 							each category, i in work.categorys
-								- var category_sym = category.i18n.title.get('en').toLowerCase();
-								a.category(href='/' + (type == 'project' ? 'projects' : 'research') + '#' + category_sym)= category.i18n.title.get(locale)
+								if (category.status !== 'hidden')
+									- var category_sym = category.i18n.title.get('en').toLowerCase();
+									a.category(href='/' + (type == 'project' ? 'projects' : 'research') + '#' + category_sym)= category.i18n.title.get(locale)
 				if work.files.length > 0
 					.meta_column
 						.meta_title= __('Files')

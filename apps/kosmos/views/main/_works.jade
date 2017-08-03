@@ -6,5 +6,6 @@ each work in works
 			.work_s_title= work.i18n.s_title.get(locale)
 		.work_categorys
 			each category in work.categorys
-				- var category_sym = category.i18n.title.get('en').toLowerCase();
-				a.category_item(class=category_sym, href='#' + category_sym)= category.i18n.title.get(locale)
+				if category.status !== 'hidden'
+					- var category_sym = category.i18n.title.get('en').toLowerCase();
+					a.category_item(class=category_sym, href='#' + category_sym)= category.i18n.title.get(locale)
