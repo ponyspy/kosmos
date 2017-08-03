@@ -36,8 +36,8 @@ block content
 			+form_single_file('attach_cv', people)(accept='application/pdf,application/zip')
 			.form_title Тип:
 			select(name='type')
-				option(value='slave', selected= people.type == 'slave' && 'slave') Slave
-				option(value='master', selected= people.type == 'master' && 'master') Master
+				option(value='slave', selected= people.type == 'slave' && 'slave') Коллаборатор
+				option(value='master', selected= people.type == 'master' && 'master') Партнер
 			.form_title Видимость:
 			label
 				input(type='checkbox', name='status', value='hidden', checked=people.status == 'hidden')
