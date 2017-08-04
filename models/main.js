@@ -34,6 +34,7 @@ var workSchema = new Schema({
 	poster_main: Boolean,
 	status: String,
 	type: 'String', // project, research
+	sym: { type: String, trim: true, index: true, unique: true, sparse: true },
 	categorys: [{ type: ObjectId, ref: 'Category' }],
 	images: [{
 		size: String,
@@ -97,7 +98,7 @@ var peopleSchema = new Schema({
 
 var categorySchema = new Schema({
 	title: { type: String, trim: true, locale: true },
-	description: { type: String, trim: true, locale: true },
+	sym: { type: String, trim: true, index: true, unique: true, sparse: true },
 	status: String,	// hidden
 	_short_id: { type: String, unique: true, index: true, sparse: true },
 	date: { type: Date, default: Date.now, index: true },
@@ -115,7 +116,7 @@ publicationSchema.index({'title.value': 'text', 's_title.value': 'text'}, {langu
 awardSchema.index({'title.value': 'text', 's_title.value': 'text'}, {language_override: 'lg', default_language: 'ru'});
 eventSchema.index({'title.value': 'text', 's_title.value': 'text'}, {language_override: 'lg', default_language: 'ru'});
 peopleSchema.index({'name.value': 'text', 'description.value': 'text'}, {language_override: 'lg', default_language: 'ru'});
-categorySchema.index({'title.value': 'text', 'description.value': 'text'}, {language_override: 'lg', default_language: 'ru'});
+categorySchema.index({'title.value': 'text'}, {language_override: 'lg', default_language: 'ru'});
 
 
 // ------------------------

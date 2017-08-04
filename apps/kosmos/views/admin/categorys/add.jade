@@ -26,8 +26,8 @@ block content
 		form(action="", method="post")
 			.form_title Название:
 			+form_text_single('title')
-			.form_title Описание:
-			+form_text_multi('description')
+			.form_title Синоним (обязательно):
+			input(type='text', name='sym')
 			.form_title Видимость:
 			label
 				input(type='checkbox', name='status', value='hidden')

@@ -21,22 +21,21 @@ module.exports = function(Model, Params) {
 		category._short_id = shortid.generate();
 		category.status = post.status;
 
-		if (!checkNested(post, ['en', 'title'])) {
-			return next(new Error('En field is important!'));
+		if (post.sym == '') {
+			return next(new Error('Synonym field is required!'));
 		}
 
-		if (checkNested(post, ['ru', 'title']) && /\s/g.test(post['ru'].title) || checkNested(post, ['en', 'title']) && /\s/g.test(post['en'].title)) {
-			return next(new Error('The title should not include spaces!'));
+		if (/\s/g.test(post.sym)) {
+			return next(new Error('Synonym should not include spaces!'));
 		}
+
+		category.sym = post.sym && post.sym.toLowerCase();
 
 		var locales = post.en ? ['ru', 'en'] : ['ru'];
 
 		locales.forEach(function(locale) {
 			checkNested(post, [locale, 'title'])
 				&& category.setPropertyLocalised('title', post[locale].title, locale);
-
-			checkNested(post, [locale, 'description'])
-				&& category.setPropertyLocalised('description', post[locale].description, locale);
 
 		});
 
