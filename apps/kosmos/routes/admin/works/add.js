@@ -36,6 +36,7 @@ module.exports = function(Model, Params) {
 		work.categorys = post.categorys.filter(function(category) { return category != 'none'; });
 		work.year = post.year;
 		work.type = post.type;
+		work.sym = post.sym ? post.sym : undefined;
 
 		var locales = post.en ? ['ru', 'en'] : ['ru'];
 

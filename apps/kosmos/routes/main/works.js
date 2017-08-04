@@ -37,9 +37,9 @@ module.exports = function(Model, Type) {
 	};
 
 	module.work = function(req, res) {
-		var short_id = req.params.short_id;
+		var id = req.params.short_id;
 
-		Work.findOne({ _short_id: short_id }).populate('categorys').exec(function(err, work) {
+		Work.findOne({ $or: [ { '_short_id': id }, { 'sym': id } ] }).populate('categorys').exec(function(err, work) {
 			var images = work.images.reduce(function(prev, curr) {
 				if (prev.length && curr.gallery == prev[prev.length - 1][0].gallery) {
 					prev[prev.length - 1].push(curr);

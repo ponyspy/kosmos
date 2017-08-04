@@ -33,6 +33,8 @@ block content
 			+form_text_single('title', work)
 			.form_title Подзаголовок:
 			+form_text_single('s_title', work)
+			.form_title Синоним адреса:
+			input(type='text', name='sym', value=work.sym, placeholder=work._short_id)
 			.form_title Год:
 			input(type='number', name='year', value=work.year)
 			.form_title Заказчик:
