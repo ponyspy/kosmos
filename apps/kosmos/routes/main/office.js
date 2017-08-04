@@ -32,7 +32,7 @@ module.exports = function(Model) {
 				});
 			},
 			awards: function(callback) {
-				Award.where('status').ne('hidden').sort('-date').exec(callback);
+				Award.where('status').ne('hidden').sort('-year').exec(callback);
 			},
 			press: function(callback) {
 				Publication.where('status').ne('hidden').sort('-date').exec(callback);
@@ -41,7 +41,7 @@ module.exports = function(Model) {
 				People.where('status').ne('hidden').sort('date').exec(callback);
 			},
 			events: function(callback) {
-				Event.where('status').ne('hidden').sort('-date').exec(callback);
+				Event.where('status').ne('hidden').sort('-year').exec(callback);
 			}
 		}, function(err, results) {
 			if (err) return next(err);
