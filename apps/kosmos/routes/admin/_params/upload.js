@@ -68,7 +68,9 @@ module.exports.image = function(obj, base_path, field_name, file_size, file, del
 	});
 };
 
-module.exports.images = function(obj, base_path, upload_images, callback) {
+module.exports.images = function(obj, base_path, hold, upload_images, callback) {
+	if (hold) return callback.call(null, null, obj);
+
 	obj.images = [];
 	var images = [];
 

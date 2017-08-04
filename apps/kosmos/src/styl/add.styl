@@ -216,6 +216,16 @@ input, textarea, select
 
 .form_images_upload
 	position relative
+	.upload_placeholder
+		position absolute
+		width 590px
+		height 100%
+		background-color rgba(0, 0, 0, 0.4)
+		z-index 9999
+		cursor pointer
+		box-sizing border-box
+		&:hover
+			border 3px solid red
 	.images_upload_preview
 		box-sizing border-box
 		width 590px

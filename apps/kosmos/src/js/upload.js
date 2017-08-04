@@ -8,6 +8,10 @@ $(function() {
 		}
 	});
 
+	$('.upload_placeholder').on('click', function(event) {
+		$(this).remove();
+	});
+
 	$(document).on('mouseup', function(event) {
 		if (!/image_description|toggle_eng|image_size|image_gallery/.test(event.target.className)) {
 			$('.image_description').removeClass('show');
