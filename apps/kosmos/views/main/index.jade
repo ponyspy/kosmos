@@ -11,6 +11,6 @@ block content_scripts
 	script(type='text/javascript', src='/build/' + __app_name + '/js/main.js' + version)
 
 block content
-	.poster_block
-		each poster in posters.sort(function() { return .5 - Math.random(); })
+	.posters_block
+		each poster in posters
 			img.poster_item(data-src=poster)
