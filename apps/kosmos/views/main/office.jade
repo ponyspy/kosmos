@@ -38,9 +38,12 @@ block content
 									.item_photo(style='background-image: url(' + people.photo + ')')
 									.item_name= people.i18n.name.get(locale)
 				.items_slave
-					each people, i in peoples
+					each people in peoples
 						if people.type == 'slave'
-							.item_name= people.i18n.name.get(locale)
+							if people.attach_cv
+								a.item_name(href=people.attach_cv, target='_blank')= people.i18n.name.get(locale)
+							else
+								.item_name= people.i18n.name.get(locale)
 
 
 	//- img.block_poster(src='/stuff/kosmos/backgrounds/about.png')
