@@ -26,7 +26,11 @@ block content
 			input.ru(type='text', name='adress[ru]', value= content.adress_ru)
 			input.en(type='text', name='adress[en]', value= content.adress_en)
 			.form_title Текст CV:
-			.content(style='overflow: hidden;')
+			.content
 				textarea.ru.editor(name='cv[ru]')= content.cv_ru
 				textarea.en.editor(name='cv[en]')= content.cv_en
+			.form_title Текст CV (дополнительно):
+			.content(style='overflow: hidden;')
+				textarea.ru.editor(name='desc[ru]')= content.desc_ru
+				textarea.en.editor(name='desc[en]')= content.desc_en
 			input(type='submit', style='display: block;' value='сохранить')

@@ -2,7 +2,7 @@ extends layout
 
 block paths
 	- var content_title= __('KOSMOS') + ' | ' + __('OFFICE')
-	- var content_description = locale == 'ru' ? cv_ru : cv_en
+	- var content_description = cv
 	- var menu_active = 'office'
 
 block content_style
@@ -17,9 +17,12 @@ block content
 	.cv_block
 		.contacts_block
 			//- info@k-s-m-s.com
-			a.cv_email(href='mailto:kosmos.arch@gmail.com') kosmos.arch@gmail.com
-			.cv_adress!= locale == 'ru' ? adress_ru : adress_en
-			.cv_body!= locale == 'ru' ? cv_ru : cv_en
+			a.contacts_email(href='mailto:kosmos.arch@gmail.com') kosmos.arch@gmail.com
+			.contacts_adress!= adress
+			.contacts_body
+				.cv!= cv
+				.description.hidden!= desc
+				.block_cut: span=  __('More') + '...'
 
 
 		.peoples_block
@@ -61,7 +64,7 @@ block content
 						.item_s_title= item.i18n.s_title.get(locale)
 						.item_year= item.year
 			if (press.length >= 12)
-				.block_cut: span=  __('More') + ' ' +  __('Press')
+				.block_cut: span=  __('More') + ' ' +  __('Press') + '...'
 
 
 	if awards.length > 0
@@ -75,7 +78,7 @@ block content
 						.item_place= award.i18n.place.get(locale)
 						.item_year= award.year
 			if (awards.length >= 9)
-				.block_cut: span=  __('More') + ' ' +  __('Awards')
+				.block_cut: span=  __('More') + ' ' +  __('Awards') + '...'
 
 
 	if events.length > 0
@@ -89,7 +92,7 @@ block content
 						.item_place= event.i18n.place.get(locale)
 						.item_year= event.year
 			if (events.length >= 9)
-				.block_cut: span= __('More') + ' ' +  __('Events')
+				.block_cut: span= __('More') + ' ' +  __('Events') + '...'
 
 
 	//- img.block_poster(src='/stuff/kosmos/backgrounds/about.png')

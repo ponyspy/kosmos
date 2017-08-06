@@ -11,23 +11,18 @@ module.exports = function(Model) {
 
 	module.index = function(req, res, next) {
 		async.parallel({
-			cv_ru: function(callback) {
-				fs.readFile(__app_root + '/static/cv_ru.html', function(err, content) {
+			cv: function(callback) {
+				fs.readFile(__app_root + '/static/cv_' + req.locale + '.html', function(err, content) {
 					callback(null, content || '');
 				});
 			},
-			cv_en: function(callback) {
-				fs.readFile(__app_root + '/static/cv_en.html', function(err, content) {
+			desc: function(callback) {
+				fs.readFile(__app_root + '/static/desc_' + req.locale + '.html', function(err, content) {
 					callback(null, content || '');
 				});
 			},
-			adress_ru: function(callback) {
-				fs.readFile(__app_root + '/static/adress_ru.html', function(err, content) {
-					callback(null, content || '');
-				});
-			},
-			adress_en: function(callback) {
-				fs.readFile(__app_root + '/static/adress_en.html', function(err, content) {
+			adress: function(callback) {
+				fs.readFile(__app_root + '/static/adress_' + req.locale + '.html', function(err, content) {
 					callback(null, content || '');
 				});
 			},
