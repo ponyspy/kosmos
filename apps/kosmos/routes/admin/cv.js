@@ -31,21 +31,33 @@ exports.edit_form = function(req, res) {
 
 	async.series({
 		cv_ru: function(callback) {
+			if (!post.cv.ru) return callback(null);
+
 			fs.writeFile(__app_root + '/static/cv_ru.html', post.cv.ru, callback);
 		},
 		cv_en: function(callback) {
+			if (!post.cv.en) return callback(null);
+
 			fs.writeFile(__app_root + '/static/cv_en.html', post.cv.en, callback);
 		},
 		desc_ru: function(callback) {
+			if (!post.desc.ru) return callback(null);
+
 			fs.writeFile(__app_root + '/static/desc_ru.html', post.desc.ru, callback);
 		},
 		desc_en: function(callback) {
+			if (!post.desc.en) return callback(null);
+
 			fs.writeFile(__app_root + '/static/desc_en.html', post.desc.en, callback);
 		},
 		adress_ru: function(callback) {
+			if (!post.adress.ru) return callback(null);
+
 			fs.writeFile(__app_root + '/static/adress_ru.html', post.adress.ru, callback);
 		},
 		adress_en: function(callback) {
+			if (!post.adress.en) return callback(null);
+
 			fs.writeFile(__app_root + '/static/adress_en.html', post.adress.en, callback);
 		}
 	}, function(err, results) {
