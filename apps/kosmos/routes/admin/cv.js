@@ -3,6 +3,9 @@ var async = require('async');
 
 exports.edit = function(req, res) {
 	async.series({
+		link: function(callback) {
+			fs.readFile(__app_root + '/static/link.html', callback);
+		},
 		cv_ru: function(callback) {
 			fs.readFile(__app_root + '/static/cv_ru.html', callback);
 		},
@@ -30,6 +33,11 @@ exports.edit_form = function(req, res) {
 	var post = req.body;
 
 	async.series({
+		link: function(callback) {
+			if (!post.link) return callback(null);
+
+			fs.writeFile(__app_root + '/static/link.html', post.link, callback);
+		},
 		cv_ru: function(callback) {
 			if (!post.cv.ru) return callback(null);
 

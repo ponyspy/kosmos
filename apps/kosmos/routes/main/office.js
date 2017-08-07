@@ -11,6 +11,11 @@ module.exports = function(Model) {
 
 	module.index = function(req, res, next) {
 		async.parallel({
+			link: function(callback) {
+				fs.readFile(__app_root + '/static/link.html', function(err, content) {
+					callback(null, content || '');
+				});
+			},
 			cv: function(callback) {
 				fs.readFile(__app_root + '/static/cv_' + req.locale + '.html', function(err, content) {
 					callback(null, content || '');

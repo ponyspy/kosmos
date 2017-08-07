@@ -97,3 +97,7 @@ block content
 
 	//- img.block_poster(src='/stuff/kosmos/backgrounds/about.png')
 
+
+	if (link && link !== '')
+		.portfolio_block
+			a.link(href=link, target='_blank', rel='nofollow'): span= __('You can download our full portfolio as PDF here.')

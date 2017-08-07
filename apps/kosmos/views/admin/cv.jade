@@ -22,6 +22,8 @@ block content
 	.form_block
 		.title= content_title
 		form(action='', method='post')
+			.form_title Портфолио (ссылка):
+			input(type='text', name='link', value= content.link)
 			.form_title Адрес:
 			input.ru(type='text', name='adress[ru]', value= content.adress_ru)
 			input.en(type='text', name='adress[en]', value= content.adress_en)
