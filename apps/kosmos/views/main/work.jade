@@ -3,7 +3,7 @@ extends layout
 block paths
 	- var content_title= __('KOSMOS') + ' | ' + __(work.type == 'project' ? 'PROJECTS' : 'RESEARCH') + (work.i18n.title.get(locale) ? ' | ' + work.i18n.title.get(locale).toUpperCase() : '')
 	- var content_description = work.i18n.s_title.get(locale)
-	- var content_images = [work.poster_column ? work.poster_column : work.poster]
+	- var content_images = [work.poster]
 	- var menu_active = work.type
 
 block content_style
