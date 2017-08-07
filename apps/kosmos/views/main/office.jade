@@ -32,7 +32,7 @@ block content
 					each people in peoples
 						if people.type == 'master'
 							if people.attach_cv
-								a.block_item.open(href=people.attach_cv)
+								a.block_item.open(href=people.attach_cv, target='_blank')
 									.item_photo(style='background-image: url(' + people.photo + ')')
 									.item_name= people.i18n.name.get(locale)
 									.item_open= __('Open CV')
