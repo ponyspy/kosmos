@@ -25,6 +25,8 @@ module.exports = function(Model, Params) {
 		people._short_id = shortid.generate();
 		people.status = post.status;
 		people.type = post.type;
+		people.link = post.link;
+		people.sym = post.sym ? post.sym : undefined;
 		people.date = moment(post.date.date + 'T' + post.date.time.hours + ':' + post.date.time.minutes);
 
 		var locales = post.en ? ['ru', 'en'] : ['ru'];

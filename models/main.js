@@ -90,8 +90,10 @@ var peopleSchema = new Schema({
 	description: { type: String, trim: true, locale: true },
 	attach_cv: { type: String },
 	photo: { type: String },
+	link: String,
 	type: String,
 	status: String,
+	sym: { type: String, trim: true, index: true, unique: true, sparse: true },
 	_short_id: { type: String, unique: true, index: true, sparse: true },
 	date: { type: Date, default: Date.now },
 });

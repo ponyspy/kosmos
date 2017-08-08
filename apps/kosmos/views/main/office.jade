@@ -31,8 +31,8 @@ block content
 				.items_master
 					each people in peoples
 						if people.type == 'master'
-							if people.attach_cv
-								a.block_item.open(href=people.attach_cv, target='_blank')
+							if (people.attach_cv || people.link)
+								a.block_item.open(href='/cv/' + people._short_id, target='_blank')
 									.item_photo(style='background-image: url(' + people.photo + ')')
 									.item_name= people.i18n.name.get(locale)
 									.item_open= __('Open CV')
@@ -43,8 +43,8 @@ block content
 				.items_slave
 					each people in peoples
 						if people.type == 'slave'
-							if people.attach_cv
-								a.item_name(href=people.attach_cv, target='_blank')= people.i18n.name.get(locale)
+							if (people.attach_cv || people.link)
+								a.item_name(href='/cv/' + people._short_id, target='_blank')= people.i18n.name.get(locale)
 							else
 								.item_name= people.i18n.name.get(locale)
 
@@ -98,6 +98,5 @@ block content
 	//- img.block_poster(src='/stuff/kosmos/backgrounds/about.png')
 
 
-	if (link && link !== '')
-		.portfolio_block
-			a.link(href=link, target='_blank', rel='nofollow'): span= __('You can download our full portfolio as PDF here.')
+	.portfolio_block
+		a.link(href='/cv', target='_blank', rel='nofollow'): span= __('You can download our full portfolio as PDF here.')

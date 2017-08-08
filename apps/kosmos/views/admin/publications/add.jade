@@ -30,10 +30,10 @@ block content
 			+form_text_single('title')
 			.form_title Подзаголовок:
 			+form_text_single('s_title')
-			.form_title Ссылка:
-			input(type='text', name='link')
 			.form_title Год:
 			input(type='number', name='year', value=new Date().getFullYear())
+			.form_title Ссылка:
+			input(type='text', name='link')
 			.form_title Файл ZIP / PDF:
 			+form_single_file('attach')(accept='application/pdf,application/zip')
 			.form_title Обложка:

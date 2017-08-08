@@ -7,6 +7,7 @@ var main = {
 	projects: require('./works.js')(Model, 'project'),
 	researches: require('./works.js')(Model, 'research'),
 	office: require('./office.js')(Model),
+	cv: require('./cv.js')(Model),
 	options: require('./options.js')(Model)
 };
 
@@ -15,6 +16,12 @@ module.exports = (function() {
 
 	router.route('/')
 		.get(main.index.index);
+
+	router.route('/cv')
+		.get(main.cv.index);
+
+	router.route('/cv/:short_id')
+		.get(main.cv.people);
 
 	router.route('/office')
 		.get(main.office.index);

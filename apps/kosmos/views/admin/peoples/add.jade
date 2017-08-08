@@ -28,8 +28,12 @@ block content
 		form(action="", method="post", enctype="multipart/form-data")
 			.form_title Имя:
 			+form_text_single('name')
+			.form_title Синоним:
+			input(type='text', name='sym')
 			.form_title Описание:
 			+form_text_multi('description')
+			.form_title Ссылка:
+			input(type='text', name='link')
 			.form_title Фото:
 			+form_single_file('photo')(accept='image/jpeg,image/png,image/gif')
 			.form_title Файл ZIP / PDF:
