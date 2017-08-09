@@ -47,6 +47,12 @@ body.research
 		animation load .3s linear forwards
 		.work_link
 			text-decoration none
+			&:hover
+				.work_s_title
+					display block
+				.work_poster
+					transition .3s linear
+					filter: opacity(.3) blur(2px)
 			.work_poster
 				position relative
 				// padding-bottom 56.25%
@@ -78,12 +84,6 @@ body.research
 				box-sizing border-box
 				font 20pt/22pt 'MinionPro Semibold'
 				letter-spacing 2px
-		&:hover
-			.work_s_title
-				display block
-			.work_poster
-				transition .3s linear
-				filter: opacity(.3) blur(2px)
 		.work_categorys
 			font 12pt/14pt 'MinionPro Medium'
 			text-transform lowercase
@@ -101,3 +101,7 @@ body.research
 				&.current
 				&:hover
 					border-bottom 1px solid black
+				&.active
+					border-bottom 1px dashed black
+				&.out
+					border-bottom 1px solid transparent

@@ -47,10 +47,23 @@ $(function() {
 		});
 	});
 
-	$document.on('click', '.category_item.current', function(e) {
-		e.preventDefault();
+	$document
+		.on('click', '.category_item.current', function(e) {
+			e.preventDefault();
 
-		window.location.href = '#';
-	});
+			window.location.href = '#';
+		})
+		.on('mouseenter', '.category_item', function(e) {
+			var category = $(this).attr('class').split(' ')[1];
+
+			if ($(this).hasClass('current')) {
+				$('.category_item').filter('.' + category).addClass('out');
+			} else {
+				$('.category_item').filter('.' + category).addClass('active');
+			}
+		})
+		.on('mouseleave', '.category_item', function(e) {
+			$('.category_item').removeClass('active out');
+		});
 
 });
