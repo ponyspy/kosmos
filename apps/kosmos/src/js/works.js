@@ -54,13 +54,10 @@ $(function() {
 			window.location.href = '#';
 		})
 		.on('mouseenter', '.category_item', function(e) {
-			var category = $(this).attr('class').split(' ')[1];
+			var $this = $(this);
 
-			if ($(this).hasClass('current')) {
-				$('.category_item').filter('.' + category).addClass('out');
-			} else {
-				$('.category_item').filter('.' + category).addClass('active');
-			}
+			$('.category_item').filter('.' + $this.attr('class').split(' ')[1])
+												 .addClass($this.hasClass('current') ? 'out': 'active');
 		})
 		.on('mouseleave', '.category_item', function(e) {
 			$('.category_item').removeClass('active out');
