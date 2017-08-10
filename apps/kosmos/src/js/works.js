@@ -57,7 +57,7 @@ $(function() {
 			var $this = $(this);
 
 			$('.category_item').filter('.' + $this.attr('class').split(' ')[1])
-												 .addClass($this.hasClass('current') ? 'out': 'active');
+												 .addClass($this.hasClass('current') ? 'out' : 'active');
 		})
 		.on('mouseleave', '.category_item', function(e) {
 			$('.category_item').removeClass('active out');
