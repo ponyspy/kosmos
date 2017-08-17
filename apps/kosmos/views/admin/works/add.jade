@@ -57,10 +57,11 @@ block content
 			select(name='type')
 				option(value='project') Проект
 				option(value='research') Исследование
-			.form_title Видимость:
-			label
-				input(type='checkbox', name='status', value='hidden')
-				span= ' скрыть'
+			.form_title Статус:
+			select(name='status')
+				option(value='base') Обычный
+				option(value='hidden') Скрытый
+				option(value='special') Особый
 			.form_title Дата публикации:
 			+form_date('date')
 			br

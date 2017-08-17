@@ -28,10 +28,11 @@ block content
 			+form_text_single('title', category)
 			.form_title Синоним (обязательно):
 			input(type='text', name='sym', value=category.sym)
-			.form_title Видимость:
-			label
-				input(type='checkbox', name='status', value='hidden', checked=category.status)
-				!= ' скрыть'
+			.form_title Статус:
+			select(name='status')
+				option(value='base') Обычный
+				option(value='hidden', selected= category.status == 'hidden' && 'hidden') Скрытый
+				option(value='special', selected= category.status == 'special' && 'special') Особый
 			br
 			br
 			input(type='submit', value='отправить')

@@ -26,12 +26,8 @@ module.exports = function(Model) {
 			? Event.find({ $text : { $search : post.context.text } } )
 			: Event.find();
 
-		if (post.context.status && post.context.status == 'default') {
-			Query.where('status').ne('hidden');
-		}
-
-		if (post.context.status && post.context.status == 'hidden') {
-			Query.where('status').equals('hidden');
+		if (post.context.status && post.context.status != 'all') {
+			Query.where('status').equals(post.context.status);
 		}
 
 		Query.count(function(err, count) {

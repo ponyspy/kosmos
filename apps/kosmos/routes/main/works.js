@@ -14,13 +14,19 @@ module.exports = function(Model, Type) {
 	module.get_works = function(req, res) {
 		var post = req.body;
 
-		Category.distinct('_id', { status: { $ne: 'hidden' }, sym: post.context.category }).exec(function(err, categorys) {
+		Category.findOne({ status: { $ne: 'hidden' }, sym: post.context.category }).exec(function(err, category) {
 
-			var Query = categorys.length > 0
-				? Work.find({ 'type': type, 'categorys': { $in: categorys } })
+			var Query = category
+				? Work.find({ 'type': type, 'categorys': category._id })
 				: Work.find({ 'type': type });
 
-			Query.where('status').ne('hidden').sort('-date').skip(+post.context.skip).limit(+post.context.limit).populate('categorys').exec(function(err, works) {
+			if (category && category.status == 'special') {
+				Query.where('status').equals('special');
+			} else {
+				Query.where('status').equals('base');
+			}
+
+			Query.sort('-date').skip(+post.context.skip).limit(+post.context.limit).populate('categorys').exec(function(err, works) {
 				var opts = {
 					locale: req.locale,
 					works: works,
@@ -36,10 +42,12 @@ module.exports = function(Model, Type) {
 		});
 	};
 
-	module.work = function(req, res) {
+	module.work = function(req, res, next) {
 		var id = req.params.short_id;
 
-		Work.findOne({ $or: [ { '_short_id': id }, { 'sym': id } ] }).populate('categorys').exec(function(err, work) {
+		Work.findOne({ $or: [ { '_short_id': id }, { 'sym': id } ], 'status': { $ne: 'hidden' } }).populate('categorys').exec(function(err, work) {
+			if (err || !work) return next(err);
+
 			var images = work.images.reduce(function(prev, curr) {
 				if (prev.length && curr.gallery == prev[prev.length - 1][0].gallery) {
 					prev[prev.length - 1].push(curr);

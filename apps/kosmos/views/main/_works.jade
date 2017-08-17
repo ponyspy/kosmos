@@ -6,5 +6,5 @@ each work in works
 			.work_s_title= work.i18n.s_title.get(locale)
 		.work_categorys
 			each category in work.categorys
-				if category.status !== 'hidden'
+				if (category.status !== 'special' && category.status !== 'hidden')
 					a.category_item(class=category.sym, href='#' + category.sym)= category.i18n.title.get(locale)

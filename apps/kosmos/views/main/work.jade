@@ -34,12 +34,12 @@ block content
 					.meta_column
 						.meta_title= __('Area')
 						.meta_data= work.i18n.area.get(locale)
-				if (work.categorys.length > 0 && work.categorys.every(function(category) { return category.status !== 'hidden' }))
+				if (work.categorys.length > 0 && work.categorys.some(function(category) { return category.status == 'base' }))
 					.meta_column
 						.meta_title= __('Tags')
 						.meta_data
 							each category, i in work.categorys
-								if (category.status !== 'hidden')
+								if (category.status == 'base')
 									a.category(href='/' + (type == 'project' ? 'projects' : 'research') + '#' + category.sym)= category.i18n.title.get(locale)
 				if work.files.length > 0
 					.meta_column
