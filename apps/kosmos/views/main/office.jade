@@ -26,7 +26,7 @@ block content
 
 
 		.peoples_block(id='team')
-			a.block_title(href='#team'): span= __('Team')
+			.block_title: a(href='#team')= __('Team')
 			.block_items
 				.items_master
 					each people in peoples
@@ -54,7 +54,7 @@ block content
 
 	if press.length > 0
 		.press_block(id='press')
-			a.block_title(href='#press'): span= __('Press')
+			.block_title: a(href='#press')= __('Press')
 			.block_items
 				each item, i in press
 					- var link = item.attach ? item.attach : item.link
@@ -69,7 +69,7 @@ block content
 
 	if awards.length > 0
 		.awards_block(id='awards')
-			a.block_title(href='#awards'): span= __('Awards')
+			.block_title: a(href='#awards')= __('Awards')
 			.block_items
 				each award, i in awards
 					.block_item(class= (i >= 9) ? 'hidden' : '')
@@ -83,7 +83,7 @@ block content
 
 	if events.length > 0
 		.events_block(id='events')
-			a.block_title(href='#events'): span= __('Events')
+			.block_title: a(href='#events')= __('Events')
 			.block_items
 				each event, i in events
 					.block_item(class= (i >= 9) ? 'hidden' : '')

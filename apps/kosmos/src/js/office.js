@@ -3,7 +3,7 @@ $(function() {
 		$(this).parent().find('.hidden').removeClass('hidden').end().end().remove();
 	});
 
-	$('.block_title').on('click', function(e) {
+	$('.block_title a').on('click', function(e) {
 		e.preventDefault();
 
 		var hash = $(this).attr('href');
