@@ -3,9 +3,17 @@
 
 .block_title
 	font 26pt/28pt 'MinionPro Medium'
-	margin-top 100px
+	margin-top 50px
 	margin-bottom 60px
 	letter-spacing 2px
+	text-decoration none
+	display block
+	span
+		padding-top 50px
+		display inline-block
+		border-bottom 1px solid transparent
+	&:hover span
+		border-bottom 1px solid black
 
 .block_poster
 	width 100%
@@ -51,12 +59,14 @@
 
 .peoples_block
 	overflow hidden
-	margin-top 80px
-	margin-bottom 100px
+	padding-top 50px
+	margin-top 50px
 	.block_title
 		float left
-		margin-top 0
 		width 40%
+		margin-top 0
+		span
+			padding-top 0
 	.block_items
 		width 60%
 		float right
@@ -172,9 +182,6 @@
 			.item_year
 				opacity 0
 				font 16pt/22pt 'MinionPro Medium'
-
-.awards_block .block_title
-	margin-top 80px
 
 .events_block
 	margin-bottom 100px
