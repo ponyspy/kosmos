@@ -43,9 +43,14 @@ module.exports = function(Model, Type) {
 	};
 
 	module.work = function(req, res, next) {
+		var user_id = req.session.user_id;
 		var id = req.params.short_id;
 
-		Work.findOne({ $or: [ { '_short_id': id }, { 'sym': id } ], 'status': { $ne: 'hidden' } }).populate('categorys').exec(function(err, work) {
+		var Query = user_id
+			? Work.findOne({ $or: [ { '_short_id': id }, { 'sym': id } ] })
+			: Work.findOne({ $or: [ { '_short_id': id }, { 'sym': id } ] }).where('status').ne('hidden');;
+
+		Query.populate('categorys').exec(function(err, work) {
 			if (err || !work) return next(err);
 
 			var images = work.images.reduce(function(prev, curr) {
