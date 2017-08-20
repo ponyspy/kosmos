@@ -58,7 +58,7 @@ block content
 			.block_items
 				each item, i in press
 					- var link = item.attach ? item.attach : item.link
-					a.block_item(href=link, class= (i >= 12) ? 'hidden' : '', class= !link ? 'no_link' : '',  target='_blank', onclick= !link ? 'return false;' : '')
+					a.block_item(href=link, rel='nofollow', class= (i >= 12) ? 'hidden' : '', class= !link ? 'no_link' : '',  target='_blank', onclick= !link ? 'return false;' : '')
 						.item_poster(style='background-image: url(' + item.poster + ')')
 						.item_title= item.i18n.title.get(locale)
 						.item_s_title= item.i18n.s_title.get(locale)
