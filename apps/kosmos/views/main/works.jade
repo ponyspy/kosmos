@@ -3,6 +3,8 @@ extends layout
 block paths
 	- var content_title= __('KOSMOS') + ' | ' + __(type == 'project' ? 'PROJECTS' : 'RESEARCH')
 	- var menu_active = type
+	if type != 'project'
+		- var content_description = __('This is a collection of different projects we do besides and parallel to architecture: our research, art, academic publications, studies on the city and more.')
 
 block content_style
 	link(rel='stylesheet', type='text/css', href='/build/' + __app_name + '/css/works.css' + version)
