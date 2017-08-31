@@ -1,17 +1,13 @@
 extends layout
 
-block paths
+block header_meta
 	- var content_title= __('KOSMOS') + ' | ' + __('OFFICE')
 	- var content_description = cv
 	- var menu_active = 'office'
 
-block content_style
-	link(rel='stylesheet', type='text/css', href='/libs/css/swiper.min.css' + version)
-	link(rel='stylesheet', type='text/css', href='/build/' + __app_name + '/css/office.css' + version)
-
-block content_scripts
-	script(type='text/javascript', src='/libs/js/swiper.jquery.min.js' + version)
-	script(type='text/javascript', src='/build/' + __app_name + '/js/office.js' + version)
+block header_include
+	- var include_css = ['office.css']
+	- var include_js = ['office.js']
 
 block content
 	.cv_block

@@ -1,13 +1,11 @@
 extends ../layout
 
-block paths
+block header_meta
 	- var content_title= 'ПОЛЬЗОВАТЕЛИ'
 
-block content_style
-	link(rel='stylesheet', type='text/css', href='/build/' + __app_name + '/css/add.css' + version)
-
-block content_scripts
-	script(type='text/javascript', src='/build/' + __app_name + '/js/lists.js' + version)
+block header_include
+	- var include_css = ['add.css']
+	- var include_js = ['lists.js']
 
 block sub_menu
 	a.sub_item.back_link(href='/admin') Назад

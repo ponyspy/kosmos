@@ -1,15 +1,13 @@
 extends layout
 
-block paths
+block header_meta
 	- var content_title= __('KOSMOS')
 	- var content_description= __('Architectural office which collaborates virtually between Moscow, Basel, New York and Bangkok.')
 	- var menu_active = 'main'
 
-block content_style
-	link(rel='stylesheet', type='text/css', href='/build/' + __app_name + '/css/main.css' + version)
-
-block content_scripts
-	script(type='text/javascript', src='/build/' + __app_name + '/js/main.js' + version)
+block header_include
+	- var include_css = ['main.css']
+	- var include_js = ['main.js']
 
 block content
 	.posters_block

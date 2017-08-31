@@ -1,18 +1,16 @@
 extends layout
 
-block paths
+block header_meta
 	- var content_title= __('KOSMOS') + ' | ' + __(work.type == 'project' ? 'PROJECTS' : 'RESEARCH') + (work.i18n.title.get(locale) ? ' | ' + work.i18n.title.get(locale).toUpperCase() : '')
 	- var content_description = work.i18n.s_title.get(locale)
 	- var content_images = [work.poster]
 	- var menu_active = work.type
 
-block content_style
-	link(rel='stylesheet', type='text/css', href='/libs/css/swiper.min.css' + version)
-	link(rel='stylesheet', type='text/css', href='/build/' + __app_name + '/css/work.css' + version)
-
-block content_scripts
-	script(type='text/javascript', src='/libs/js/swiper.jquery.min.js' + version)
-	script(type='text/javascript', src='/build/' + __app_name + '/js/work.js' + version)
+block header_include
+	- var include_libs_css = ['swiper.min.css']
+	- var include_css = ['work.css']
+	- var include_libs_js = ['swiper.jquery.min.js']
+	- var include_js = ['work.js']
 
 block content
 	.work_header
