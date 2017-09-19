@@ -166,7 +166,7 @@ module.exports.files_upload = function(obj, base_path, field_name, post, files, 
 	if (files.attach && files.attach.length > 0) {
 		async.forEachOfSeries(files.attach, function(file, i, callback) {
 			var file_path = '/cdn/' + base_path + '/' + obj._id + '/files';
-			var file_name = Date.now() + '.' + mime.extension(file.mimetype);
+			var file_name = Date.now() + '.' + mime.getExtension(file.mimetype);
 
 			mkdirp(public_path + file_path, function() {
 				fs.rename(file.path, public_path + file_path + '/' + file_name, function() {
