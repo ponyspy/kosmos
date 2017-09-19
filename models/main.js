@@ -79,6 +79,7 @@ var eventSchema = new Schema({
 	title: { type: String, trim: true, locale: true },
 	s_title: { type: String, trim: true, locale: true },
 	place: { type: String, trim: true, locale: true },
+	link: String,
 	year: Number,
 	status: String,
 	_short_id: { type: String, unique: true, index: true, sparse: true },

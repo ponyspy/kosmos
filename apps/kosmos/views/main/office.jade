@@ -82,7 +82,7 @@ block content
 			.block_title: a(href='#events')= __('Events')
 			.block_items
 				each event, i in events
-					.block_item(class= (i >= 9) ? 'hidden' : '')
+					a.block_item(href=event.link, target='_blank', class=event.link ? 'active' : '', class= (i >= 9) ? 'hidden' : '')
 						.item_title= event.i18n.title.get(locale)
 						.item_s_title= event.i18n.s_title.get(locale)
 						.item_place= event.i18n.place.get(locale)
