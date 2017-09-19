@@ -25,10 +25,8 @@ html
 			.footer_block
 				.logo: span!= '&copy;K-S-M-S ' + new Date().getFullYear()
 				.language
-						a(href='#', style='opacity: 0.5;'): span RUS
-						a.active(href='#'): span ENG
-					//- a(href='/lang/ru', class=locale == 'ru' ? 'active': ''): span RUS
-					//- a(href='/lang/en', class=locale == 'en' ? 'active': ''): span ENG
+					a(href='/lang/ru', class=locale == 'ru' ? 'active': ''): span RUS
+					a(href='/lang/en', class=locale == 'en' ? 'active': ''): span ENG
 				.contacts
 					//- info@k-s-m-s.com
 					a(href='mailto:kosmos.arch@gmail.com')

@@ -82,7 +82,7 @@ module.exports = function(Model, Params) {
 				work.save(function(err, work) {
 					if (err) return next(err);
 
-					res.redirect('/admin/works');
+					res.redirect('back');
 				});
 			});
 		});

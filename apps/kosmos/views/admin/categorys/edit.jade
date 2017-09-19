@@ -13,6 +13,9 @@ block header_include
 block sub_menu
 	a.sub_item.back_link(href='/admin/categorys') Назад
 	span.sub_item.toggle_eng Перевод
+	.sub_right_block
+		input.form_cancel(type='submit', value='Отменить')
+		input.form_submit(type='submit', value='Сохранить')
 
 
 block content
@@ -28,6 +31,3 @@ block content
 				option(value='base') Обычный
 				option(value='hidden', selected= category.status == 'hidden' && 'hidden') Скрытый
 				option(value='special', selected= category.status == 'special' && 'special') Особый
-			br
-			br
-			input(type='submit', value='отправить')

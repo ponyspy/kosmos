@@ -49,7 +49,7 @@ module.exports = function(Model, Params) {
 			award.save(function(err, award) {
 				if (err) return next(err);
 
-				res.redirect('/admin/awards');
+				res.redirect('back');
 			});
 		});
 	};

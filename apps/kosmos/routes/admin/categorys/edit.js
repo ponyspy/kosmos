@@ -47,7 +47,7 @@ module.exports = function(Model, Params) {
 			category.save(function(err, category) {
 				if (err) return next(err);
 
-				res.redirect('/admin/categorys');
+				res.redirect('back');
 			});
 		});
 	};

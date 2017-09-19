@@ -54,7 +54,7 @@ module.exports = function(Model, Params) {
 					publication.save(function(err, publication) {
 						if (err) return next(err);
 
-						res.redirect('/admin/publications');
+						res.redirect('back');
 					});
 				});
 			});

@@ -49,7 +49,7 @@ module.exports = function(Model, Params) {
 			event.save(function(err, event) {
 				if (err) return next(err);
 
-				res.redirect('/admin/events');
+				res.redirect('back');
 			});
 		});
 	};

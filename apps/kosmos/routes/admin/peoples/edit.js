@@ -55,7 +55,7 @@ module.exports = function(Model, Params) {
 					people.save(function(err, people) {
 						if (err) return next(err);
 
-						res.redirect('/admin/peoples');
+						res.redirect('back');
 					});
 				});
 			});

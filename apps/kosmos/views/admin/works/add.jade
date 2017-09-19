@@ -13,6 +13,9 @@ block header_include
 block sub_menu
 	a.sub_item.back_link(href='/admin/works') Назад
 	span.sub_item.toggle_eng Перевод
+	.sub_right_block
+		input.form_cancel(type='submit', value='Отменить')
+		input.form_submit(type='submit', value='Добавить')
 
 block content
 	.form_block
@@ -53,6 +56,4 @@ block content
 				option(value='special') Особый
 			.form_title Дата публикации:
 			+form_date('date')
-			br
-			br
-			input(type='submit', value='отправить')
+

@@ -1,13 +1,26 @@
 $(function() {
 	var eng = true;
 
+	$(document)
+		.on('click', '.forward', function() {
+			var $snake = $(this).parent('.snake_outer').children('.snake');
+			$snake.first().clone()
+				.find('option').prop('selected', false).end()
+				.find('.input').val('').end()
+				.insertAfter($snake.last());
+		})
+		.on('click', '.back', function() {
+			var $snake = $(this).closest('.snake_outer').children('.snake');
+			if ($snake.size() == 1) return false;
+			$(this).parent('.snake').remove();
+		})
+		.on('scroll', function(event) {
+			$(this).scrollTop() >= $('.menu_block').offset().top + $('.menu_block').height() + 11
+				? $('.sub_menu_block').addClass('fixed')
+				: $('.sub_menu_block').removeClass('fixed');
+		});
 
-	// ------------------------
-	// *** Constructors Block ***
-	// ------------------------
-
-
-	function toggleEnglish() {
+	$('.toggle_eng').on('click', function() {
 		eng = !eng;
 
 		if (eng) {
@@ -21,25 +34,15 @@ $(function() {
 			$('.en_img').prop('disabled', eng).show();
 			$('.ru').css('float','left');
 		}
-	}
+	});
 
-	function snakeForward() {
-		var $snake = $(this).parent('.snake_outer').children('.snake');
-		$snake.first().clone()
-			.find('option').prop('selected', false).end()
-			.find('.input').val('').end()
-			.insertAfter($snake.last());
-	}
+	$('.form_submit').on('click', function(event) {
+		$(this).off();
+		$('form').submit();
+	});
 
-	function snakeBack() {
-		var $snake = $(this).closest('.snake_outer').children('.snake');
-		if ($snake.size() == 1) return false;
-		$(this).parent('.snake').remove();
-	}
-
-
-	$('.toggle_eng').on('click', toggleEnglish);
-	$(document).on('click', '.back', snakeBack);
-	$(document).on('click', '.forward', snakeForward);
+	$('.form_cancel').on('click', function(event) {
+		location.reload();
+	});
 
 });
