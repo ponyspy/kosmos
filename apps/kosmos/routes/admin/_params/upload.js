@@ -19,7 +19,7 @@ module.exports.file = function(obj, base_path, field_name, file, del_file, callb
 	if (del_file || !file) return callback.call(null, null, obj);
 
 	var file_path = '/cdn/' + base_path + '/' + obj._id + '/files';
-	var file_name = field_name + '.' + mime.extension(file.mimetype);
+	var file_name = field_name + '.' + mime.getExtension(file.mimetype);
 
 	rimraf(public_path + file_path + '/' + field_name + '.*', { glob: true }, function() {
 		mkdirp(public_path + file_path, function() {
@@ -47,9 +47,9 @@ module.exports.image = function(obj, base_path, field_name, file_size, file, del
 
 	rimraf(public_path + file_path + '/' + field_name + '.*', { glob: true }, function() {
 		mkdirp(public_path + file_path, function() {
-			if (/jpeg|png|gif/.test(mime.extension(file.mimetype))) {
+			if (/jpeg|png|gif/.test(mime.getExtension(file.mimetype))) {
 				gm(file.path).identify({ bufferStream: true }, function(err, meta) {
-					var file_name = field_name + '.' + mime.extension(file.mimetype);
+					var file_name = field_name + '.' + mime.getExtension(file.mimetype);
 
 					this.resize(meta.size.width > file_size ? file_size : false, false);
 					this.quality(meta.size.width >= file_size ? 82 : 100);
