@@ -1,5 +1,11 @@
 $(function() {
 
+	$(document).on('keyup', function(e) {
+		if (e.which == 32) {
+			$('.poster_item.active').trigger('click');
+		}
+	});
+
 	var timer = function() {
 		$('.active').trigger('click');
 	};

@@ -48,6 +48,11 @@ $(function() {
 	});
 
 	$document
+		.on('keyup', function(e) {
+			if (e.which == 27) {
+				$('.category_item.current').trigger('click');
+			}
+		})
 		.on('click', '.category_item.current', function(e) {
 			e.preventDefault();
 
