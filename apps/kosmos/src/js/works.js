@@ -5,12 +5,13 @@ $(function() {
 	var work_type = $('body').attr('class').split(' ')[0] == 'project' ? 'projects' : 'research';
 	var context = {
 		skip: 0,
-		limit: 4,
+		limit: 8,
 		category: window.location.hash.replace('#', '')
 	};
 
-	var scrollLoader = function(e) {
-		if ($window.scrollTop() + $window.height() + 200 >= $document.height()) {
+	var scrollLoader = function(e, fire) {
+		if (fire || $window.scrollTop() + $window.height() + 240 >= $document.height()) {
+			context.limit = 4;
 
 			$window.off('scroll');
 
@@ -23,6 +24,8 @@ $(function() {
 
 					context.skip += 4;
 					$window.on('scroll', scrollLoader);
+				} else {
+					$('.works_loader').hide();
 				}
 			});
 		}
@@ -30,8 +33,10 @@ $(function() {
 
 	$window.on('load hashchange', function(e) {
 		context.skip = 0;
-		context.limit = 4;
+		context.limit = 8;
 		context.category = window.location.hash.replace('#', '');
+
+		$('.works_loader').show();
 
 		$.ajax({url: '/' + work_type, method: 'POST', data: { context: context }, async: false }).done(function(data) {
 			if (data !== 'end') {
@@ -45,6 +50,10 @@ $(function() {
 				$window.off('scroll').scrollTop(0).on('scroll', scrollLoader);
 			}
 		});
+	});
+
+	$('.works_loader span').on('click', function(e) {
+		$window.trigger('scroll', true);
 	});
 
 	$document
