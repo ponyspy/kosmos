@@ -25,7 +25,7 @@ $(function() {
 					context.skip += 4;
 					$window.on('scroll', scrollLoader);
 				} else {
-					$('.works_loader').hide();
+					$('.works_loader').addClass('hide');
 				}
 			});
 		}
@@ -36,7 +36,7 @@ $(function() {
 		context.limit = 8;
 		context.category = window.location.hash.replace('#', '');
 
-		$('.works_loader').show();
+		$('.works_loader').removeClass('hide');
 
 		$.ajax({url: '/' + work_type, method: 'POST', data: { context: context }, async: false }).done(function(data) {
 			if (data !== 'end') {
@@ -52,7 +52,7 @@ $(function() {
 		});
 	});
 
-	$('.works_loader span').on('click', function(e) {
+	$('.works_loader').children('span').on('click', function(e) {
 		$window.trigger('scroll', true);
 	});
 
