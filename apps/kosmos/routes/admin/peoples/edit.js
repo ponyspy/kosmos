@@ -16,7 +16,7 @@ module.exports = function(Model, Params) {
 		People.findById(id).exec(function(err, people) {
 			if (err) return next(err);
 
-			res.render('admin/peoples/edit.jade', { people: people });
+			res.render('admin/peoples/edit.pug', { people: people });
 		});
 
 	};

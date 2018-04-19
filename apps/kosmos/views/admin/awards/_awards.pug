@@ -1,10 +1,10 @@
-mixin items(awards)
+.list_items
 	each award in awards
 		.list_item
 			a.item_rm.award(href='#', id=award._id) -- удалить
 			a.item_title(href='/admin/awards/edit/' + award._id, class=award.status =='hidden' ? 'hidden': '')= (award.i18n.title.get('ru') || '!!! ПУСТОЕ ПОЛЕ !!!')
 
-mixin counters(count, skip)
+.list_counter
 	a.list_back(href='#'): b назад
 	span= ' - '
 	select.list_select
@@ -14,10 +14,3 @@ mixin counters(count, skip)
 			- i++
 	span= ' - '
 	a.list_next(href='#'): b вперед
-
-
-if load_list
-	.list_items
-		+items(awards)
-	.list_counter
-		+counters(count, skip)

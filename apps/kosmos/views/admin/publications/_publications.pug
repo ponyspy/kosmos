@@ -1,10 +1,10 @@
-mixin items(publications)
+.list_items
 	each publication in publications
 		.list_item
 			a.item_rm.publication(href='#', id=publication._id) -- удалить
 			a.item_title(href='/admin/publications/edit/' + publication._id, class=publication.status =='hidden' ? 'hidden': '')= (publication.i18n.title.get('ru') || '!!! ПУСТОЕ ПОЛЕ !!!')
 
-mixin counters(count, skip)
+.list_counter
 	a.list_back(href='#'): b назад
 	span= ' - '
 	select.list_select
@@ -14,10 +14,3 @@ mixin counters(count, skip)
 			- i++
 	span= ' - '
 	a.list_next(href='#'): b вперед
-
-
-if load_list
-	.list_items
-		+items(publications)
-	.list_counter
-		+counters(count, skip)

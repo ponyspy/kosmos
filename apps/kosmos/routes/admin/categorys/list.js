@@ -1,4 +1,4 @@
-var jade = require('jade');
+var pug = require('pug');
 
 module.exports = function(Model) {
 	var module = {};
@@ -49,7 +49,7 @@ module.exports = function(Model) {
 						compileDebug: false, debug: false, cache: true, pretty: false
 					};
 
-					res.send(jade.renderFile(__app_root + '/views/admin/categorys/_categorys.jade', opts));
+					res.send(pug.renderFile(__app_root + '/views/admin/categorys/_categorys.pug', opts));
 				} else {
 					res.send('end');
 				}

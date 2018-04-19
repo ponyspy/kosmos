@@ -1,8 +1,8 @@
 extends ../layout
-include ../_forms.jade
+include ../_forms.pug
 
 block header_meta
-	- var content_title= 'ДОБАВИТЬ ЧЕЛОВЕКА'
+	- var content_title= 'ДОБАВИТЬ СОБЫТИЕ'
 
 block header_include
 	- var include_libs_css = ['pickmeup.min.css', 'font-awesome.css', 'wysiwyg-editor.min.css']
@@ -11,7 +11,7 @@ block header_include
 	- var include_js = ['editor.js', 'add.js', 'a_events.js']
 
 block sub_menu
-	a.sub_item.back_link(href='/admin/peoples') Назад
+	a.sub_item.back_link(href='/admin/events') Назад
 	span.sub_item.toggle_eng Перевод
 	.sub_right_block
 		input.form_cancel(type='submit', value='Отменить')
@@ -20,23 +20,17 @@ block sub_menu
 block content
 	.form_block
 		.title= content_title
-		form(action="", method="post", enctype="multipart/form-data")
-			.form_title Имя:
-			+form_text_single('name')
-			.form_title Синоним:
-			input(type='text', name='sym')
-			.form_title Описание:
-			+form_text_multi('description')
+		form(action="", method="post")
+			.form_title Название:
+			+form_text_single('title')
+			.form_title Подзаголовок:
+			+form_text_single('s_title')
 			.form_title Ссылка:
 			input(type='text', name='link')
-			.form_title Фото:
-			+form_single_file('photo')(accept='image/jpeg,image/png,image/gif')
-			.form_title Файл ZIP / PDF:
-			+form_single_file('attach_cv')(accept='application/pdf,application/zip')
-			.form_title Тип:
-			select(name='type')
-				option(value='slave') Коллаборатор
-				option(value='master') Партнер
+			.form_title Место:
+			+form_text_single('place')
+			.form_title Год:
+			input(type='number', name='year', value=new Date().getFullYear())
 			.form_title Статус:
 			select(name='status')
 				option(value='base') Обычный

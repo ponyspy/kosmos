@@ -1,8 +1,7 @@
 extends ../layout
-include _publications.jade
 
 block header_meta
-	- var content_title= 'ПРЕССА'
+	- var content_title= 'НАГРАДЫ'
 
 block header_include
 	- var include_css = ['add.css']
@@ -25,11 +24,8 @@ block sub_menu
 block content
 	.title= content_title
 	br
-	a.add(href='/admin/publications/add') + Добавить публикацию
+	a.add(href='/admin/awards/add') + Добавить награду
 	br
 	br
 	.lists_block
-		.list_items
-			+items(publications)
-		.list_counter
-			+counters(count)
+		include _awards.pug

@@ -16,7 +16,7 @@ module.exports = function(Model, Params) {
 		Publication.findById(id).exec(function(err, publication) {
 			if (err) return next(err);
 
-			res.render('admin/publications/edit.jade', { publication: publication });
+			res.render('admin/publications/edit.pug', { publication: publication });
 		});
 
 	};

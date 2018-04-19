@@ -19,7 +19,7 @@ module.exports = function(Model, Params) {
 		Category.find().exec(function(err, categorys) {
 			if (err) return next(err);
 
-			res.render('admin/works/add.jade', { categorys: categorys });
+			res.render('admin/works/add.pug', { categorys: categorys });
 		});
 	};
 

@@ -14,7 +14,7 @@ module.exports = function(Model, Params) {
 		Award.findById(id).exec(function(err, award) {
 			if (err) return next(err);
 
-			res.render('admin/awards/edit.jade', { award: award });
+			res.render('admin/awards/edit.pug', { award: award });
 		});
 
 	};

@@ -1,5 +1,4 @@
 extends ../layout
-include _works.jade
 
 block header_meta
 	- var content_title= 'РАБОТЫ'
@@ -38,7 +37,4 @@ block content
 	br
 	br
 	.lists_block
-		.list_items
-			+items(works)
-		.list_counter
-			+counters(count)
+		include _works.pug

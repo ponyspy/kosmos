@@ -14,7 +14,7 @@ module.exports = function(Model, Params) {
 		Event.findById(id).exec(function(err, event) {
 			if (err) return next(err);
 
-			res.render('admin/events/edit.jade', { event: event });
+			res.render('admin/events/edit.pug', { event: event });
 		});
 
 	};

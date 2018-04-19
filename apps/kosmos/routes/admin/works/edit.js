@@ -27,7 +27,7 @@ module.exports = function(Model, Params) {
 				previewImages(work.images, function(err, images_preview) {
 					if (err) return next(err);
 
-					res.render('admin/works/edit.jade', { work: work, categorys: categorys, images_preview: images_preview });
+					res.render('admin/works/edit.pug', { work: work, categorys: categorys, images_preview: images_preview });
 				});
 			});
 		});

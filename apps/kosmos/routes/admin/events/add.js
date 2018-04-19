@@ -10,7 +10,7 @@ module.exports = function(Model, Params) {
 
 
 	module.index = function(req, res, next) {
-		res.render('admin/events/add.jade');
+		res.render('admin/events/add.pug');
 	};
 
 

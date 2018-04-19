@@ -26,7 +26,7 @@ module.exports = function(Model) {
 				.exec(function(err, result) {
 					var result = result && result[0] && result[0].images || [];
 
-					res.render('main/index.jade', { posters: result });
+					res.render('main/index.pug', { posters: result });
 				});
 	};
 

@@ -1,4 +1,4 @@
-var jade = require('jade');
+var pug = require('pug');
 
 module.exports = function(Model, Type) {
 	var module = {};
@@ -8,7 +8,7 @@ module.exports = function(Model, Type) {
 	var type = Type;
 
 	module.index = function(req, res) {
-		res.render('main/works.jade', { type: type });
+		res.render('main/works.pug', { type: type });
 	};
 
 	module.get_works = function(req, res) {
@@ -34,7 +34,7 @@ module.exports = function(Model, Type) {
 				};
 
 				if (works && works.length > 0) {
-					res.send(jade.renderFile(__app_root + '/views/main/_works.jade', opts));
+					res.send(pug.renderFile(__app_root + '/views/main/_works.pug', opts));
 				} else {
 					res.send('end');
 				}
@@ -69,7 +69,7 @@ module.exports = function(Model, Type) {
 				}
 			}, []);
 
-			res.render('main/work.jade', { work: work, type: type, images: images });
+			res.render('main/work.pug', { work: work, type: type, images: images });
 		});
 	};
 
