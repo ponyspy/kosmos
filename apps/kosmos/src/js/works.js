@@ -1,7 +1,7 @@
-$(function() {
-	var $window = $(window);
-	var $document = $(document);
+var $window = $(window);
+var $document = $(document);
 
+$window.on('load hashchange', function(e) {
 	var work_type = $('body').attr('class').split(' ')[0] == 'project' ? 'projects' : 'research';
 	var context = {
 		skip: 0,
@@ -31,27 +31,23 @@ $(function() {
 		}
 	};
 
-	$window.on('load hashchange', function(e) {
-		context.skip = 0;
-		context.limit = 8;
-		context.category = window.location.hash.replace('#', '');
+	$('.works_loader').removeClass('hide');
 
-		$('.works_loader').removeClass('hide');
+	$.ajax({url: '/' + work_type, method: 'POST', data: { context: context }, async: false }).done(function(data) {
+		if (data !== 'end') {
+			var $data = $(data);
 
-		$.ajax({url: '/' + work_type, method: 'POST', data: { context: context }, async: false }).done(function(data) {
-			if (data !== 'end') {
-				var $data = $(data);
+			$('.works_block').empty().append($data).promise().done(function() {
+				$('.category_item').removeClass('current').filter(context.category != '' ? '.' + context.category : '').addClass('current');
+			});
 
-				$('.works_block').empty().append($data).promise().done(function() {
-					$('.category_item').removeClass('current').filter(context.category != '' ? '.' + context.category : '').addClass('current');
-				});
-
-				context.skip = $data.length;
-				$window.off('scroll').scrollTop(0).on('scroll', scrollLoader);
-			}
-		});
+			context.skip = $data.length;
+			$window.off('scroll').scrollTop(0).on('scroll', scrollLoader);
+		}
 	});
+});
 
+$(function() {
 	$('.works_loader').children('span').on('click', function(e) {
 		$window.trigger('scroll', true);
 	});
