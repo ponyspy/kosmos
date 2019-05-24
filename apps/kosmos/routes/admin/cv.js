@@ -4,25 +4,25 @@ var async = require('async');
 exports.edit = function(req, res) {
 	async.series({
 		link: function(callback) {
-			fs.readFile(__app_root + '/static/link.html', callback);
+			fs.readFile(__app_root + '/static/link.html', 'utf8', callback);
 		},
 		cv_ru: function(callback) {
-			fs.readFile(__app_root + '/static/cv_ru.html', callback);
+			fs.readFile(__app_root + '/static/cv_ru.html', 'utf8', callback);
 		},
 		cv_en: function(callback) {
-			fs.readFile(__app_root + '/static/cv_en.html', callback);
+			fs.readFile(__app_root + '/static/cv_en.html', 'utf8', callback);
 		},
 		desc_ru: function(callback) {
-			fs.readFile(__app_root + '/static/desc_ru.html', callback);
+			fs.readFile(__app_root + '/static/desc_ru.html', 'utf8', callback);
 		},
 		desc_en: function(callback) {
-			fs.readFile(__app_root + '/static/desc_en.html', callback);
+			fs.readFile(__app_root + '/static/desc_en.html', 'utf8', callback);
 		},
 		adress_ru: function(callback) {
-			fs.readFile(__app_root + '/static/adress_ru.html', callback);
+			fs.readFile(__app_root + '/static/adress_ru.html', 'utf8', callback);
 		},
 		adress_en: function(callback) {
-			fs.readFile(__app_root + '/static/adress_en.html', callback);
+			fs.readFile(__app_root + '/static/adress_en.html', 'utf8', callback);
 		}
 	}, function(err, results) {
 		res.render('admin/cv.pug', { content: results });

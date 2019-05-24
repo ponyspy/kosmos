@@ -12,17 +12,17 @@ module.exports = function(Model) {
 	module.index = function(req, res, next) {
 		async.parallel({
 			cv: function(callback) {
-				fs.readFile(__app_root + '/static/cv_' + req.locale + '.html', function(err, content) {
+				fs.readFile(__app_root + '/static/cv_' + req.locale + '.html', 'utf8', function(err, content) {
 					callback(null, content || '');
 				});
 			},
 			desc: function(callback) {
-				fs.readFile(__app_root + '/static/desc_' + req.locale + '.html', function(err, content) {
+				fs.readFile(__app_root + '/static/desc_' + req.locale + '.html', 'utf8', function(err, content) {
 					callback(null, content || '');
 				});
 			},
 			adress: function(callback) {
-				fs.readFile(__app_root + '/static/adress_' + req.locale + '.html', function(err, content) {
+				fs.readFile(__app_root + '/static/adress_' + req.locale + '.html', 'utf8', function(err, content) {
 					callback(null, content || '');
 				});
 			},
