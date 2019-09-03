@@ -40,15 +40,15 @@ module.exports = function(Model, Params) {
 		work.type = post.type;
 		work.sym = post.sym ? post.sym : undefined;
 
-		if (youtubeId(post.video)) {
+		if (youtubeId(post.embed)) {
 			work.embed = {
 				provider: 'youtube',
-				id: youtubeId(post.video)
+				id: youtubeId(post.embed)
 			}
-		} else if (vimeoId(post.video)) {
+		} else if (vimeoId(post.embed)) {
 			work.embed = {
 				provider: 'vimeo',
-				id: vimeoId(post.video)
+				id: vimeoId(post.embed)
 			}
 		} else {
 			work.embed = undefined;
