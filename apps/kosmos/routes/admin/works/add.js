@@ -13,6 +13,8 @@ module.exports = function(Model, Params) {
 	var filesUpload = Params.upload.files_upload;
 	var filesDelete = Params.upload.files_delete;
 	var checkNested = Params.locale.checkNested;
+	var youtubeId = Params.helpers.youtubeId;
+	var vimeoId = Params.helpers.vimeoId;
 
 
 	module.index = function(req, res, next) {
@@ -37,6 +39,20 @@ module.exports = function(Model, Params) {
 		work.year = post.year;
 		work.type = post.type;
 		work.sym = post.sym ? post.sym : undefined;
+
+		if (youtubeId(post.video)) {
+			work.embed = {
+				provider: 'youtube',
+				id: youtubeId(post.video)
+			}
+		} else if (vimeoId(post.video)) {
+			work.embed = {
+				provider: 'vimeo',
+				id: vimeoId(post.video)
+			}
+		} else {
+			work.embed = undefined;
+		}
 
 		var locales = post.en ? ['ru', 'en'] : ['ru'];
 

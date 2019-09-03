@@ -50,6 +50,10 @@ block content
 		.work_column.right
 			.work_description!= work.i18n.description.get(locale)
 
+	if work.embed && work.embed.provider
+		- var provider_path= work.embed.provider == 'youtube' ? 'https://www.youtube.com/embed/' : 'https://player.vimeo.com/video/'
+		.work_embed: .embed_inner: iframe.embed(src=provider_path + work.embed.id, frameborder='0', allow='autoplay; encrypted-media', allowfullscreen='')
+
 	.work_images
 		each item in images
 			if item.length

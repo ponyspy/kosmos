@@ -36,6 +36,10 @@ var workSchema = new Schema({
 	type: 'String', // project, research
 	sym: { type: String, trim: true, index: true, unique: true, sparse: true },
 	categorys: [{ type: ObjectId, ref: 'Category' }],
+	embed: {
+		provider: String,
+		id: String
+	},
 	images: [{
 		size: String,
 		gallery: Boolean,

@@ -8,7 +8,7 @@ block header_include
 	- var include_libs_css = ['pickmeup.min.css', 'font-awesome.css', 'wysiwyg-editor.min.css']
 	- var include_css = ['add.css']
 	- var include_libs_js = ['jquery.pickmeup.min.js', 'wysiwyg.min.js', 'wysiwyg-editor.min.js', 'jquery-ui.min.js', 'jquery.filedrop.js']
-	- var include_js = ['upload.js', 'editor.js', 'add.js', 'a_events.js']
+	- var include_js = ['upload.js', 'editor.js', 'add.js', 'a_works.js']
 
 block sub_menu
 	a.sub_item.back_link(href='/admin/works') Назад
@@ -40,6 +40,8 @@ block content
 			+form_single_file('poster', work)(accept='image/jpeg,image/png,image/gif')
 			.form_title Обложка (в колонке):
 			+form_single_file('poster_column', work)(accept='image/jpeg,image/png,image/gif')
+			.form_title Видео YouTube / Vimeo:
+			input(type='text', name='embed', value=(work.embed && work.embed.provider) ? (work.embed.provider == 'youtube' ? 'https://youtu.be/' + work.embed.id : 'https://vimeo.com/' + work.embed.id) : '')
 			.form_title Изображения:
 			+form_images_upload(work.images)
 			.form_title Файлы ZIP / PDF:
