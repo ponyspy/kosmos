@@ -5,7 +5,7 @@ module.exports = function(Model) {
 
 	module.index = function(req, res) {
 		Work.aggregate()
-				.match({'images.main': true})
+				.match({'images.main': true, 'status': { '$nin': ['hidden', 'special'] } })
 				.unwind('images')
 				.group({
 					'_id': null,
