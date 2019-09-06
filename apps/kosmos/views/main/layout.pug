@@ -1,5 +1,5 @@
 doctype html
-html
+html(lang=locale)
 	head
 		include header
 	body(class=menu_active)
@@ -31,10 +31,10 @@ html
 					//- info@k-s-m-s.com
 					a(href='mailto:kosmos.arch@gmail.com')
 						span e-mail
-					a(href='https://www.facebook.com/kosmosarchitects', target='_blank')
+					a(href='https://www.facebook.com/kosmosarchitects', rel='noopener', target='_blank')
 						span facebook
 						img(src='/stuff/' + __app_name +'/icons/social/' + (menu_active =='research' ? 'f_icon_w.svg' : 'f_icon.svg'))
-					a(href='https://www.instagram.com/kosmos_architects', target='_blank')
+					a(href='https://www.instagram.com/kosmos_architects', rel='noopener', target='_blank')
 						span instagram
 						img(src='/stuff/' + __app_name +'/icons/social/' + (menu_active =='research' ? 'i_icon_w.svg' : 'i_icon.svg'))
 		include counters
