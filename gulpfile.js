@@ -6,6 +6,7 @@ var rimraf = require('rimraf'),
 
 var gulp = require('gulp'),
 		noop = require('gulp-noop'),
+		replace = require('gulp-replace'),
 		changed = require('gulp-changed'),
 		cache = require('gulp-cached'),
 		progeny = require('gulp-progeny'),
@@ -104,6 +105,9 @@ var paths = {
 		src: 'apps/**/stuff/**',
 		dest: 'public/stuff'
 	},
+	version: {
+		src: 'apps/**/views/version.pug',
+	},
 	clean: {
 		base: ['public/build/**', 'public/stuff/**'],
 		force: ['public/preview/**/*', 'uploads/**/*'],
@@ -114,6 +118,14 @@ var paths = {
 
 // Tasks Block
 
+
+function version() {
+	return pump([
+		gulp.src(paths.version.src, { base: './' }),
+			replace(/[^]*/, '- var version = ' + Date.now()),
+		gulp.dest('.')
+	], errorLogger);
+}
 
 function clean(callback) {
 	var clean = paths.clean.base;
@@ -166,19 +178,19 @@ function scripts() {
 }
 
 function watch() {
-	gulp.watch(paths.scripts.src, scripts)
+	gulp.watch(paths.scripts.src, gulp.parallel(version, scripts))
 			.on('unlink', cacheClean)
 			.on('change', watchLogger('changed'))
 			.on('add', watchLogger('added'))
 			.on('unlink', watchLogger('removed'));
 
-	gulp.watch(paths.styles.src, styles)
+	gulp.watch(paths.styles.src, gulp.parallel(version, styles))
 			.on('unlink', cacheClean)
 			.on('change', watchLogger('changed'))
 			.on('add', watchLogger('added'))
 			.on('unlink', watchLogger('removed'));
 
-	gulp.watch(paths.stuff.src, stuff)
+	gulp.watch(paths.stuff.src, gulp.parallel(version, stuff))
 			.on('change', watchLogger('changed'))
 			.on('add', watchLogger('added'))
 			.on('unlink', watchLogger('removed'));
@@ -192,11 +204,11 @@ var task_clean = clean;
 		clean.description = 'Clean project folders';
 		clean.flags = clean_flags;
 
-var task_build = gulp.series(clean, gulp.parallel(styles, scripts, stuff));
+var task_build = gulp.series(clean, gulp.parallel(version, styles, scripts, stuff));
 		task_build.description = 'Build all...';
 		task_build.flags = build_flags;
 
-var task_default = gulp.series(clean, gulp.parallel(styles, scripts, stuff), watch);
+var task_default = gulp.series(clean, gulp.parallel(version, styles, scripts, stuff), watch);
 		task_default.description = 'Build and start watching';
 		task_default.flags = build_flags;
 
