@@ -22,6 +22,7 @@ var gulp = require('gulp'),
 // ENV Block
 
 
+var Bump = argv.b || argv.bump;
 var Prod = argv.p || argv.prod;
 var Lint = argv.l || argv.lint;
 var Maps = argv.m || argv.maps;
@@ -43,6 +44,7 @@ if (!Force && !Reset) log([
 
 
 var build_flags = {
+	'-b --bump': 'Bump version',
 	'-p --prod': 'Builds in ' + colors.underline.green('production') + ' mode (minification, etc).',
 	'-d --dev': 'Builds in ' + colors.underline.yellow('development') + ' mode (default).',
 	'-l --lint': 'Lint JavaScript code.',
@@ -178,13 +180,13 @@ function scripts() {
 }
 
 function watch() {
-	gulp.watch(paths.scripts.src, gulp.parallel(version, scripts))
+	gulp.watch(paths.scripts.src, gulp.parallel.apply(gulp, Bump ? [version, scripts] : [scripts]))
 			.on('unlink', cacheClean)
 			.on('change', watchLogger('changed'))
 			.on('add', watchLogger('added'))
 			.on('unlink', watchLogger('removed'));
 
-	gulp.watch(paths.styles.src, gulp.parallel(version, styles))
+	gulp.watch(paths.styles.src, gulp.parallel.apply(gulp, Bump ? [version, styles] : [styles]))
 			.on('unlink', cacheClean)
 			.on('change', watchLogger('changed'))
 			.on('add', watchLogger('added'))
@@ -204,11 +206,11 @@ var task_clean = clean;
 		clean.description = 'Clean project folders';
 		clean.flags = clean_flags;
 
-var task_build = gulp.series(clean, gulp.parallel(version, styles, scripts, stuff));
+var task_build = gulp.series(clean, gulp.parallel.apply(gulp, Bump ? [version, styles, scripts, stuff] : [styles, scripts, stuff]));
 		task_build.description = 'Build all...';
 		task_build.flags = build_flags;
 
-var task_default = gulp.series(clean, gulp.parallel(version, styles, scripts, stuff), watch);
+var task_default = gulp.series(clean, gulp.parallel.apply(gulp, Bump ? [version, styles, scripts, stuff] : [styles, scripts, stuff]), watch);
 		task_default.description = 'Build and start watching';
 		task_default.flags = build_flags;
 
@@ -216,3 +218,4 @@ var task_default = gulp.series(clean, gulp.parallel(version, styles, scripts, st
 exports.build = task_build;
 exports.default = task_default;
 exports.clean = task_clean;
+
