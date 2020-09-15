@@ -74,7 +74,7 @@ block content
 								- var description = image.description.filter(function(lang) { return lang.lg == locale })
 								.slide_description= description.length ? description[0].value : ''
 			else
-				- var sizes = ['size_1x', 'size_2x', 'size_3x' ]
+				- var sizes = ['size_0x', 'size_1x', 'size_2x', 'size_3x' ]
 				.image_item(class=sizes[sizes.indexOf('size_' + item.size)])
 					img.image(data-src=item.thumb)
 					- var description = item.description.filter(function(lang) { return lang.lg == locale })
