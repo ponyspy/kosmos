@@ -7,8 +7,10 @@ var Schema = mongoose.Schema,
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/' +  __app_name, {
-	useCreateIndex: true,
-	useNewUrlParser: true
+	// useCreateIndex: true,
+	// useFindAndModify: false,
+	useNewUrlParser: true,
+	useUnifiedTopology: true
 });
 
 
