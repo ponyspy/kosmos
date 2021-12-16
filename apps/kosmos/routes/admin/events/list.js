@@ -27,13 +27,13 @@ module.exports = function(Model) {
 			: Event.find();
 
 		if (post.context.status && post.context.status != 'all') {
-			Query.where('status').equals(post.context.status);
+			Query.clone().where('status').equals(post.context.status);
 		}
 
-		Query.count(function(err, count) {
+		Query.clone().count(function(err, count) {
 			if (err) return next(err);
 
-			Query.find().sort('-date').skip(+post.context.skip).limit(+post.context.limit).exec(function(err, events) {
+			Query.clone().find().sort('-date').skip(+post.context.skip).limit(+post.context.limit).exec(function(err, events) {
 				if (err) return next(err);
 
 				if (events.length > 0) {
