@@ -36,13 +36,40 @@ block content
 								.block_item
 									.item_photo(style='background-image: url(' + people.photo + ')')
 									.item_name= people.i18n.name.get(locale)
+
 				.items_slave
-					each people in peoples
-						if people.type == 'slave'
-							if (people.attach_cv || people.link)
-								a.item_name(href='/cv/' + people._short_id, target='_blank')= people.i18n.name.get(locale)
-							else
-								.item_name= people.i18n.name.get(locale)
+
+					if (peoples.filter(function(item) { return item.type == 'slave' }).length)
+						.group_title= __('Recurring collaborations with')
+						.group_items
+							each people in peoples
+								if people.type == 'slave'
+									if (people.attach_cv || people.link)
+										a.item_name(href='/cv/' + people._short_id, target='_blank')= people.i18n.name.get(locale)
+									else
+										.item_name= people.i18n.name.get(locale)
+
+					if (peoples.filter(function(item) { return item.type == 'intern' }).length)
+						.group_title= __('Intern')
+						.group_items
+							each people in peoples
+								if people.type == 'intern'
+									if (people.attach_cv || people.link)
+										a.item_name(href='/cv/' + people._short_id, target='_blank')= people.i18n.name.get(locale)
+									else
+										.item_name= people.i18n.name.get(locale)
+
+					if (peoples.filter(function(item) { return item.type == 'previously' }).length)
+						.group_title= __('Previously')
+						.group_items
+							each people in peoples
+								if people.type == 'previously'
+									if (people.attach_cv || people.link)
+										a.item_name(href='/cv/' + people._short_id, target='_blank')= people.i18n.name.get(locale)
+									else
+										.item_name= people.i18n.name.get(locale)
+
+
 
 
 	//- img.block_poster(src='/stuff/kosmos/backgrounds/about.png')

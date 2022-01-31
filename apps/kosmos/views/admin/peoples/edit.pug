@@ -37,6 +37,8 @@ block content
 			select(name='type')
 				option(value='slave', selected= people.type == 'slave' && 'slave') Коллаборатор
 				option(value='master', selected= people.type == 'master' && 'master') Партнер
+				option(value='intern', selected= people.type == 'intern' && 'intern') Стажер
+				option(value='previously', selected= people.type == 'previously' && 'previously') Ранее
 			.form_title Статус:
 			select(name='status')
 				option(value='base') Обычный

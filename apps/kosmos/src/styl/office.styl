@@ -74,18 +74,25 @@
 			flex-wrap wrap
 			justify-content space-between
 		.items_slave
-			font 16pt/22pt 'MinionPro Medium'
 			padding-left 20px
 			margin-top 20px
-			a.item_name
-				text-decoration none
-				border-bottom 1px solid black
-			.item_name
-				display inline
+			.group_title
+				font 16pt/22pt 'MinionPro Semibold'
+				margin-top 20px
 				&:after
-					content ', '
-				&:last-child:after
-					content '.'
+					content ':'
+			.group_items
+				margin-top 20px
+				font 16pt/22pt 'MinionPro Medium'
+				a.item_name
+					text-decoration none
+					border-bottom 1px solid black
+				.item_name
+					display inline
+					&:after
+						content ', '
+					&:last-child:after
+						content ''
 		.block_item
 			text-decoration none
 			margin-left 20px
