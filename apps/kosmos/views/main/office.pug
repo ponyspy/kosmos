@@ -50,7 +50,7 @@ block content
 										.item_name= people.i18n.name.get(locale)
 
 					if (peoples.filter(function(item) { return item.type == 'intern' }).length)
-						.group_title= __('Intern')
+						.group_title= __('Interns')
 						.group_items
 							each people in peoples
 								if people.type == 'intern'
